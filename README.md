@@ -5,5 +5,5 @@ Para registrar el grupo completo con todos sus integrantes: https://forms.gle/PK
 
 Grupos:
 
-Máximo: 3 integrantes 
+Máximo: 3 integrantes
 Mínimo: 2 integrantes
