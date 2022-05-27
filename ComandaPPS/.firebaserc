@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "comanda-pps-62f45": {
+      "hosting": {
+        "app": [
+          "comanda-pps-62f45"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "comanda-pps-62f45"
+  }
+}

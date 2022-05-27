@@ -1,0 +1,7 @@
+{
+  "name": "ComandaPPS",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
