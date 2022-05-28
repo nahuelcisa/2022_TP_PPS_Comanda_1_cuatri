@@ -26,7 +26,11 @@ const routes: Routes = [
   {
     path: 'alta-cliente',
     loadChildren: () => import('./pages/alta-cliente/alta-cliente.module').then( m => m.AltaClientePageModule)
+  },  {
+    path: 'alta-duen-sup',
+    loadChildren: () => import('./pages/alta-duen-sup/alta-duen-sup.module').then( m => m.AltaDuenSupPageModule)
   },
+
 ];
 
 @NgModule({
