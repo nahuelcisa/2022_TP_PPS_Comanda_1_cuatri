@@ -43,11 +43,11 @@ export class AltaEmpleadoPage implements OnInit {
   ngOnInit() {
   }
 
-  altaDuenSup()
+  altaEmpleado()
   {
     this.as.loading = true;
        
-    this.fs.agregarDuenSup(this.empleado)
+    this.fs.agregarEmpleado(this.empleado)
     
     setTimeout(() => {
         this.form.reset(); 

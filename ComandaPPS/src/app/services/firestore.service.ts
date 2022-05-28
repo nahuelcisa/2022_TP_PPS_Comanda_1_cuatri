@@ -41,7 +41,7 @@ export class FirestoreService {
     this.empleadoCollectionReference = this.angularF.collection<any>('empleados');
     this.empleados = this.empleadoCollectionReference.valueChanges({idField: 'id'});
 
-    this.traerDuenSups().subscribe(value => {
+    this.traerempleados().subscribe(value => {
       this.empleadoArray = value;
     });
   }
