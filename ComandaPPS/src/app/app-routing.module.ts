@@ -38,6 +38,14 @@ const routes: Routes = [
     path: 'alta-empleado',
     loadChildren: () => import('./pages/alta-empleado/alta-empleado.module').then( m => m.AltaEmpleadoPageModule)
   },
+  {
+    path: 'card-empleado-cliente',
+    loadChildren: () => import('./pages/card-empleado-cliente/card-empleado-cliente.module').then( m => m.CardEmpleadoClientePageModule)
+  },
+  {
+    path: 'encuesta-supervisor',
+    loadChildren: () => import('./pages/encuesta-supervisor/encuesta-supervisor.module').then( m => m.EncuestaSupervisorPageModule)
+  },
 
   
 ];
