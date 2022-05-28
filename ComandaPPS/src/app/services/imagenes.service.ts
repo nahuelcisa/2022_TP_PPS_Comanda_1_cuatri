@@ -14,7 +14,7 @@ export class ImagenesService {
 
   constructor(public as : AuthService, private afs : AngularFireStorage, private fs : FirestoreService) { }
 
-  public async addNewToGallery(usuario : any) {
+  public async addNewToGallery(cliente : any) {
     const capturedPhoto = await Camera.getPhoto({
       resultType: CameraResultType.DataUrl,
       source: CameraSource.Camera,
@@ -25,7 +25,7 @@ export class ImagenesService {
     let storage = getStorage();
     let date = new Date().getTime();
  
-    let nombre = `${usuario.email} _ ${usuario.dni}_${date}`;
+    let nombre = `${cliente.nombre}_${date}`;
 
     let storageRef = ref(storage, nombre);
 
@@ -39,7 +39,7 @@ export class ImagenesService {
       }) 
     });
     */
-   console.log(capturedPhoto.webPath);
+
    let respuesta = {
      storage : storageRef,
      url : url,

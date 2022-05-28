@@ -13,6 +13,7 @@ export class LoginPage implements OnInit {
   email : string = "";
   password : string = "";
   form : FormGroup;
+  perfil
 
   constructor(private formBuilder : FormBuilder, private as : AuthService, private router : Router) 
   { 

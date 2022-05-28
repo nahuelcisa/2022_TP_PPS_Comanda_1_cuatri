@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'alta-cliente',
     pathMatch: 'full'
   },
   {
@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path: 'registro',
     loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
+  },
+  {
+    path: 'alta-cliente',
+    loadChildren: () => import('./pages/alta-cliente/alta-cliente.module').then( m => m.AltaClientePageModule)
   },
 ];
 
