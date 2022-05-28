@@ -49,4 +49,33 @@ export class ImagenesService {
     return respuesta;
   }
 
+
+
+  //Alta mesa
+  public async addFotoMesa(mesa: any) {
+    const capturedPhoto = await Camera.getPhoto({
+      resultType: CameraResultType.DataUrl,
+      source: CameraSource.Camera,
+      quality: 100,
+      webUseInput: true,
+    });
+
+    let storage = getStorage();
+    let date = new Date().getTime();
+ 
+    let nombre = "Nro Mesa" + mesa.nroMesa + date;
+    let storageRef = ref(storage, nombre);
+
+    let url = this.afs.ref(nombre);
+
+
+   let respuesta = {
+     storage : storageRef,
+     url : url,
+     capturedPhoto : capturedPhoto,
+     web : capturedPhoto.webPath
+   }
+    return respuesta;
+  }
+
 }

@@ -1,38 +1,41 @@
 import { Component, OnInit } from '@angular/core';
 //import { PhotoService } from '../services/photo.service';
+import { uploadString } from 'firebase/storage';
 import {ToastController} from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
+import { ImagenesService } from 'src/app/services/imagenes.service';
+import {Mesa} from '../../interfaces/mesa';
+import { FirestoreService } from 'src/app/services/firestore.service';
 
-
-interface Food {
-  value: string;
-  viewValue: string;
-}
 
 @Component({
   selector: 'app-alta-mesa',
   templateUrl: './alta-mesa.page.html',
   styleUrls: ['./alta-mesa.page.scss'],
 })
-export class AltaMesaPage implements OnInit, Food{
-  public fotoSacada: boolean = false;
+export class AltaMesaPage implements OnInit, Mesa{
+  
+  fotoSacada: boolean = false;
+  nroMesa: number;
+  cantComensales: number;
+  tipo: any;
 
-  public nroMesa: number;
-  public cantComensales: number;
-  public tipo: any;
+  mesa : Mesa;
 
-  value: string;
-  viewValue: string;
+  foto : any;
+  webPath : string = "";
+  storage : any;
+  url : any = "";
+  capturedPhoto : any = "";
+  fotoSubida : boolean = false;
 
-  tipos: Food[] = [
-    {value: 'Vip', viewValue: 'Vip'},
-    {value: 'Discapacitados', viewValue: 'Discapacitados'},
-    {value: 'Estándar', viewValue: 'Estándar'},
-  ];
 
   constructor(
-    public toastController: ToastController
+    public toastController: ToastController,
+    private imageStore : ImagenesService,
+    private as : AuthService,
+    private fs : FirestoreService
   ) { }
-
 
 
   async ErrorToast() {
@@ -100,53 +103,95 @@ export class AltaMesaPage implements OnInit, Food{
   }
 
   onSubirFoto(){    
-    //this.photoService.addNewToGallery();
+    this.mesa = {
+      nroMesa: this.nroMesa,
+      cantComensales: this.cantComensales,
+      tipo: this.tipo,
+      foto: ""
+    };
 
-    this.fotoSacada= true;
+    this.imageStore.addFotoMesa(this.mesa).then((data) =>{
+      this.as.loading = true;
+      this.storage = data.storage;
+      this.url = data.url;
+      this.capturedPhoto = data.capturedPhoto;
+      this.fotoSubida = true;
+      uploadString(this.storage,this.capturedPhoto.dataUrl, 'data_url').then((data) =>{    
+        this.url.getDownloadURL().subscribe((url1 : any)=>{
+          this.webPath = url1;
+          this.mesa.foto = url1;
+          setTimeout(() => {
+            this.as.loading = false;
+          }, 2000);
+        });
+      });
+    });    
   }
+
 
   onAgregarMesa(){
     let todoOk: boolean = true;
  
-    let tipo: boolean = true;
-    let cantComensal: boolean = true;
-    let nroMesa: boolean = true;
-    let foto: boolean = true;
+    let val_tipo: boolean = true;
+    let val_cantComensal: boolean = true;
+    let val_nrMesa: boolean = true;
+    let val_foto: boolean = true;
         
-   if(!this.fotoSacada){
+   if(this.webPath == ""){
      this.ErrorToastFoto();
      todoOk = false;
-     foto = false;
+     val_foto = false;
    }
  
    if(this.tipo == null || this.tipo == undefined || this.tipo == ""){
      this.ErrorToastTipo();   
      todoOk = false;   
-     tipo = false;
+     val_tipo = false;
    }
  
    if(this.cantComensales == null || this.cantComensales == undefined || !(this.cantComensales > 0)){
      this.ErrorToastCantComensales();
      todoOk = false;
-     cantComensal = false;
+     val_cantComensal = false;
    }
  
-   if(this.nroMesa == null || this.nroMesa == undefined || !(this.nroMesa > 0))
+   if(this.nroMesa == null || this.nroMesa == undefined || this.nroMesa <= 0)
    {
      this.ErrorToastNroMesa();
      todoOk = false;
-     nroMesa = false;
+     val_nrMesa = false;
    }
  
  
-   if(!tipo && !cantComensal && !nroMesa && !foto){
+   if(!val_tipo && !val_cantComensal && !val_nrMesa && !val_foto){
      this.ErrorToast();
    }
  
-     if(todoOk){
-       this.SuccessToastMesa();
-     }
-   }
+
+    if(todoOk){
+      this.as.loading = true;
+     
+      this.mesa = {
+        nroMesa: this.nroMesa,
+        cantComensales: this.cantComensales,
+        tipo: this.tipo,
+        foto: this.webPath
+      };  
+
+      this.fs.agregarMesa(this.mesa);
+      
+      setTimeout(() => {               
+          this.nroMesa = 0;
+          this.cantComensales = 0;
+          this.tipo = "";
+
+          this.fotoSubida = false;
+          this.as.loading = false;
+          this.webPath = "";
+          this.SuccessToastMesa();
+        }, 2500);
+      }
+  }
 
    
    cargarDatos(dato : number)
