@@ -38,7 +38,7 @@ export class FirestoreService {
       this.duenSupArray = value;
     });
 
-    this.empleadoCollectionReference = this.angularF.collection<any>('duenSups');
+    this.empleadoCollectionReference = this.angularF.collection<any>('empleados');
     this.empleados = this.empleadoCollectionReference.valueChanges({idField: 'id'});
 
     this.traerDuenSups().subscribe(value => {
