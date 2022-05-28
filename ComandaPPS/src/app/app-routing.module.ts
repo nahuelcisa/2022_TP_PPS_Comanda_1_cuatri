@@ -46,6 +46,14 @@ const routes: Routes = [
     path: 'encuesta-supervisor',
     loadChildren: () => import('./pages/encuesta-supervisor/encuesta-supervisor.module').then( m => m.EncuestaSupervisorPageModule)
   },
+  {
+    path: 'card-empleado',
+    loadChildren: () => import('./pages/card-empleado/card-empleado.module').then( m => m.CardEmpleadoPageModule)
+  },
+  {
+    path: 'encuesta-empleado',
+    loadChildren: () => import('./pages/encuesta-empleado/encuesta-empleado.module').then( m => m.EncuestaEmpleadoPageModule)
+  },
 
   
 ];
