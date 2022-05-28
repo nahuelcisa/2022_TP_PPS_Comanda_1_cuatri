@@ -11,6 +11,16 @@ export class FirestoreService {
   clientes: Observable<any>;
 
   clientesArray : any = [];
+
+  duenSupCollectionReference: any;
+  duenSup: Observable<any>;
+
+  duenSupArray : any = [];
+
+  empleadoCollectionReference: any;
+  empleados: Observable<any>;
+
+  empleadoArray : any = [];
   
   constructor(private angularF : AngularFirestore) 
   {
@@ -21,11 +31,34 @@ export class FirestoreService {
       this.clientesArray = value;
     });
 
+    this.duenSupCollectionReference = this.angularF.collection<any>('duenSups');
+    this.duenSup = this.duenSupCollectionReference.valueChanges({idField: 'id'});
+
+    this.traerDuenSups().subscribe(value => {
+      this.duenSupArray = value;
+    });
+
+    this.empleadoCollectionReference = this.angularF.collection<any>('duenSups');
+    this.empleados = this.empleadoCollectionReference.valueChanges({idField: 'id'});
+
+    this.traerDuenSups().subscribe(value => {
+      this.empleadoArray = value;
+    });
   }
 
   traerClientes()
   {
     return this.clientes;
+  }
+
+  traerDuenSups()
+  {
+    return this.duenSup;
+  }
+
+  traerempleados()
+  {
+    return this.empleados;
   }
 
 /*   modificarFoto(foto : any, id : any, coleccion : string)
@@ -36,5 +69,15 @@ export class FirestoreService {
   agregarCliente(cliente : any)
   {
       this.clientesCollectionReference.add({...cliente});
+  }
+
+  agregarEmpleado(empleado : any)
+  {
+      this.empleadoCollectionReference.add({...empleado});
+  }
+
+  agregarDuenSup(duenSup : any)
+  {
+      this.duenSupCollectionReference.add({...duenSup});
   }
 }
