@@ -1,0 +1,26 @@
+.card{
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    margin-bottom: 45px;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.image{
+    border-radius: 10px;
+    flex: 1 1 120px;
+    aspect-ratio: 1 / 1;
+}
+
+.content{
+    border-radius: 10px;
+    flex: 1 1 200px;
+    background-color: white;
+}
+
+ion-content {
+    //--background: linear-gradient(rgba(0, 0, 0, 0.123), rgba(0, 0, 0, 0.185)), url("../../../assets/images/bg-auth.png");
+    --background: rgb(0,0,0);
+    --background: linear-gradient(180deg, rgba(0,0,0,1) 23%, rgba(168,168,168,1) 80%, rgba(198,198,198,1) 100%);
+  }
