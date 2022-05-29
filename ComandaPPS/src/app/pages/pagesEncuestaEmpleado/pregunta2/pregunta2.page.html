@@ -1,0 +1,22 @@
+<ion-row style="flex-grow: 1;">
+  <ion-col>
+    <ion-card>
+
+      <div align="center" style="padding-top: 10px;">
+        <img src="../../../../assets/img/Encuesta_Empleados/Pregunta_2.jpg" />
+      </div> 
+
+      <ion-card-header>
+        <ion-card-title style="color: rgb(157, 156, 156);"><u>Pregunta:</u></ion-card-title>              
+      </ion-card-header>
+
+      <ion-card-content>
+        <label style="font-size: 18px;color: white;">¿La cocina posee todos los utencillos necesarios?</label>
+        <!--(range, input, radio, check, select).-->     
+        <ion-item class="items" style="--border-radius: 6px; margin-top: 15px; padding-left: 3%; padding-right: 3%;">   
+          <ion-input (ionChange)="capturarRespuesta( $event)" color="light" placeholder="Si/No" [(ngModel)]="valor_respuesta" name="si_no" required></ion-input>
+        </ion-item>      
+      </ion-card-content>
+    </ion-card>
+  </ion-col>
+</ion-row>

@@ -54,6 +54,26 @@ const routes: Routes = [
     path: 'encuesta-empleado',
     loadChildren: () => import('./pages/encuesta-empleado/encuesta-empleado.module').then( m => m.EncuestaEmpleadoPageModule)
   },
+  {
+    path: 'pregunta1',
+    loadChildren: () => import('./pages/pagesEncuestaEmpleado/pregunta1/pregunta1.module').then( m => m.Pregunta1PageModule)
+  },
+  {
+    path: 'pregunta2',
+    loadChildren: () => import('./pages/pagesEncuestaEmpleado/pregunta2/pregunta2.module').then( m => m.Pregunta2PageModule)
+  },
+  {
+    path: 'pregunta3',
+    loadChildren: () => import('./pages/pagesEncuestaEmpleado/pregunta3/pregunta3.module').then( m => m.Pregunta3PageModule)
+  },
+  {
+    path: 'pregunta4',
+    loadChildren: () => import('./pages/pagesEncuestaEmpleado/pregunta4/pregunta4.module').then( m => m.Pregunta4PageModule)
+  },
+  {
+    path: 'pregunta5',
+    loadChildren: () => import('./pages/pagesEncuestaEmpleado/pregunta5/pregunta5.module').then( m => m.Pregunta5PageModule)
+  },
 
   
 ];

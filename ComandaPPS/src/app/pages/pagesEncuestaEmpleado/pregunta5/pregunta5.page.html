@@ -1,0 +1,34 @@
+<ion-row style="flex-grow: 1;">
+  <ion-col>
+    <ion-card>
+
+      <div align="center" style="padding-top: 10px;">
+        <img src="../../../../assets/img/Encuesta_Empleados/Pregunta_5.jpg" />
+      </div> 
+
+      <ion-card-header>
+        <ion-card-title style="color: rgb(157, 156, 156);"><u>Pregunta:</u></ion-card-title>              
+      </ion-card-header>
+
+      <ion-card-content>
+        <label style="font-size: 18px;color: white;">¿Dejo/recibio elementos rotos a lo largo de la jornada?</label>
+        <!--(range, input, radio, check, select).-->     
+
+        <ion-button mat-button [matMenuTriggerFor]="empleado" fill="clear" style=" width: 100%; border-radius: 5px; background-color: #8D2CE2; color: white;margin-top: 10px;">
+          <ion-icon name="caret-down-circle"></ion-icon>
+          Responda
+        </ion-button>
+        <mat-menu #empleado="matMenu" class="customize">
+          <button  mat-menu-item  (click)="cargarRespuesta(1)">No</button>
+          <button  mat-menu-item  (click)="cargarRespuesta(2)">Muchos</button>
+          <button  mat-menu-item  (click)="cargarRespuesta(3)">Pocos</button>
+        </mat-menu> 
+
+        <ion-item class="items" style="--border-radius: 6px; margin-top: 15px; padding-left: 3%; padding-right: 3%;">   
+          <ion-input color="light" id="respuesta" placeholder="Responda" readonly></ion-input>
+        </ion-item> 
+
+      </ion-card-content> 
+    </ion-card>
+  </ion-col>
+</ion-row>

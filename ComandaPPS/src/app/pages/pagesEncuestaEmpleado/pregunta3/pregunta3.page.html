@@ -1,0 +1,47 @@
+<ion-row style="flex-grow: 1;">
+  <ion-col>
+    <ion-card>
+
+      <div align="center" style="padding-top: 10px;">
+        <img src="../../../../assets/img/Encuesta_Empleados/Pregunta_3.jpg" />
+      </div> 
+
+      <ion-card-header>
+        <ion-card-title style="color: rgb(157, 156, 156);"><u>Pregunta:</u></ion-card-title>              
+      </ion-card-header>
+
+      <ion-card-content>
+        <label style="font-size: 18px;color: white;">¿Dejo/recibio limpio el restobar?</label>
+        <!--(range, input, radio, check, select).-->     
+        <div style="font-size: 18px;">
+          <mat-radio-group aria-label="Select an option" style="margin-left: 5%; margin-bottom: 5%;" (change)="respuestaRadioGroup($event)">
+            
+            <ion-grid style="height: auto;width: 100%; flex-flow: column;" >
+
+              <ion-row style="flex-grow: 1;">
+                <ion-col>    
+                  <mat-radio-button value="1" style="margin-right: 15px;"color="accent">Si</mat-radio-button>
+                </ion-col>
+              </ion-row>
+
+              <ion-row style="flex-grow: 1;">
+                <ion-col>    
+                  <mat-radio-button value="2" style="margin-right: 15px;"color="accent">No</mat-radio-button>
+                </ion-col>
+              </ion-row>
+
+              <ion-row style="flex-grow: 1;">
+                <ion-col>    
+                  <mat-radio-button value="3" color="accent">Mas o menos</mat-radio-button>
+                </ion-col>
+              </ion-row>
+              
+            </ion-grid>
+
+          </mat-radio-group>  
+        </div>
+             
+      </ion-card-content> 
+    </ion-card>
+  </ion-col>
+</ion-row>

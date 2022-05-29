@@ -1,0 +1,36 @@
+<ion-row style="flex-grow: 1;">
+  <ion-col>
+    <ion-card>
+
+      <div align="center" style="padding-top: 10px;">
+        <img src="../../../../assets/img/Encuesta_Empleados/Pregunta_4.jpg" />
+      </div> 
+
+      <ion-card-header>
+        <ion-card-title style="color: rgb(157, 156, 156);"><u>Pregunta:</u></ion-card-title>              
+      </ion-card-header>
+
+      <ion-card-content>
+        <label style="font-size: 18px;color: white;">¿Dejo/recibio mesas sin sillas?</label>
+        <!--(range, input, radio, check, select).-->     
+
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <div align="center">
+                  <ion-checkbox id="miElementoSi"  [(ngModel)]="si" (click)="onValorCapturado(1)" color="danger"  slot="start"></ion-checkbox>
+                  <ion-label style="margin-left: 10px;"><span style="font-size: 19px">Si</span></ion-label>
+                </div>                    
+              </ion-col>
+              <ion-col>
+                <div align="center">
+                  <ion-checkbox id="miElementoNo" [(ngModel)]="no" (click)="onValorCapturado(2)" color="danger"  slot="start"></ion-checkbox>
+                  <ion-label style="margin-left: 10px;"><span style="font-size: 19px">No</span></ion-label>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>    
+      </ion-card-content> 
+    </ion-card>
+  </ion-col>
+</ion-row>
