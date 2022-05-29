@@ -109,6 +109,14 @@ $app-theme: mat.define-light-theme((
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  /** violeta **/
+  --ion-color-violeta: #8D2CE2;
+	--ion-color-violeta-rgb: 141,44,226;
+	--ion-color-violeta-contrast: #ffffff;
+	--ion-color-violeta-contrast-rgb: 255,255,255;
+	--ion-color-violeta-shade: #7c27c7;
+	--ion-color-violeta-tint: #9841e5;
 }
 
 body.dark {
@@ -174,6 +182,13 @@ body.dark {
   --ion-color-light-contrast-rgb: 255, 255, 255;
   --ion-color-light-shade: #1e2023;
   --ion-color-light-tint: #383a3e;
+
+  --ion-color-new: #8D2CE2;
+	--ion-color-new-rgb: 141,44,226;
+	--ion-color-new-contrast: #ffffff;
+	--ion-color-new-contrast-rgb: 255,255,255;
+	--ion-color-new-shade: #7c27c7;
+	--ion-color-new-tint: #9841e5;
 }
 
 /*
@@ -265,3 +280,12 @@ body.dark {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.ion-color-violeta {
+	--ion-color-base: var(--ion-color-violeta);
+	--ion-color-base-rgb: var(--ion-color-violeta-rgb);
+	--ion-color-contrast: var(--ion-color-violeta-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-violeta-contrast-rgb);
+	--ion-color-shade: var(--ion-color-violeta-shade);
+	--ion-color-tint: var(--ion-color-violeta-tint);
+}
