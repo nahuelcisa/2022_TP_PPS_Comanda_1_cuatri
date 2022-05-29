@@ -1,0 +1,14 @@
+ion-content {    
+    --background: rgb(0,0,0);
+    --background: linear-gradient(180deg, rgba(0,0,0,1) 23%, rgba(168,168,168,1) 80%, rgba(198,198,198,1) 100%);
+}
+
+:root {
+    --ion-safe-area-top: 20px;
+    --ion-safe-area-bottom: 22px;
+}
+
+.items {
+    --background: #fffefffd;
+    position: relative;
+}

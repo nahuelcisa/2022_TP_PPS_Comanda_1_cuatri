@@ -1,9 +1,155 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>encuestaEmpleado</ion-title>
+    <ion-title>Encuesta Empleado</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div style="width: 100%;height: 100%;">
+    <ion-grid style="height: 100%;width: 100%; flex-flow: column;" >
+  
+      <ion-row style="flex-grow: 1;">
+        <ion-col>
+          <ion-card>
 
+            <div align="end">
+              <ion-label><span style="font-size: 16px;">Saltear Opcion</span></ion-label>
+              <ion-checkbox color="danger" unchecked slot="start"></ion-checkbox>              
+            </div>
+                  
+            <img src="../../../assets/img/NoImage.jpg" />
+            <ion-card-header>
+              <ion-card-subtitle>Cuan ordenado recibio/dejo el establecimiento? (1 - 10)</ion-card-subtitle>              
+            </ion-card-header>
+            <ion-card-content>
+              <!--(range, input, radio, check, select).-->  
+              <ion-range min="1" max="10" pin color="dark">
+                <ion-icon slot="start" size="small" name="contrast"></ion-icon>
+                <ion-icon slot="end" name="contrast"></ion-icon>
+              </ion-range>             
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="flex-grow: 1;">
+        <ion-col>
+          <ion-card>
+
+            <div align="end">
+              <ion-label><span style="font-size: 16px;">Saltear Opcion</span></ion-label>
+              <ion-checkbox color="danger" unchecked slot="start"></ion-checkbox>              
+            </div>
+
+            <img src="../../../assets/img/NoImage.jpg" />
+            <ion-card-header>
+              <ion-card-subtitle>La cocina posee todos los utencillos necesarios?</ion-card-subtitle>              
+            </ion-card-header>
+            <ion-card-content>
+              <!--(range, input, radio, check, select).-->     
+              <ion-item class="items" style="--border-radius: 6px; margin-top: 15px; padding-left: 3%; padding-right: 3%;">   
+                <ion-input color="light" placeholder="Si/No" name="si_no" required></ion-input>
+              </ion-item>      
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="flex-grow: 1;">
+        <ion-col>
+          <ion-card>
+
+            <div align="end">
+              <ion-label><span style="font-size: 16px;">Saltear Opcion</span></ion-label>
+              <ion-checkbox color="danger" unchecked slot="start"></ion-checkbox>              
+            </div>
+
+            <img src="../../../assets/img/NoImage.jpg" />
+            <ion-card-header>
+              <ion-card-subtitle>Dejo/recibio limpio el restobar?</ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+              <!--(range, input, radio, check, select).-->    
+              <mat-radio-group aria-label="Select an option" style="margin-left: 5%; margin-bottom: 5%;">
+                <mat-radio-button value="1" style="margin-right: 15px;"color="accent">Si</mat-radio-button>
+                <mat-radio-button value="2" style="margin-right: 15px;"color="accent">No</mat-radio-button>
+                <mat-radio-button value="3" color="accent">Mas o menos</mat-radio-button>
+              </mat-radio-group>        
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="flex-grow: 1;">
+        <ion-col>
+          <ion-card>
+
+            <div align="end">
+              <ion-label><span style="font-size: 16px;">Saltear Opcion</span></ion-label>
+              <ion-checkbox color="danger" unchecked slot="start"></ion-checkbox>              
+            </div>
+
+            <img src="../../../assets/img/NoImage.jpg" />
+            <ion-card-header>
+              <ion-card-subtitle>Dejo/recibio mesas sin sillas?</ion-card-subtitle>              
+            </ion-card-header>
+            <ion-card-content>
+              <!--(range, input, radio, check, select).-->              
+              <ion-grid>
+                <ion-row>
+                  <ion-col>
+                    <div align="center">
+                      <ion-checkbox color="danger" checked slot="start"></ion-checkbox>
+                      <ion-label><span style="font-size: 19px">Si</span></ion-label>
+                    </div>                    
+                  </ion-col>
+                  <ion-col>
+                    <div align="center">
+                      <ion-checkbox color="danger" checked slot="start"></ion-checkbox>
+                      <ion-label><span style="font-size: 19px">No</span></ion-label>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="flex-grow: 1;">
+        <ion-col>
+          <ion-card>
+
+            <div align="end">
+              <ion-label><span style="font-size: 16px;">Saltear Opcion</span></ion-label>
+              <ion-checkbox color="danger" unchecked slot="start"></ion-checkbox>              
+            </div>
+
+            <img src="../../../assets/img/NoImage.jpg" />
+            <ion-card-header>
+              <ion-card-subtitle>Dejo/recibio elementos rotos a lo largo de la jornada?</ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+              <!--(range, input, radio, check, select).-->
+              <ion-button mat-button [matMenuTriggerFor]="empleado" fill="clear" style=" width: 100%; border-radius: 5px; background-color: #8D2CE2; color: white;">Responda</ion-button>
+              <mat-menu #empleado="matMenu" class="customize">
+                <button  mat-menu-item style="color: dark;" (click)="cargarDatos(3)">No</button>
+                <button  mat-menu-item style="color: dark;" (click)="cargarDatos(1)">Muchos</button>
+                <button  mat-menu-item style="color: dark;" (click)="cargarDatos(2)">Pocos</button>
+              </mat-menu>            
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      
+
+      <ion-row>
+        <ion-col>
+          <ion-button fill="clear" expand="block" style="border-radius: 5px; background-color: #8D2CE2; color: white; height: 45px;font-size: 20px;margin-bottom: 25px;">
+            Subir Encuesta
+          </ion-button>
+        </ion-col>
+      </ion-row> 
+    </ion-grid>
+  </div>
 </ion-content>

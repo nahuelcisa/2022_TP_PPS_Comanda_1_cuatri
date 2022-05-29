@@ -8,12 +8,20 @@ import { EncuestaEmpleadoPageRoutingModule } from './encuesta-empleado-routing.m
 
 import { EncuestaEmpleadoPage } from './encuesta-empleado.page';
 
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatMenuModule, MAT_MENU_DEFAULT_OPTIONS} from '@angular/material/menu';
+
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EncuestaEmpleadoPageRoutingModule
+    EncuestaEmpleadoPageRoutingModule,
+    MatSlideToggleModule,
+    MatRadioModule,
+    MatMenuModule
   ],
   declarations: [EncuestaEmpleadoPage]
 })
