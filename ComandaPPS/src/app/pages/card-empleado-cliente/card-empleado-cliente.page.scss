@@ -1,23 +1,8 @@
-.card{
-    display: flex;
-    flex-wrap: wrap;
-    border-radius: 10px;
-    margin-bottom: 45px;
-    padding-left: 2%;
-    padding-right: 2%;
-}
-
-.image{
-    border-radius: 10px;
-    flex: 1 1 120px;
-    aspect-ratio: 1 / 1;
-}
-
-.content{
-    border-radius: 10px;
-    flex: 1 1 200px;
-    background-color: white;
-}
+.example-card {
+    max-width: 400px;
+    background-color: blueviolet;
+    margin-top: 15px;
+  }
 
 ion-content {
     //--background: linear-gradient(rgba(0, 0, 0, 0.123), rgba(0, 0, 0, 0.185)), url("../../../assets/images/bg-auth.png");

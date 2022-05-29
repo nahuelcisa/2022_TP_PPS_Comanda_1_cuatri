@@ -1,9 +1,79 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>encuestaSupervisor</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <img src="../../assets/Spinner.png" style="display: block; position: absolute;margin-top: 50%; z-index: 101;" [ngClass]="{'loading' : this.as.loading}" *ngIf="this.as.loading"/>
+  <div style="margin-top: 5%; padding-left: 2%; padding-right: 2%;">
+    <form [formGroup]='form' (ngSubmit)="this.agregarCliente()">
+      <div style=" padding-left: 2%; padding-right: 2%;">
 
+        <div align="start" style="margin-left: 5%; margin-top: 5%;">
+          <ion-label color="dark" style="font-size: 20px;">¿Recibio un trato educado? (1-10)
+          </ion-label>         
+        </div>
+        <ion-range min="1" max="10" pin color="dark">
+          <ion-icon slot="start" size="small" name="contrast"></ion-icon>
+          <ion-icon slot="end" name="contrast"></ion-icon>
+        </ion-range>
+      </div>
+
+      <div align="start" style="margin-left: 5%; margin-bottom: 5%;">
+        <ion-label color="dark" style="font-size: 20px;">La comida fue entregada a tiempo?
+      </ion-label>        
+      </div>
+      <ion-item class="items" style="--border-radius: 6px; margin-top: 15px; padding-left: 3%; padding-right: 3%;">   
+        <ion-input color="light" placeholder="Si/No" formControlName='apellido' name="apellido" required></ion-input>
+      </ion-item>
+
+      <div align="start" style="margin-left: 5%; margin-bottom: 5%;">
+        <ion-label color="dark" style="font-size: 20px;">cuanto cuido la higiene del establecimiento? 
+      </ion-label>        
+      </div>
+      <mat-radio-group aria-label="Select an option" style="margin-left: 5%; margin-bottom: 5%;">
+        <mat-radio-button value="1" style="margin-right: 15px;"color="accent">Poco</mat-radio-button>
+        <mat-radio-button value="2" style="margin-right: 15px;"color="accent">Mas o menos</mat-radio-button>
+        <mat-radio-button value="2" color="accent">Mucho</mat-radio-button>
+      </mat-radio-group>
+
+      <div style="margin-left: 5%; margin-top: 5%;">
+        <div align="start" style="margin-left: 5%; margin-bottom: 5%;">
+          <ion-label color="dark" style="font-size: 20px;">Le haria cambios a la carta?  
+        </ion-label>        
+        </div>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div align="center">
+                <ion-checkbox color="danger" checked slot="start"></ion-checkbox>
+                <ion-label><span style="font-size: 19px">1</span></ion-label>
+              </div>
+              
+            </ion-col>
+            <ion-col>
+              <div align="center">
+                <ion-checkbox color="danger" checked slot="start"></ion-checkbox>
+                <ion-label><span style="font-size: 19px">2</span></ion-label>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div align="center">
+                <ion-checkbox color="danger" checked slot="start"></ion-checkbox>
+                <ion-label><span style="font-size: 19px">mas de 3</span></ion-label>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+
+      <div style="padding-left: 2%; padding-right: 2%; margin-bottom: 25px; margin-top: 10%; width: 100%;">
+        <div align="start" style="margin-left: 5%; margin-bottom: 5%;">
+          <ion-label color="dark" style="font-size: 20px;">En que podriamos mejorar, Restaurante o Bar?  
+        </ion-label>        
+        </div>
+        <ion-button mat-button [matMenuTriggerFor]="empleado" fill="clear" style=" width: 100%; border-radius: 5px; background-color: #8D2CE2; color: white;">Responda</ion-button>
+        <mat-menu #empleado="matMenu" class="customize">
+          <button  mat-menu-item style="color: dark;" (click)="cargarDatos(3)">Resto</button>
+          <button  mat-menu-item style="color: dark;" (click)="cargarDatos(1)">Bar</button>
+          <button  mat-menu-item style="color: dark;" (click)="cargarDatos(2)">Ninguna</button>
+        </mat-menu>
+      </div>
+    </form>
+  </div>
 </ion-content>

@@ -8,12 +8,18 @@ import { CardEmpleadoClientePageRoutingModule } from './card-empleado-cliente-ro
 
 import { CardEmpleadoClientePage } from './card-empleado-cliente.page';
 
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
+
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CardEmpleadoClientePageRoutingModule
+    CardEmpleadoClientePageRoutingModule,
+    MatCardModule,
+    MatButtonModule
   ],
   declarations: [CardEmpleadoClientePage]
 })

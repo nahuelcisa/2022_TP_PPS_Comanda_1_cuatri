@@ -1,26 +1,17 @@
 <ion-content>
-  <div class="card" *ngFor="let item of this.arrayClientes">
-    <div class="image">
-      <img src="{{item.foto}}" alt="" style="border-radius: 10px;" width="130px" height="140px">
-    </div>
-    <div class="content">
-      <h2>{{item.nombre}} {{item.apellido}}</h2>
-      <p>{{item.dni}}</p>
-      <button>test</button>
-      <button>test2</button>
-    </div>
+  <div>
+    <div *ngFor="let item of this.arrayCompleto" style="padding-left: 2%; padding-right: 2%; margin-bottom: 15px;">
+      <ion-card color="dark">
+       <img src="{{item.foto}}" />
+       <ion-card-header>
+         <ion-card-title>{{item.nombre}} - {{item.apellido}}</ion-card-title>
+         <ion-card-subtitle>Dni: {{item.DNI}}</ion-card-subtitle>
+       </ion-card-header>
+       <ion-card-content>
+         <button mat-raised-button style="background-color: #8d2ce2 ; color: white;">Graficos</button>
+         <button mat-raised-button style="background-color: #8d2ce2 ; margin-left: 15px; color: white;">Realizar encuesta</button>
+       </ion-card-content>
+     </ion-card> 
+   </div> 
   </div>
-  <!-- <ion-card>
-    <img src="{{item.foto}}" />
-    <ion-card-header>
-      <ion-card-subtitle>Destination</ion-card-subtitle>
-      <ion-card-title>Madison, WI</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <h2>{{item.nombre}} {{item.apellido}}</h2>
-      <p>{{item.dni}}</p>
-      <button>test</button>
-      <button>test2</button>
-    </ion-card-content>
-  </ion-card> -->
 </ion-content>

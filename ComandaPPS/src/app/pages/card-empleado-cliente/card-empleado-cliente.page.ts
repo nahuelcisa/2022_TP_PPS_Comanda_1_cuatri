@@ -10,6 +10,8 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 export class CardEmpleadoClientePage implements OnInit {
 
   arrayClientes : any = [];
+  arrayEmpleados : any = [];
+  arrayCompleto : any = [];
 
   constructor(public as : AuthService, private fs : FirestoreService) { }
 
@@ -17,10 +19,27 @@ export class CardEmpleadoClientePage implements OnInit {
 
     this.fs.traerClientes().subscribe((value)=>{
       this.arrayClientes = value;
-      this.arrayClientes.sort(this.ordenar);   
-    });  
+      this.fs.traerempleados().subscribe((value)=>{
+        this.arrayEmpleados = value;
+        this.cargarArray();
+        this.arrayClientes.sort(this.ordenar);
+      });
+    });
   }
 
+  cargarArray(){
+
+    for (const item of this.arrayClientes) {
+        this.arrayCompleto.push(item);
+      
+    }
+
+    for (const item of this.arrayEmpleados) {
+        this.arrayCompleto.push(item);
+      
+    }
+  }
+  
   ordenar(a:any,b:any){
     if (a.nombre > b.nombre) {
       return 1;
