@@ -8,6 +8,7 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 import { ImagenesService } from 'src/app/services/imagenes.service';
 import { ScannerService } from 'src/app/services/scanner.service';
 import {MatSlideToggleChange} from '@angular/material/slide-toggle';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-encuesta-supervisor',
@@ -16,149 +17,110 @@ import {MatSlideToggleChange} from '@angular/material/slide-toggle';
 })
 export class EncuestaSupervisorPage implements OnInit {
 
-  perfil : string;
   form : FormGroup;
-  duenSup : DuenSup;
-  foto : any;
-  capturedPhoto : any = "";
-  url : any = "";
-  storage : any;
-  fotoSubida : boolean = false;
-  webPath : string = "";
-  slideDueno : boolean = false;
-  slideSupervisor : boolean = false;
+  range:any;
+  radio : any;
+  checkbox : any;
+  menu : any;
+  uno : boolean;
+  dos : boolean;
+  masdetres : boolean;
 
-  constructor(private formBuilder : FormBuilder, private fs : FirestoreService, private as : AuthService, private router : Router,private sf : ScannerService, private imageStore : ImagenesService) 
+
+  constructor(private formBuilder : FormBuilder, private fs : FirestoreService, private as : AuthService, private router : Router,private sf : ScannerService, private imageStore : ImagenesService, private toast : ToastController) 
   { 
     this.form = this.formBuilder.group({
-      'nombre' : ['',[Validators.required,Validators.minLength(2)]],
-      'apellido' : ['',[Validators.required,Validators.minLength(2)]],
-      'dni' : ['',[Validators.required,Validators.minLength(8),Validators.maxLength(8)]],
-      'cuil': ['',[Validators.required,Validators.minLength(11),Validators.maxLength(11)]]
+      'input' : ['',[Validators.required,Validators.minLength(2), Validators.maxLength(2)]],
     });
   }
 
   ngOnInit() {
   }
 
-  altaDuenSup()
-  {
-    this.as.loading = true;
-       
-    this.fs.agregarDuenSup(this.duenSup)
-    
-    setTimeout(() => {
-        this.form.reset(); 
-        this.fotoSubida = false;
-        this.as.loading = false;
-        this.webPath = "";
-        this.slideDueno = false;
-        this.slideSupervisor = false;
-      }, 2500);
+  enviarEncuesta(){
+    let respuesta = {
+      pregunta1: this.range,
+      pregunta2:this.form.get('input')?.value,
+      pregunta3:this.radio,
+      pregunta4:this.checkbox,
+      pregunta5:this.menu,
+    }
 
-  }
-
-  agregarFoto()
-  { 
-    this.duenSup = {
-      nombre : this.form.get('nombre')?.value,
-      apellido : this.form.get('apellido')?.value,
-      DNI : this.form.get('dni')?.value,
-      CUIL: this.form.get('cuil')?.value,
-      perfil: this.perfil,
-      foto : ""
-    };
-    this.imageStore.addNewToGallery(this.duenSup).then((data) =>{
-      this.as.loading = true;
-      this.storage = data.storage;
-      this.url = data.url;
-      this.capturedPhoto = data.capturedPhoto;
-      this.fotoSubida = true;
-      uploadString(this.storage,this.capturedPhoto.dataUrl, 'data_url').then((data) =>{    
-        this.url.getDownloadURL().subscribe((url1 : any)=>{
-          this.webPath = url1;
-          this.duenSup.foto = url1;
-          setTimeout(() => {
-            this.as.loading = false;
-          }, 2000);
-        });
-      });
+    this.MostrarToast('Encuesta enviada.').then((toast : any )=>{
+      toast.present();
+      
     });
 
   }
 
-  leerDNI()
+  capturarRespuesta(event: any){
+    this.range = event.detail.value;
+  }
+  respuestaRadioGroup(event: any){   
+    switch (event.value) {
+      case "1":        
+        this.radio = "Poco";
+        break;
+      case "2":        
+        this.radio = "Mas o menos";
+        break;
+      case "3":        
+        this.radio = "Mucho";
+        break;
+      default:
+        this.radio = "";
+      break;
+    } 
+  }
+
+  onValorCapturadoCheck(value: any){
+    switch(value){
+      case 1 : 
+        this.uno = false;
+        this.dos = false;
+        this.masdetres = false;
+        this.checkbox = "1";
+      break;
+      case 2:
+        this.uno = false;
+        this.dos = false;
+        this.masdetres = false;
+        this.checkbox = "2";
+        break
+      case 3: 
+        this.uno = false;
+        this.dos = false;
+        this.masdetres = false;
+        this.checkbox = "mas de 3";
+        break
+    }
+  }
+
+  cargarRespuestaMenu(value : any){
+    switch (value) {
+      case 1:        
+        document.getElementById("respuesta").setAttribute('value',"Resto");
+        this.menu = "Resto";
+        break;
+      case 2:
+        document.getElementById("respuesta").setAttribute('value',"Bar");
+        this.menu = "Bar";
+        break;
+      case 3:
+        document.getElementById("respuesta").setAttribute('value',"Ninguna");
+        this.menu = "Ninguna";
+        break;
+    }  
+  }
+
+  MostrarToast(message : string)
   {
-    let datos : any = [];
-    let nombre : string;
-    let apellido : string;
-    let nombreFinal : string;
-    let apellidoFinal : string;
-    let cuilFinal : number;
-    this.sf.test().then((data) => {
-      
-      datos = data.split('@');
-      nombre = datos[2];
-      apellido = datos[1];
-      nombreFinal = nombre[0];
-      apellidoFinal = apellido[0];
-      cuilFinal = (datos[7])[0] + (datos[7])[1] + datos[4] + (datos[7])[2];
-      
-      for(let i = 1; i < nombre.length; i++)
-      {
-        if(nombre[i-1] == " ")
-        {
-          nombreFinal = nombreFinal + nombre[i].toUpperCase();
-        }
-        else
-        {
-          nombreFinal = nombreFinal + nombre[i].toLowerCase();
-        }
-
-      }
-
-      for(let i = 1; i < apellido.length; i++)
-      {
-        if(apellido[i-1] == " ")
-        {
-          apellidoFinal = apellidoFinal + apellido[i].toUpperCase();
-        }
-        else
-        {
-          apellidoFinal = apellidoFinal + apellido[i].toLowerCase();
-        }
-      }
-
-
-      this.form.get('apellido')?.setValue(apellidoFinal);
-      this.form.get('nombre')?.setValue(nombreFinal);
-      this.form.get('dni')?.setValue(datos[4]);
-      this.form.get('cuil')?.setValue(cuilFinal);
-      this.sf.stopScan();
-    })
+    return this.toast.create({
+            header: 'Exito',
+            message: message,
+            buttons: ['Ok'],
+            position: 'top',
+            color: 'success'
+    });
   }
-
-  onChangeDuen(ob: MatSlideToggleChange) {
-    if(ob.checked){
-      this.slideDueno = true;
-      this.slideSupervisor = false;
-      this.perfil = 'Dueño';
-    }else{
-      this.slideDueno = false;
-      this.perfil = '';
-    }
-  }
-
-  onChangeSup(ob: MatSlideToggleChange) {
-
-    if(ob.checked){
-      this.slideDueno = false;
-      this.slideSupervisor = true;
-      this.perfil = 'Supervisor';
-    }else{
-      this.slideSupervisor = false;
-      this.perfil = '';
-    }
-  }
-
 }

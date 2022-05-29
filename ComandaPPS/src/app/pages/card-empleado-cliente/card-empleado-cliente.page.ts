@@ -51,4 +51,8 @@ export class CardEmpleadoClientePage implements OnInit {
     }
   }
 
+  goToCharts(){
+    console.log('pagina charts');
+  }
+
 }

@@ -1,5 +1,10 @@
 <ion-content>
   <div>
+    <ion-fab horizontal="end" vertical="top" slot="fixed" style="margin-top: 3%;">
+      <ion-fab-button color="tertiary">
+        <ion-icon name="stats-chart-outline" (click)="goToCharts()"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
     <div *ngFor="let item of this.arrayCompleto" style="padding-left: 2%; padding-right: 2%; margin-bottom: 15px;">
       <ion-card color="dark">
        <img src="{{item.foto}}" />
@@ -8,8 +13,9 @@
          <ion-card-subtitle>Dni: {{item.DNI}}</ion-card-subtitle>
        </ion-card-header>
        <ion-card-content>
-         <button mat-raised-button style="background-color: #8d2ce2 ; color: white;">Graficos</button>
-         <button mat-raised-button style="background-color: #8d2ce2 ; margin-left: 15px; color: white;">Realizar encuesta</button>
+         <div align="center">
+           <button mat-raised-button style="background-color: #8d2ce2 ; color: white; width: 100%;">Realizar encuesta</button>
+         </div>
        </ion-card-content>
      </ion-card> 
    </div> 
