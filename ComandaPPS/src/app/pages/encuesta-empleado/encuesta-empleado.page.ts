@@ -1,5 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import {ToastController} from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
+import { FirestoreService } from 'src/app/services/firestore.service';
 
 @Component({
   selector: 'app-encuesta-empleado',
@@ -19,11 +21,11 @@ export class EncuestaEmpleadoPage implements OnInit {
   progreso: any = 0.05;
 
 
-  respuesta_1: any;
-  respuesta_2: any;
-  respuesta_3: any;
-  respuesta_4: any;
-  respuesta_5: any;
+  respuesta_1: any = 0;
+  respuesta_2: any = "";
+  respuesta_3: any = "";
+  respuesta_4: any = "";
+  respuesta_5: any = "";
 
   respuestas: any = {
     respuesta_1: "",
@@ -34,7 +36,9 @@ export class EncuestaEmpleadoPage implements OnInit {
   }
 
   constructor(
-    public toastController: ToastController
+    public toastController: ToastController,
+    private as : AuthService,
+    private fs : FirestoreService
   ) { }
 
   ngOnInit() {
@@ -132,23 +136,35 @@ export class EncuestaEmpleadoPage implements OnInit {
       respuesta_5: this.respuesta_5
     };  
 
-    this.SuccessToastEncuesta();
-    console.log(this.respuestas);
+    this.as.loading = true;
 
-    //Limpiando Atributos
-    this.pregunta_1 = true;
-    this.pregunta_2 = false;
-    this.pregunta_3 = false;
-    this.pregunta_4 = false;
-    this.pregunta_5 = false;
-    
-    this.respuesta_1 = 0;
-    this.respuesta_2 = "";
-    this.respuesta_3 = "";
-    this.respuesta_4 = "";
-    this.respuesta_5 = "";  
+    //console.log(this.respuestas);
 
-    this.progreso = 0.05;
+    this.fs.agregarEncuestaEmpleado(this.respuestas);  
+
+    //console.log(this.respuestas);
+    setTimeout(() => {               
+      //Limpiando Atributos
+      this.pregunta_1 = true;
+      this.pregunta_2 = false;
+      this.pregunta_3 = false;
+      this.pregunta_4 = false;
+      this.pregunta_5 = false;
+      
+      this.respuesta_1 = 0;
+      this.respuesta_2 = "";
+      this.respuesta_3 = "";
+      this.respuesta_4 = "";
+      this.respuesta_5 = "";  
+
+      this.progreso = 0.05;
+      this.as.loading = false;
+      this.SuccessToastEncuesta();
+
+    }, 2500);
+
+    //console.log(this.respuestas);
+
   }
 
 }

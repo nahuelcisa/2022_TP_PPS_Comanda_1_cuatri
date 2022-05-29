@@ -9,7 +9,7 @@ export class Pregunta2Page implements OnInit {
 
   @Output() respuesta2 = new EventEmitter();
 
-  valor_respuesta: any; //Capturo el valor de la respuesta
+  valor_respuesta: any = ""; //Capturo el valor de la respuesta
 
   constructor() { }
 

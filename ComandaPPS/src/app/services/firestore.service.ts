@@ -27,6 +27,12 @@ export class FirestoreService {
   mesas: Observable<any>;
 
   mesaArray : any = [];
+
+
+  encuestaEmpleadoCollectionReference: any;
+  encuestasEmpleados: Observable<any>;
+
+  encuestaArray : any = [];
   
   constructor(private angularF : AngularFirestore) 
   {
@@ -57,6 +63,13 @@ export class FirestoreService {
     this.traerMesas().subscribe(value => {
       this.mesaArray = value;
     });
+
+    this.encuestaEmpleadoCollectionReference = this.angularF.collection<any>('encuestasEmpleados');
+    this.encuestasEmpleados = this.encuestaEmpleadoCollectionReference.valueChanges({idField: 'id'});
+
+    this.traerEncuestasEmpleados().subscribe(value => {
+      this.encuestaArray = value;
+    });
   }
 
   traerClientes()
@@ -77,6 +90,11 @@ export class FirestoreService {
   traerMesas()
   {
     return this.mesas;
+  }
+
+  traerEncuestasEmpleados()
+  {
+    return this.encuestasEmpleados;
   }
 
 /*   modificarFoto(foto : any, id : any, coleccion : string)
@@ -102,5 +120,10 @@ export class FirestoreService {
   agregarMesa(mesa : any)
   {
       this.mesaCollectionReference.add({...mesa});
+  }
+
+  agregarEncuestaEmpleado(encuesta : any)
+  {
+      this.encuestaEmpleadoCollectionReference.add({...encuesta});
   }
 }
