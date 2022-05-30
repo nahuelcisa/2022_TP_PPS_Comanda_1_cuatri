@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class FirestoreService {
 
+  usuariosCollectionReference: any;
+
   clientesCollectionReference: any;
   clientes: Observable<any>;
 
@@ -36,6 +38,8 @@ export class FirestoreService {
   
   constructor(private angularF : AngularFirestore) 
   {
+    this.usuariosCollectionReference = this.angularF.collection<any>('usuarios');
+
     this.clientesCollectionReference = this.angularF.collection<any>('clientes');
     this.clientes = this.clientesCollectionReference.valueChanges({idField: 'id'});
 
@@ -125,5 +129,10 @@ export class FirestoreService {
   agregarEncuestaEmpleado(encuesta : any)
   {
       this.encuestaEmpleadoCollectionReference.add({...encuesta});
+  }
+
+  guardarToken(user:any, token:any){
+    console.log(user);
+    this.angularF.collection('usuarios').doc(user.id).update({token:token});
   }
 }

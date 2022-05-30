@@ -74,6 +74,22 @@ const routes: Routes = [
     path: 'pregunta5',
     loadChildren: () => import('./pages/pagesEncuestaEmpleado/pregunta5/pregunta5.module').then( m => m.Pregunta5PageModule)
   },
+  {
+    path: 'home-metre',
+    loadChildren: () => import('./pages/home-metre/home-metre.module').then( m => m.HomeMetrePageModule)
+  },
+  {
+    path: 'home-cocina',
+    loadChildren: () => import('./pages/home-cocina/home-cocina.module').then( m => m.HomeCocinaPageModule)
+  },
+  {
+    path: 'home-mozo',
+    loadChildren: () => import('./pages/home-mozo/home-mozo.module').then( m => m.HomeMozoPageModule)
+  },
+  {
+    path: 'home-supervisor',
+    loadChildren: () => import('./pages/home-supervisor/home-supervisor.module').then( m => m.HomeSupervisorPageModule)
+  },
 
   
 ];
