@@ -44,8 +44,8 @@
     -encuesta supervisor ✅
     -gestion ingresar al local
     -gestion confirmar pedidos
-    -push ingreso al local
-    -push confirmar realizacion del pedido(por parte del cocinero o bartender)
+    -push ingreso al local ✅
+    -push confirmar realizacion del pedido(por parte del cocinero o bartender) ✅
     -delivery mapa de ruta hasta el domicilio de entrega
     -juegos (ta te ti)
 
@@ -59,7 +59,7 @@
     -encuesta cliente ✅
     -gestion agregar nuevo cliente registrado
     -gestion reservas agendadas
-    -push agregar cliente nuevo
+    -push agregar cliente nuevo ✅
     -delivery realizar pedido con gps o direccion
     -juegos (aproximacion de numero)
 
@@ -71,7 +71,7 @@
     -qr de propina
     -encuesta empleado ✅
     -gestion realizar pedidos(platos y bebidas)
-    -push consultar al mozo
-    -push confirmar pedido(parte del mozo)
-    -push generar reservas agendadas/delivery
+    -push consultar al mozo ✅
+    -push confirmar pedido(parte del mozo) ✅
+    -push generar reservas agendadas/delivery ✅
     -juego (mayor o menor con cartas)
