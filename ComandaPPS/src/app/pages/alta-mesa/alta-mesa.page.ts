@@ -7,6 +7,8 @@ import { ImagenesService } from 'src/app/services/imagenes.service';
 import {Mesa} from '../../interfaces/mesa';
 import { FirestoreService } from 'src/app/services/firestore.service';
 
+import { SafeUrl } from "@angular/platform-browser";
+
 
 @Component({
   selector: 'app-alta-mesa',
@@ -15,10 +17,16 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 })
 export class AltaMesaPage implements OnInit, Mesa{
   
+  public myAngularxQrCode: string = null;
+  public qrCodeDownloadLink: SafeUrl = "";
+  QrGenerado: boolean = false;
+  qrOculto: boolean = false;
+
   fotoSacada: boolean = false;
   nroMesa: number;
   cantComensales: number;
   tipo: any;
+  codigoQR: any;
 
   mesa : Mesa;
 
@@ -35,7 +43,10 @@ export class AltaMesaPage implements OnInit, Mesa{
     private imageStore : ImagenesService,
     private as : AuthService,
     private fs : FirestoreService
-  ) { }
+  ) {
+    this.myAngularxQrCode = 'QR';
+  }
+  
 
 
   async ErrorToast() {
@@ -107,7 +118,8 @@ export class AltaMesaPage implements OnInit, Mesa{
       nroMesa: this.nroMesa,
       cantComensales: this.cantComensales,
       tipo: this.tipo,
-      foto: ""
+      foto: "",
+      codigoQR: ""
     };
 
     this.imageStore.addFotoMesa(this.mesa).then((data) =>{
@@ -170,15 +182,27 @@ export class AltaMesaPage implements OnInit, Mesa{
 
     if(todoOk){
       this.as.loading = true;
-     
+      
+
       this.mesa = {
         nroMesa: this.nroMesa,
         cantComensales: this.cantComensales,
         tipo: this.tipo,
-        foto: this.webPath
+        foto: this.webPath,
+        codigoQR: ""
       };  
 
-      this.fs.agregarMesa(this.mesa);
+
+      this.myAngularxQrCode += "Nro mesa: "+this.nroMesa+
+                               " - Cantidad Comensales: "+this.cantComensales+
+                               " - Tipo: "+this.tipo+
+                               " - Foto: "+this.webPath;
+
+      this.onChangeURL(this.myAngularxQrCode);//Genero QR con datos Mesa
+      this.mesa.codigoQR = this.qrCodeDownloadLink;
+      
+      console.log(this.mesa);
+      //this.fs.agregarMesa(this.mesa);
       
       setTimeout(() => {               
           this.nroMesa = 0;
@@ -188,11 +212,17 @@ export class AltaMesaPage implements OnInit, Mesa{
           this.fotoSubida = false;
           this.as.loading = false;
           this.webPath = "";
+          this.qrCodeDownloadLink = "";
           this.SuccessToastMesa();
         }, 2500);
       }
+
+      this.QrGenerado =true;
   }
 
+  onChangeURL(url: SafeUrl) {
+    this.qrCodeDownloadLink = url;
+  }
    
    cargarDatos(dato : number)
   {
