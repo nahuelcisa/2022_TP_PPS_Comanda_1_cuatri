@@ -3,4 +3,8 @@ export interface Cliente {
     apellido : string,
     DNI : number;
     foto : string;
+    email : string;
+    clave : string;
+    habilitado: boolean;
+    encuesta: any[];
 }

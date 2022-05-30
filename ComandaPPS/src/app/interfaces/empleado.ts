@@ -4,5 +4,6 @@ export interface Empleado {
     DNI: number,
     CUIL: number,
     foto: string,
-    perfil: string
+    perfil: string,
+    encuesta : any[]
 }

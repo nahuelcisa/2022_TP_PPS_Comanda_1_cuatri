@@ -70,7 +70,8 @@ export class AltaEmpleadoPage implements OnInit {
       DNI : this.form.get('dni')?.value,
       CUIL: this.form.get('cuil')?.value,
       perfil: this.perfil,
-      foto : ""
+      foto : "",
+      encuesta : null
     };
     this.imageStore.addNewToGallery(this.empleado).then((data) =>{
       this.as.loading = true;

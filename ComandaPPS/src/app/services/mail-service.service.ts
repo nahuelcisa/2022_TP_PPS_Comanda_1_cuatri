@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 import { init } from "emailjs-com";
-init("user_XmEZcDKwUohlxfhzMsQ72");
+init("X8ztMRNkme_oaSn4i");
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +13,12 @@ export class MailServiceService {
   enviarAviso(usuario: any){
     let templateParams = {
       to_name: usuario.nombre,
-      message: "Para poder acceder a la aplicación, debe aguardar que su cuenta sea verificada",
+      message: "Para poder acceder a la aplicación, debe aguardar que su cuenta sea verificada.",
       mailUsuario: usuario.email,
-      from_name: "ApiRestaurant"
+      from_name: "RestoBarPPSS"
     };
 
-    emailjs.send("service_3gz4r0p", "template_9n0k75b", templateParams)
+    emailjs.send("service_gpdohwj", "template_aychcoc", templateParams)
       .then(res =>{
         console.log("Email enviado.", res.status, res.text);
       })
@@ -30,12 +30,12 @@ export class MailServiceService {
   enviarAvisoHabilitado(usuario: any){
     let templateParams = {
       to_name: usuario.nombre,
-      message: "Su cuenta ha sido verificada, ya puede ingresar a la aplicación",
+      message: "Su cuenta ha sido verificada, ya puede ingresar a la aplicación.",
       mailUsuario: usuario.email,
-      from_name: "ApiRestaurant"
+      from_name: "RestoBarPPSS"
     };
 
-    emailjs.send("service_3gz4r0p", "template_9n0k75b", templateParams)
+    emailjs.send("service_gpdohwj", "template_aychcoc", templateParams)
       .then(res =>{
         console.log("Email enviado.", res.status, res.text);
       })

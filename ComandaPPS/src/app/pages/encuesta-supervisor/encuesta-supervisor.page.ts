@@ -48,7 +48,7 @@ export class EncuestaSupervisorPage implements OnInit {
 
     this.MostrarToast('Encuesta enviada.').then((toast : any )=>{
       toast.present();
-      
+      console.log(respuesta);
     });
 
   }

@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { ImagenesService } from 'src/app/services/imagenes.service';
 import { ScannerService } from 'src/app/services/scanner.service';
+import { MailServiceService } from 'src/app/services/mail-service.service';
 
 @Component({
   selector: 'app-alta-cliente',
@@ -25,24 +26,17 @@ export class AltaClientePage implements OnInit {
   fotoSubida : boolean = false;
   webPath : string = "";
 
-  constructor(private formBuilder : FormBuilder, private fs : FirestoreService, private as : AuthService, private router : Router,private sf : ScannerService, private imageStore : ImagenesService) 
+  constructor(private formBuilder : FormBuilder, private fs : FirestoreService, private as : AuthService, private router : Router,private sf : ScannerService, private imageStore : ImagenesService, private MS : MailServiceService) 
   { 
-    if(this.perfil == "anonimo")
-    {
-      this.form = this.formBuilder.group({
-        'nombre' : ['',[Validators.required,Validators.minLength(2)]],
-        'apellido' : [' '],
-        'dni' : [' '],
-      });
-    }
-    else
-    {
-      this.form = this.formBuilder.group({
-        'nombre' : ['',[Validators.required,Validators.minLength(2)]],
-        'apellido' : ['',[Validators.required,Validators.minLength(2)]],
-        'dni' : ['',[Validators.required,Validators.minLength(8),Validators.maxLength(8)]],
-      });
-    }
+  
+    this.form = this.formBuilder.group({
+      'nombre' : ['',[Validators.required,Validators.minLength(2)]],
+      'apellido' : ['',[Validators.required,Validators.minLength(2)]],
+      'dni' : ['',[Validators.required,Validators.minLength(8),Validators.maxLength(8)]],
+      'email' : ['',[Validators.required,Validators.email]],
+      'password' : ['',[Validators.required,Validators.minLength(6)]]
+    });
+    
   }
 
   ngOnInit() {
@@ -53,6 +47,8 @@ export class AltaClientePage implements OnInit {
     this.as.loading = true;
        
     this.fs.agregarCliente(this.cliente)
+
+    this.MS.enviarAviso(this.cliente);
     
     setTimeout(() => {
         this.form.reset(); 
@@ -69,7 +65,11 @@ export class AltaClientePage implements OnInit {
       nombre : this.form.get('nombre')?.value,
       apellido : this.form.get('apellido')?.value,
       DNI : this.form.get('dni')?.value,
-      foto : ""
+      foto : "",
+      email : this.form.get('email')?.value,
+      clave : this.form.get('password')?.value,
+      habilitado : false,
+      encuesta : null
     };
     this.imageStore.addNewToGallery(this.cliente).then((data) =>{
       this.as.loading = true;
