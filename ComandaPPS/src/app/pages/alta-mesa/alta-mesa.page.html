@@ -13,22 +13,6 @@
         </ion-card>
       </div>
 
-
-      <ion-row style="width: 100%;">
-        <ion-col *ngIf="qrOculto">
-          <qrcode [qrdata]="myAngularxQrCode" 
-                  [width]="128" 
-                  [margin]="2"
-                  [scale]="1"
-                  [errorCorrectionLevel]="'M'"
-                  (qrCodeURL)="onChangeURL($event)"
-                  ></qrcode>
-        </ion-col>
-
-        <img *ngIf="QrGenerado" [src]="qrCodeDownloadLink" height="250px" width="300px"/>
-      </ion-row>
-
-
       
 
       <ion-row style="flex-grow: 1;">

@@ -8,7 +8,7 @@ import { AltaMesaPageRoutingModule } from './alta-mesa-routing.module';
 
 import { AltaMesaPage } from './alta-mesa.page';
 import {MatMenuModule, MAT_MENU_DEFAULT_OPTIONS} from '@angular/material/menu';
-import { QRCodeModule } from 'angularx-qrcode';
+
 
 @NgModule({
   imports: [
@@ -16,8 +16,7 @@ import { QRCodeModule } from 'angularx-qrcode';
     FormsModule,
     IonicModule,
     AltaMesaPageRoutingModule,
-    MatMenuModule,
-    QRCodeModule
+    MatMenuModule
   ],
   declarations: [AltaMesaPage]
 })
