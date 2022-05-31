@@ -2,6 +2,7 @@ ion-content {
     //--background: linear-gradient(rgba(0, 0, 0, 0.123), rgba(0, 0, 0, 0.185)), url("../../../assets/images/bg-auth.png");
     --background: rgb(0,0,0);
     --background: linear-gradient(180deg, rgba(0,0,0,1) 23%, rgba(168,168,168,1) 80%, rgba(198,198,198,1) 100%);
+    --overflow: hidden;
 }
 
 .items {

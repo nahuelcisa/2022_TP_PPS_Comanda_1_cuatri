@@ -78,4 +78,23 @@ export class ImagenesService {
     return respuesta;
   }
 
+
+
+
+  public async addFotoQR(){
+     
+    let date = new Date().getTime();
+    let nombreArchivo = "QR - "+ date;
+    let storage = getStorage();
+    let storageRef = ref(storage, nombreArchivo);
+
+    let url = this.afs.ref(nombreArchivo);  
+
+    let respuesta = {
+      storage : storageRef,
+      url : url     
+    }
+     return respuesta;
+  } 
+
 }

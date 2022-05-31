@@ -8,6 +8,9 @@ import {Mesa} from '../../interfaces/mesa';
 import { FirestoreService } from 'src/app/services/firestore.service';
 
 
+import html2canvas from "html2canvas";
+import { Console } from 'console';
+
 @Component({
   selector: 'app-alta-mesa',
   templateUrl: './alta-mesa.page.html',
@@ -15,6 +18,11 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 })
 export class AltaMesaPage implements OnInit, Mesa{
   
+  qrDate: any = "@";
+  webPathQR : string = "";
+  storageQR:any;
+  urlQR: any ="";
+
   fotoSacada: boolean = false;
   nroMesa: number;
   cantComensales: number;
@@ -22,13 +30,14 @@ export class AltaMesaPage implements OnInit, Mesa{
 
   mesa : Mesa;
 
+  Qr: any;
   foto : any;
   webPath : string = "";
   storage : any;
   url : any = "";
   capturedPhoto : any = "";
   fotoSubida : boolean = false;
-
+  
 
   constructor(
     public toastController: ToastController,
@@ -36,6 +45,7 @@ export class AltaMesaPage implements OnInit, Mesa{
     private as : AuthService,
     private fs : FirestoreService
   ) { }
+  
 
 
   async ErrorToast() {
@@ -107,7 +117,8 @@ export class AltaMesaPage implements OnInit, Mesa{
       nroMesa: this.nroMesa,
       cantComensales: this.cantComensales,
       tipo: this.tipo,
-      foto: ""
+      foto: "",
+      Qr: ""
     };
 
     this.imageStore.addFotoMesa(this.mesa).then((data) =>{
@@ -169,18 +180,37 @@ export class AltaMesaPage implements OnInit, Mesa{
  
 
     if(todoOk){
-      this.as.loading = true;
-     
-      this.mesa = {
-        nroMesa: this.nroMesa,
-        cantComensales: this.cantComensales,
-        tipo: this.tipo,
-        foto: this.webPath
-      };  
+      this.as.loading = true;         
 
-      this.fs.agregarMesa(this.mesa);
-      
-      setTimeout(() => {               
+       //Genero QR en div con los datos necesarios
+       this.qrDate += "NroMesa:"+this.nroMesa+"@CantComens:"+this.cantComensales+"@Tipo:"+this.tipo; 
+
+       //Creo la Imagen y lo subo a Firebase  espero 500mls para que carque los datos al qrDate
+       setTimeout(() => {
+        this.crearImagen();
+       }, 500);
+       
+
+      setTimeout(() => {            
+          this.mesa = {
+            nroMesa: this.nroMesa,
+            cantComensales: this.cantComensales,
+            tipo: this.tipo,
+            foto: this.webPath,
+            Qr: this.webPathQR
+          };  
+    
+          this.fs.agregarMesa(this.mesa);
+
+
+          // console.log("Datos Mesa a Subir");
+          // console.log("Nro Mesa: "+this.nroMesa);
+          // console.log("Cant Comensales: "+this.cantComensales);
+          // console.log("Tipo: "+this.tipo);
+          // console.log("Url Foto: "+this.webPath);
+          // console.log("Url Foto QR: "+this.webPathQR);
+
+
           this.nroMesa = 0;
           this.cantComensales = 0;
           this.tipo = "";
@@ -188,9 +218,11 @@ export class AltaMesaPage implements OnInit, Mesa{
           this.fotoSubida = false;
           this.as.loading = false;
           this.webPath = "";
+          this.webPathQR = "";
           this.SuccessToastMesa();
-        }, 2500);
-      }
+        }, 6000);
+        //Espero 6seg a q cargue la URL del qr (Tarda )
+      }      
   }
 
    
@@ -209,4 +241,40 @@ export class AltaMesaPage implements OnInit, Mesa{
           break;
     }
   }
+
+
+
+  //Genero Img QR y lo subo a firebase segun el div(contenido)
+  imagenQRGenerado: any;
+  imgcreada = false;
+  imagenCreada;
+  crearImagen() {
+    html2canvas(document.querySelector("#contenido")).then(canvas => {
+ 
+      this.imagenCreada = canvas.toDataURL();      
+      this.imagenQRGenerado = this.imagenCreada;
+      
+      //Ahora tengo q llamar A subirFotoQR para subir la IMG a Firebas     
+      this.onSubirFotoQR(this.imagenQRGenerado);
+    });
+    this.imgcreada = true;
+  }  
+
+
+  //Subo Img a Firebase
+  onSubirFotoQR(dataUrlQR){    
+    this.imageStore.addFotoQR().then((data) =>{   
+      this.storageQR = data.storage;
+      this.urlQR = data.url;
+      //console.log(data.url);
+
+      uploadString(this.storageQR, dataUrlQR, 'data_url').then((snapshot) => {
+        this.urlQR.getDownloadURL().subscribe((urlqr: any)=>{
+            //Obtengo URL DE QR
+            this.webPathQR = urlqr;            
+        });
+      });      
+    });    
+  }
+  
 }
