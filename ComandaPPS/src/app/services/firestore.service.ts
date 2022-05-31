@@ -14,6 +14,16 @@ export class FirestoreService {
 
   clientesArray : any = [];
 
+  productosCollectionReference: any;
+  productos: Observable<any>;
+
+  productosArray : any = [];
+
+  encuestasClientesCollectionReference: any;
+  encuestasClientes: Observable<any>;
+
+  encuestasClientesArray : any = [];
+
   duenSupCollectionReference: any;
   duenSup: Observable<any>;
 
@@ -45,6 +55,20 @@ export class FirestoreService {
 
     this.traerClientes().subscribe(value => {
       this.clientesArray = value;
+    });
+
+    this.productosCollectionReference = this.angularF.collection<any>('productos');
+    this.productos = this.productosCollectionReference.valueChanges({idField: 'id'});
+
+    this.traerProductos().subscribe(value => {
+      this.productosArray = value;
+    });
+
+    this.encuestasClientesCollectionReference = this.angularF.collection<any>('encuestasClientes');
+    this.encuestasClientes = this.encuestasClientesCollectionReference.valueChanges({idField: 'id'});
+
+    this.traerEncuestasClientes().subscribe(value => {
+      this.encuestasClientesArray = value;
     });
 
     this.duenSupCollectionReference = this.angularF.collection<any>('duenSups');
@@ -80,6 +104,16 @@ export class FirestoreService {
   {
     return this.clientes;
   }
+ 
+  traerProductos()
+  {
+    return this.productos;
+  }
+
+  traerEncuestasClientes()
+  {
+    return this.encuestasClientes;
+  }
 
   traerDuenSups()
   {
@@ -112,8 +146,18 @@ export class FirestoreService {
   }
 
   agregarEmpleado(empleado : any)
+  {     
+    this.empleadoCollectionReference.add({...empleado});
+  }
+
+  agregarProducto(producto : any)
   {
-      this.empleadoCollectionReference.add({...empleado});
+      this.productosCollectionReference.add({...producto});
+  }
+
+  agregarEncuestaCliente(ec : any)
+  {
+      this.encuestasClientesCollectionReference.add({...ec});
   }
 
   agregarDuenSup(duenSup : any)

@@ -90,6 +90,14 @@ const routes: Routes = [
     path: 'home-supervisor',
     loadChildren: () => import('./pages/home-supervisor/home-supervisor.module').then( m => m.HomeSupervisorPageModule)
   },
+  {
+    path: 'alta-producto',
+    loadChildren: () => import('./pages/alta-producto/alta-producto.module').then( m => m.AltaProductoPageModule)
+  },
+  {
+    path: 'encuesta-cliente',
+    loadChildren: () => import('./pages/encuesta-cliente/encuesta-cliente.module').then( m => m.EncuestaClientePageModule)
+  },
 
   
 ];

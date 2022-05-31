@@ -69,7 +69,8 @@ export class AltaClientePage implements OnInit {
       email : this.form.get('email')?.value,
       clave : this.form.get('password')?.value,
       habilitado : false,
-      encuesta : null
+      encuesta : null,
+      perfil : "cliente"
     };
     this.imageStore.addNewToGallery(this.cliente).then((data) =>{
       this.as.loading = true;

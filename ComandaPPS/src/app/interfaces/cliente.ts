@@ -7,4 +7,5 @@ export interface Cliente {
     clave : string;
     habilitado: boolean;
     encuesta: any[];
+    perfil : string;
 }
