@@ -7,6 +7,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { ImagenesService } from 'src/app/services/imagenes.service';
 
+import html2canvas from "html2canvas";
+
 @Component({
   selector: 'app-alta-producto',
   templateUrl: './alta-producto.page.html',
@@ -25,6 +27,9 @@ export class AltaProductoPage implements OnInit {
   webPath : string[];
   producto : Producto;
   contador : number = 0;
+  qrData : string = "@";
+  storageQR : any;
+  urlQR : any;
 
   constructor(private as : AuthService, private fs : FirestoreService, private formBuilder : FormBuilder, private imageStore : ImagenesService, private toastController : ToastController) 
   {
@@ -47,9 +52,9 @@ export class AltaProductoPage implements OnInit {
   altaProducto()
   {
     this.as.loading = true;
-       
-    this.fs.agregarProducto(this.producto)
-      setTimeout(() => {
+    this.crearImagen();
+    setTimeout(() => {
+      this.fs.agregarProducto(this.producto)
         this.as.loading = false;
         this.MostrarToast("El producto ha sido agregado").then((toast : any) =>{
           toast.present();
@@ -58,7 +63,7 @@ export class AltaProductoPage implements OnInit {
         this.webPath = [];
         this.contador = 0;     
         this.producto = new Producto();
-      }, 1500);
+      }, 6000);
   }
 
   agregarFotos()
@@ -87,7 +92,7 @@ export class AltaProductoPage implements OnInit {
            if(this.webPath.length == 1)
            {
             this.producto.foto1 = url1;
-      
+            
            }
            else
            {
@@ -98,16 +103,14 @@ export class AltaProductoPage implements OnInit {
              }
              else{
               this.producto.foto3 = url1;
-           
-             }
+              this.qrData += "Nombre: "+this.producto.nombre+ "\n" +"@Descripcion: "+this.producto.descripcion+ "\n"+"@TiempoPreparacion: "+this.producto.tiempoPromedio+"\n"+"@Precio: "+this.producto.precio;          
+            }
            }
-            setTimeout(() => {
-              this.as.loading = false;
-            }, 2000);
+             setTimeout(() => {
+               this.as.loading = false;
+             }, 2000);
+
           });
-
-          console.log(this.producto);
-
         });
       });
     }
@@ -123,4 +126,34 @@ export class AltaProductoPage implements OnInit {
       });
     }
 
+    imagenQRGenerado: any;
+    imgcreada = false;
+    imagenCreada;
+    crearImagen() {
+      html2canvas(document.querySelector("#contenido")).then(canvas => {
+   
+        this.imagenCreada = canvas.toDataURL();      
+        this.imagenQRGenerado = this.imagenCreada;
+        
+        //Ahora tengo q llamar A subirFotoQR para subir la IMG a Firebas     
+        this.onSubirFotoQR(this.imagenQRGenerado);
+      });
+      this.imgcreada = true;
+    }  
+  
+    //Subo Img a Firebase
+    onSubirFotoQR(dataUrlQR){    
+      this.imageStore.addFotoQR().then((data) =>{   
+        this.storageQR = data.storage;
+        this.urlQR= data.url;
+        //console.log(data.url);
+  
+        uploadString(this.storageQR, dataUrlQR, 'data_url').then((snapshot) => {
+          this.urlQR.getDownloadURL().subscribe((urlqr: any)=>{
+              //Obtengo URL DE QR
+              this.producto.qr = urlqr;        
+          });
+        });      
+      });    
+    }
   }

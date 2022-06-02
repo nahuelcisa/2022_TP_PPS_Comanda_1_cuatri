@@ -99,5 +99,21 @@
   </div>
   </div>
 
+  <div style="width: 100%; opacity: 0%">
+    <div id="contenido" align="center">
+      <qrcode id="my-qr" 
+                         [qrdata]="qrData"                                               
+                         [width]="400" 
+                         [errorCorrectionLevel]="'M'"
+                         [allowEmptyString]="true"
+                         [cssClass]="'center'"
+                         [colorDark]="'#000000ff'"
+                         [colorLight]="'#ffffffff'"
+                         [elementType]="'img'"
+                         [margin]="2"
+                         [scale]="1"></qrcode>
+    </div>
+  </div>
+
 </ion-content>
 
