@@ -18,7 +18,7 @@ export class MailServiceService {
       from_name: "RestoBarPPSS"
     };
 
-    emailjs.send("service_gpdohwj", "template_aychcoc", templateParams)
+    emailjs.send("service_ggwht4c", "template_aychcoc", templateParams)
       .then(res =>{
         console.log("Email enviado.", res.status, res.text);
       })
@@ -35,7 +35,7 @@ export class MailServiceService {
       from_name: "RestoBarPPSS"
     };
 
-    emailjs.send("service_gpdohwj", "template_aychcoc", templateParams)
+    emailjs.send("service_ggwht4c", "template_aychcoc", templateParams)
       .then(res =>{
         console.log("Email enviado.", res.status, res.text);
       })

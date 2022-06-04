@@ -140,6 +140,10 @@ export class FirestoreService {
     return this.angularF.collection(coleccion).doc(id).update(foto);
   } */
 
+  modificarCliente(objeto: any, id_objeto: any){
+    return this.angularF.collection('clientes').doc(id_objeto).update(objeto);
+  }
+
   agregarCliente(cliente : any)
   {
       this.clientesCollectionReference.add({...cliente});
