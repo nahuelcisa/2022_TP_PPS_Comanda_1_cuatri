@@ -155,6 +155,9 @@ export class FirestoreService {
   modificarCliente(objeto: any, id_objeto: any){
     return this.angularF.collection('clientes').doc(id_objeto).update(objeto);
   }
+  modificarUsuario(objeto: any, id_objeto: any){
+    return this.angularF.collection('usuarios').doc(id_objeto).update(objeto);
+  }
 
   agregarCliente(cliente : any)
   {

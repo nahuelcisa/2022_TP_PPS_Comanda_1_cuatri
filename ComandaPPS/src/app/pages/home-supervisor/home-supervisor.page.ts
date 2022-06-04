@@ -13,6 +13,7 @@ import { PushService } from 'src/app/services/push-service.service';
 export class HomeSupervisorPage implements OnInit {
 
   clientes : any = [];
+  usuarios : any = [];
   loading : boolean;
 
   constructor(private fs : FirestoreService, private mailS : MailServiceService, private toast : ToastController,
@@ -20,6 +21,9 @@ export class HomeSupervisorPage implements OnInit {
     this.fs.traerClientes().subscribe(value => {
       this.clientes = value;
       this.clientes = this.clientes.filter(this.filtarHabilitado);
+    });
+    this.fs.traerUsuarios().subscribe(value =>{
+      this.usuarios = value;
     });
   }
 
@@ -35,17 +39,28 @@ export class HomeSupervisorPage implements OnInit {
   }
 
   habilitar(event, item){
+    let usu : any;
     if(!event.target.checked)
     {
+      for (const iterator of this.usuarios) {
+        if(iterator.DNI == item.DNI){
+          usu = iterator;
+          console.log(usu);
+          break;
+        }
+      }
       this.loading = true;
       item.habilitado = true;
+      usu.habilitado = true;
       this.mailS.enviarAvisoHabilitado(item);
       setTimeout(() =>{
         this.fs.modificarCliente(item, item.id).then(()=>{
-          this.loading = false;
-          this.as.registro(item);
-          console.log(item);
-          this.SuccessToastEncuesta();
+          this.fs.modificarUsuario(usu,usu.id).then(()=>{
+            this.loading = false;
+            this.as.registro(item);
+            console.log(item);
+            this.SuccessToastEncuesta();
+          });
         });
       },2500);
     }
