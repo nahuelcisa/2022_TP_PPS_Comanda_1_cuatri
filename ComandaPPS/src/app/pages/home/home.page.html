@@ -1,0 +1,17 @@
+<ion-header>
+    <ion-toolbar align="center">
+      <ion-title>Home {{page_titulo}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div>     
+        
+        <!--pages-->
+        <app-home-supervisor *ngIf="view_pageSupervisor"></app-home-supervisor>
+        <app-home-cocina *ngIf="view_pageCocina"></app-home-cocina>
+        <app-home-metre *ngIf="view_pageMetre"></app-home-metre>
+        <app-home-mozo *ngIf="view_pageMozo"></app-home-mozo>
+
+    </div>
+</ion-content>

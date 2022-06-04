@@ -7,6 +7,13 @@ import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 import {MatMenuModule, MAT_MENU_DEFAULT_OPTIONS} from '@angular/material/menu';
 
+import { HomeSupervisorPage } from '../home-supervisor/home-supervisor.page';
+
+import { HomeMetrePage } from '../home-metre/home-metre.page';
+import { HomeMozoPage } from '../home-mozo/home-mozo.page';
+import { HomeCocinaPage } from '../home-cocina/home-cocina.page'; 
+
+//Falta page para clientes
 
 @NgModule({
   imports: [
@@ -17,7 +24,13 @@ import {MatMenuModule, MAT_MENU_DEFAULT_OPTIONS} from '@angular/material/menu';
     HomePageRoutingModule,
     MatMenuModule
   ],
-  declarations: [HomePage],
+  declarations: [
+    HomePage,
+    HomeSupervisorPage,
+    HomeMetrePage,
+    HomeMozoPage,
+    HomeCocinaPage
+  ],
   providers: [{
     provide: MAT_MENU_DEFAULT_OPTIONS,
     useValue: { color: 'accent' },
