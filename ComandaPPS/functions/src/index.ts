@@ -11,8 +11,8 @@ admin.initializeApp(functions.config().firebase);
 exports.pushClienteNuevo = functions.firestore.document('usuarios/{usuarioId}').onCreate((snap:any,context:any)=>{
     let usuario = snap.data();
     const promises: any = [];
-    if(usuario.rol == 'cliente'){
-        let query = admin.firestore().collection('usuarios').where('rol', '==', 'supervisor');
+    if(usuario.perfil == 'cliente'){
+        let query = admin.firestore().collection('usuarios').where('perfil', '==', 'Dueño');
         query.get().then((snapshot)=>{
             if(!snapshot.empty){
                 snapshot.forEach(sup => {

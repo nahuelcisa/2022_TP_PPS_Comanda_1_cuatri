@@ -43,6 +43,8 @@ export class HomeSupervisorPage implements OnInit {
       setTimeout(() =>{
         this.fs.modificarCliente(item, item.id).then(()=>{
           this.loading = false;
+          this.as.registro(item);
+          console.log(item);
           this.SuccessToastEncuesta();
         });
       },2500);

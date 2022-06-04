@@ -34,7 +34,9 @@ export class AltaDuenSupPage implements OnInit {
       'nombre' : ['',[Validators.required,Validators.minLength(2)]],
       'apellido' : ['',[Validators.required,Validators.minLength(2)]],
       'dni' : ['',[Validators.required,Validators.minLength(8),Validators.maxLength(8)]],
-      'cuil': ['',[Validators.required,Validators.minLength(11),Validators.maxLength(11)]]
+      'cuil': ['',[Validators.required,Validators.minLength(11),Validators.maxLength(11)]],
+      'email' : ['',[Validators.required,Validators.email]],
+      'password' : ['',[Validators.required,Validators.minLength(6)]]
     });
   }
 
@@ -45,7 +47,9 @@ export class AltaDuenSupPage implements OnInit {
   {
     this.as.loading = true;
        
-    this.fs.agregarDuenSup(this.duenSup)
+    this.fs.agregarDuenSup(this.duenSup);
+
+    this.as.registro(this.duenSup);
     
     setTimeout(() => {
         this.form.reset(); 
@@ -65,6 +69,8 @@ export class AltaDuenSupPage implements OnInit {
       apellido : this.form.get('apellido')?.value,
       DNI : this.form.get('dni')?.value,
       CUIL: this.form.get('cuil')?.value,
+      email : this.form.get('email')?.value,
+      clave : this.form.get('password')?.value,
       perfil: this.perfil,
       foto : ""
     };

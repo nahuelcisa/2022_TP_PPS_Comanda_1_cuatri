@@ -8,6 +8,8 @@ import { Observable } from 'rxjs';
 export class FirestoreService {
 
   usuariosCollectionReference: any;
+  usuarios : Observable<any>;
+  usuariosArray : any = [];
 
   clientesCollectionReference: any;
   clientes: Observable<any>;
@@ -49,6 +51,11 @@ export class FirestoreService {
   constructor(private angularF : AngularFirestore) 
   {
     this.usuariosCollectionReference = this.angularF.collection<any>('usuarios');
+    this.usuarios = this.usuariosCollectionReference.valueChanges({idField: 'id'});
+
+    this.traerUsuarios().subscribe(value =>{
+      this.usuariosArray = value;
+    });
 
     this.clientesCollectionReference = this.angularF.collection<any>('clientes');
     this.clientes = this.clientesCollectionReference.valueChanges({idField: 'id'});
@@ -104,6 +111,11 @@ export class FirestoreService {
   {
     return this.clientes;
   }
+
+  traerUsuarios()
+  {
+    return this.usuarios;
+  }
  
   traerProductos()
   {
@@ -147,26 +159,29 @@ export class FirestoreService {
   agregarCliente(cliente : any)
   {
       this.clientesCollectionReference.add({...cliente});
+      this.usuariosCollectionReference.add({...cliente});
   }
 
   agregarEmpleado(empleado : any)
   {     
     this.empleadoCollectionReference.add({...empleado});
+    this.usuariosCollectionReference.add({...empleado});
   }
 
   agregarProducto(producto : any)
   {
-      this.productosCollectionReference.add({...producto});
+    this.productosCollectionReference.add({...producto});
   }
 
   agregarEncuestaCliente(ec : any)
   {
-      this.encuestasClientesCollectionReference.add({...ec});
+    this.encuestasClientesCollectionReference.add({...ec});
   }
 
   agregarDuenSup(duenSup : any)
   {
-      this.duenSupCollectionReference.add({...duenSup});
+    this.duenSupCollectionReference.add({...duenSup});
+    this.usuariosCollectionReference.add({...duenSup});
   }
 
   agregarMesa(mesa : any)

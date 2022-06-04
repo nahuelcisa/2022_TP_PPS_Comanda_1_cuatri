@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
+import { FirestoreService } from 'src/app/services/firestore.service';
 
 @Component({
   selector: 'app-login',
@@ -15,26 +17,69 @@ export class LoginPage implements OnInit {
   form : FormGroup;
   perfil
 
-  constructor(private formBuilder : FormBuilder, private as : AuthService, private router : Router) 
+  clientes : any = [];
+
+  constructor(private formBuilder : FormBuilder, private as : AuthService, private router : Router, private fs : FirestoreService,
+    private toast : ToastController) 
   { 
     this.form = this.formBuilder.group({
       'email' : ['',[Validators.required,Validators.email]],
       'password' : ['',[Validators.required,Validators.minLength(6)]],  
     });
+
+  }
+  
+  ngOnInit() {
+    this.fs.traerClientes().subscribe(value => {
+      this.clientes = value;
+      this.clientes = this.clientes.filter(this.filtarHabilitado);
+    });
   }
 
-  ngOnInit() {
+  filtarHabilitado(item){
+    if(item.habilitado){
+      return false;
+    }else{
+      return true;
+    }
+  }
+
+
+
+  async DangerToastHabilitado() {
+    const toast = await this.toast.create({
+      position: 'top',
+      message: 'Cliente NO habilitado aún.!!!',
+      duration: 1100,
+      color: 'danger'
+    });
+    toast.present();
   }
 
   login()
   {
-    this.email = this.form.get('email')?.value,
-    this.password = this.form.get('password')?.value 
-    this.as.login(this.email,this.password);
 
-    setTimeout(() => {
-      this.form.reset();
-    }, 5000);
+    this.email = this.form.get('email')?.value;
+    this.password = this.form.get('password')?.value;
+
+    let habilitado = true;
+
+    for (const iterator of this.clientes) {
+      if(iterator.email == this.email){
+        habilitado = false;
+      }
+    }
+
+    if(habilitado){
+      this.as.login(this.email,this.password);
+      setTimeout(() => {
+        this.form.reset();
+      }, 5000);
+    }else{
+      this.DangerToastHabilitado();
+    }
+
+
   }
 
   cargarDatos(dato : number)

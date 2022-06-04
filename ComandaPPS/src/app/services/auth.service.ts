@@ -45,7 +45,7 @@ export class AuthService {
           email : email,
           password : password,
         }
-        this.router.navigate(['/main']);
+        this.router.navigate(['/home']);
       }, 2500); 
     }).catch(response =>{
       
@@ -98,7 +98,7 @@ export class AuthService {
 
   registro(usuario : any)
   {
-    return this.auth.createUserWithEmailAndPassword(usuario.email,usuario.password);
+    return this.auth.createUserWithEmailAndPassword(usuario.email,usuario.clave);
   }
 }
 

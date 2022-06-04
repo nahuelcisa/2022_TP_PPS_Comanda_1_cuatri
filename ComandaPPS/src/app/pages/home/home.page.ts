@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { FirestoreService } from 'src/app/services/firestore.service';
 
 
 @Component({
@@ -9,6 +10,11 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HomePage {
 
+
+  usuarios : any = [];
+  usuariosArray : any = [];
+
+  usuarioLogeado : any;
 
   page_titulo: string = "";
 
@@ -22,49 +28,68 @@ export class HomePage {
   view_pageBartender: boolean = false;
   view_pageAnonimo: boolean = false;
 
-  constructor(private as : AuthService) 
+  constructor(private as : AuthService, private fs : FirestoreService) 
   {     
-    
   }
   
-  ngOnInit() {    
-    //this.homePage();
+  ngOnInit() {
+    this.fs.traerUsuarios().subscribe(value => {
+      this.usuarios = value;
+      this.cargarArray();
+      console.log(value);
+        for (const item of this.usuariosArray) {
+           if(item.email == this.as.logeado.email && item.clave == this.as.logeado.password){
+            this.usuarioLogeado = item;
+            this.homePage();
+            console.log(this.usuarioLogeado);
+          } 
+        }    
+     
+    }); 
   }
 
+  cargarArray(){
+    for (const item of this.usuarios) {
+      this.usuariosArray.push(item);
+    }
+  }
+  
   homePage(){
+
     //Default HomePage Clientes
-    switch (this.as.logeado.email) {
-      case "supervisor@supervisor.com":
+    switch (this.usuarioLogeado.perfil) {
+      case "supervisor":
           this.view_pageSupervisor = true;
           this.page_titulo = "Supervisor";
         break;
 
-      case "duenio@duenio.com":
+      case "Dueño":
           this.view_pageSupervisor = true;
           this.page_titulo = "Dueño";
+          console.log("switch dueño");
         break;
 
-      case "cocinero@cocinero.com":
+      case "cocinero":
           this.view_pageCocina = true;
           this.page_titulo = "Cocina";
         break;
 
-      case "metre@metre.com":
+      case "metre":
           this.view_pageMetre = true;
           this.page_titulo = "Metre";
         break;
 
-      case "mozo@mozo.com":
+      case "mozo":
           this.view_pageMozo = true;
           this.page_titulo = "Mozo";
         break;
       
-      case "bartender@bartender.com":
+      case "bartender":
           this.view_pageBartender = true;
           this.page_titulo = "Bartender";
         break;
       
-      case "anonimo@anonimo.com":
+      case "anonimo":
           this.view_pageAnonimo = true;
         break;
 

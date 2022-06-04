@@ -3,6 +3,8 @@ export interface DuenSup {
     apellido: string,
     DNI: number,
     CUIL: number,
+    email : string,
+    clave : string,
     foto: string,
     perfil: string
 }
