@@ -54,10 +54,18 @@ export class HomePage {
   
   homePage(){
 
+    this.view_pageSupervisor = false;
+    this.view_pageMozo = false;
+    this.view_pageMetre = false;
+    this.view_pageCocina = false;
+    this.view_pageClientes = false;
+    this.view_pageBartender = false;
+    this.view_pageAnonimo = false;
+
     //Default HomePage Clientes
     switch (this.usuarioLogeado.perfil) {
       case "supervisor":
-          this.view_pageSupervisor = true;
+          this.view_pageSupervisor = true;                  
           this.page_titulo = "Supervisor";
         break;
 
