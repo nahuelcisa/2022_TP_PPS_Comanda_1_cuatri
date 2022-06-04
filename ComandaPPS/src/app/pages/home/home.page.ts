@@ -36,12 +36,10 @@ export class HomePage {
     this.fs.traerUsuarios().subscribe(value => {
       this.usuarios = value;
       this.cargarArray();
-      console.log(value);
         for (const item of this.usuariosArray) {
            if(item.email == this.as.logeado.email && item.clave == this.as.logeado.password){
             this.usuarioLogeado = item;
             this.homePage();
-            console.log(this.usuarioLogeado);
           } 
         }    
      
