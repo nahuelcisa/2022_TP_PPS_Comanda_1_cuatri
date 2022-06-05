@@ -1,9 +1,60 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>homeCliente</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content>
 
-</ion-content>
+  <div class="fondo" align="center">
+    <div *ngIf="escaneoQR" (click)="onEscanearQR()">
+      <ion-grid style="display: flex; flex-flow: column;position: center;height: 100%;">
+        <ion-row style="flex-grow: 1;">
+          <ion-col style=" width: 70%;"> 
+            <ion-icon name="qr-code-outline" style="font-size: 260px;margin-top: 120px;"></ion-icon>                
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <label style="margin-bottom: 120px;font-size: 24px;font-weight: bold;">ESCANEAR QR DEL LOCAL</label>  
+          </ion-col>
+        </ion-row>
+      </ion-grid>  
+
+    </div>
+  
+    <div *ngIf="menuOpciones" style="height: 100%;">
+      <div style="height: 100%;" align="center">               
+            <ion-row style="flex-grow: 1; height: 50%;">
+              <div style="width: 100%;height: 100%;"  (click)="onVerEncuestas()">
+                <h2 style="width: 100%;height: 100%;margin-top: 50%;font-weight: bold;" align="center">
+                  VER ENCUESTAS
+                </h2>     
+              </div>                                 
+            </ion-row>
+            <ion-row style="flex-grow: 1; height: 50%;background-color: black;">
+              <div style="width: 100%;height: 100%;" (click)="onEntrarListaEspera()">
+                <h2 style="width: 100%;height: 100%;margin-top: 50%;font-weight: bold;color: white;" align="center">
+                  ENTRAR A LISTA DE ESPERA
+                </h2>   
+              </div>                                   
+            </ion-row>     
+      </div>
+    </div>
+          
+    <div *ngIf="esperaAsignacionMesa">
+      <ion-grid style="display: flex; flex-flow: column;position: center;">
+        <ion-row style="flex-grow: 1;">
+          <ion-col style=" width: 70%;"> 
+            <img src="../../assets/Spinner.png" style="margin-top: 20%;" [ngClass]="{'loading' : this.loading}" *ngIf="loading"/>                                          
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <label style="margin-bottom: 120px;font-size: 18px;">Espere a que se le asigne una mesa...</label>  
+          </ion-col>
+        </ion-row>
+        <!-- <div id="contenedor">
+                <div class="loader" id="loader">Loading...</div>
+        </div> -->
+      </ion-grid>  
+    </div>
+    
+  
+  </div>
+  
+  
