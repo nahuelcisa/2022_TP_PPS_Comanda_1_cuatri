@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth'
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { FirestoreService } from './firestore.service';
 
 
 @Injectable({
@@ -11,8 +12,22 @@ export class AuthService {
 
   loading : boolean = false;
   logeado : any;
-  constructor(public auth : AngularFireAuth, public router : Router, private toastController : ToastController) { }
+  usuarios : any;
+  usuariosArray : any;
 
+  constructor(public auth : AngularFireAuth, public router : Router, private toastController : ToastController, private fs : FirestoreService) 
+  { 
+    this.fs.traerUsuarios().subscribe(value => {
+      this.usuarios = value;
+      this.cargarArray();
+    }); 
+  }
+
+  cargarArray(){
+    for (const item of this.usuarios) {
+      this.usuariosArray.push(item);
+    }
+  }
   MostrarToast(message : string)
   {
     return this.toastController.create({
@@ -39,6 +54,11 @@ export class AuthService {
     this.loading = true;
     this.auth.signInWithEmailAndPassword(email,password).then(() =>
     {
+      for (const item of this.usuariosArray) {
+        if(item.email == email && item.clave == password){
+         this.logeado = item;
+       } 
+     }    
       setTimeout(() => {
         this.loading = false;
         this.logeado = {

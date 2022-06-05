@@ -4,6 +4,10 @@
 
 export const environment = {
   production: false,
+  fcmUrl: 'https://fcm.googleapis.com/fcm/send',
+  fcmServerKey:
+    // eslint-disable-next-line max-len
+    'AAAAx9Hbj30:APA91bHfPOGThQH-vG4a8e21aNoWVa3Qgtesqde_aWl6k8qILomnsQyHoktIZLTf-g4N1mXGRJR80oL1qmwDDRFj_x-RnA5lyBQ2X4aB1g4TV3t19p-8W-bWbFUsTWTg7Z2VnmC96O7y',
   firebaseConfig : {
     apiKey: "AIzaSyC1k0bfLOYlXuD0u_FAYHw60gzl9xI6E7M",
     authDomain: "comanda-pps-62f45.firebaseapp.com",

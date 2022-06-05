@@ -17,7 +17,7 @@ export class HomeSupervisorPage implements OnInit {
   loading : boolean;
 
   constructor(private fs : FirestoreService, private mailS : MailServiceService, private toast : ToastController,
-    private as : AuthService, private push : PushService) { 
+    private as : AuthService,private push : PushService) { 
     this.fs.traerClientes().subscribe(value => {
       this.clientes = value;
       this.clientes = this.clientes.filter(this.filtarHabilitado);
@@ -76,4 +76,25 @@ export class HomeSupervisorPage implements OnInit {
     toast.present();
   }
 
+  sendPush() {
+    this.push
+      .sendPushNotification({
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        registration_ids: [
+          // eslint-disable-next-line max-len
+          '',
+        ],
+        notification: {
+          title: 'Mi titulo',
+          body: 'Mi body',
+        },
+        data: {
+          id: 1,
+          nombre: 'nicolas',
+        },
+      })
+      .subscribe((data) => {
+        console.log(data);
+      });
+  }
 }

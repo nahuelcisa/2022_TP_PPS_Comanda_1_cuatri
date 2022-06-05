@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
+import { PushService } from 'src/app/services/push-service.service';
 
 
 @Component({
@@ -8,7 +9,7 @@ import { FirestoreService } from 'src/app/services/firestore.service';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit{
 
 
   usuarios : any = [];
@@ -28,33 +29,18 @@ export class HomePage {
   view_pageBartender: boolean = false;
   view_pageAnonimo: boolean = false;
 
-  constructor(private as : AuthService, private fs : FirestoreService) 
-  {     
+  constructor(private as : AuthService, private fs : FirestoreService, private push : PushService) 
+  {    
+    this.push.getUser(); 
   }
   
   ngOnInit() {
-    this.fs.traerUsuarios().subscribe(value => {
-      this.usuarios = value;
-      this.cargarArray();
-        for (const item of this.usuariosArray) {
-           if(item.email == this.as.logeado.email && item.clave == this.as.logeado.password){
-            this.usuarioLogeado = item;
-            this.homePage();
-          } 
-        }    
-     
-    }); 
+   this.homePage();
   }
 
-  cargarArray(){
-    for (const item of this.usuarios) {
-      this.usuariosArray.push(item);
-    }
-  }
-  
   homePage(){
 
-    this.view_pageSupervisor = false;
+    this.view_pageSupervisor = true;
     this.view_pageMozo = false;
     this.view_pageMetre = false;
     this.view_pageCocina = false;
@@ -106,3 +92,4 @@ export class HomePage {
     }
   }
 }
+
