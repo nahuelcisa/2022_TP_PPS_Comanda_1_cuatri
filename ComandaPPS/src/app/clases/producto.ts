@@ -7,4 +7,6 @@ export class Producto {
     foto2 : string;
     foto3 : string;
     qr : string;
+    cantidad : number;
+    sector : string;
 }

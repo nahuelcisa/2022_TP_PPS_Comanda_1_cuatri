@@ -198,12 +198,17 @@ export class FirestoreService {
 
   agregarMesa(mesa : any)
   {
-      this.mesaCollectionReference.add({...mesa});
+    this.mesaCollectionReference.add({...mesa});
   }
 
   agregarEncuestaEmpleado(encuesta : any)
   {
-      this.encuestaEmpleadoCollectionReference.add({...encuesta});
+    this.encuestaEmpleadoCollectionReference.add({...encuesta});
+  }
+
+  agregarPedido(pedido : any)
+  {
+    this.pedidosCollectionReference.add({...pedido});
   }
 
   guardarToken(user:any, token:any){
