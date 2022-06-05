@@ -15,6 +15,10 @@ export class FirestoreService {
   listaEspera : Observable<any>;
   listaEsperaArray : any = [];
 
+  pedidosCollectionReference: any;
+  pedidos : Observable<any>;
+  pedidosArray : any = [];
+
   clientesCollectionReference: any;
   clientes: Observable<any>;
 
@@ -57,65 +61,42 @@ export class FirestoreService {
     this.listaEsperaCollectionReference = this.angularF.collection<any>('listaEspera');
     this.listaEspera = this.listaEsperaCollectionReference.valueChanges({idField: 'id'});
 
-    this.traerlistaEspera().subscribe(value =>{
-      this.listaEsperaArray = value;
-    });
+    
+    this.pedidosCollectionReference = this.angularF.collection<any>('pedidos');
+    this.pedidos = this.pedidosCollectionReference.valueChanges({idField: 'id'});
 
+    
     this.usuariosCollectionReference = this.angularF.collection<any>('usuarios');
     this.usuarios = this.usuariosCollectionReference.valueChanges({idField: 'id'});
 
-    this.traerUsuarios().subscribe(value =>{
-      this.usuariosArray = value;
-    });
 
     this.clientesCollectionReference = this.angularF.collection<any>('clientes');
     this.clientes = this.clientesCollectionReference.valueChanges({idField: 'id'});
 
-    this.traerClientes().subscribe(value => {
-      this.clientesArray = value;
-    });
 
     this.productosCollectionReference = this.angularF.collection<any>('productos');
     this.productos = this.productosCollectionReference.valueChanges({idField: 'id'});
 
-    this.traerProductos().subscribe(value => {
-      this.productosArray = value;
-    });
-
     this.encuestasClientesCollectionReference = this.angularF.collection<any>('encuestasClientes');
     this.encuestasClientes = this.encuestasClientesCollectionReference.valueChanges({idField: 'id'});
 
-    this.traerEncuestasClientes().subscribe(value => {
-      this.encuestasClientesArray = value;
-    });
 
     this.duenSupCollectionReference = this.angularF.collection<any>('duenSups');
     this.duenSup = this.duenSupCollectionReference.valueChanges({idField: 'id'});
 
-    this.traerDuenSups().subscribe(value => {
-      this.duenSupArray = value;
-    });
 
     this.empleadoCollectionReference = this.angularF.collection<any>('empleados');
     this.empleados = this.empleadoCollectionReference.valueChanges({idField: 'id'});
 
-    this.traerempleados().subscribe(value => {
-      this.empleadoArray = value;
-    });
 
     this.mesaCollectionReference = this.angularF.collection<any>('mesas');
     this.mesas = this.mesaCollectionReference.valueChanges({idField: 'id'});
 
-    this.traerMesas().subscribe(value => {
-      this.mesaArray = value;
-    });
 
     this.encuestaEmpleadoCollectionReference = this.angularF.collection<any>('encuestasEmpleados');
     this.encuestasEmpleados = this.encuestaEmpleadoCollectionReference.valueChanges({idField: 'id'});
 
-    this.traerEncuestasEmpleados().subscribe(value => {
-      this.encuestaArray = value;
-    });
+
   }
 
   traerClientes()
@@ -131,6 +112,11 @@ export class FirestoreService {
   traerlistaEspera()
   {
     return this.listaEspera;
+  }
+
+  traerPedidos()
+  {
+    return this.pedidos;
   }
  
   traerProductos()
@@ -177,13 +163,13 @@ export class FirestoreService {
 
   agregarCliente(cliente : any)
   {
-      this.clientesCollectionReference.add({...cliente});
-      this.usuariosCollectionReference.add({...cliente});
+    this.clientesCollectionReference.add({...cliente});
+    this.usuariosCollectionReference.add({...cliente});
   }
 
   agregarAListaDeEspera(cliente : any)
   {
-      this.listaEsperaCollectionReference.add({...cliente});
+    this.listaEsperaCollectionReference.add({...cliente});
   }
 
   agregarEmpleado(empleado : any)
