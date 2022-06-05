@@ -76,25 +76,5 @@ export class HomeSupervisorPage implements OnInit {
     toast.present();
   }
 
-  sendPush() {
-    this.push
-      .sendPushNotification({
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        registration_ids: [
-          // eslint-disable-next-line max-len
-          '',
-        ],
-        notification: {
-          title: 'Mi titulo',
-          body: 'Mi body',
-        },
-        data: {
-          id: 1,
-          nombre: 'nicolas',
-        },
-      })
-      .subscribe((data) => {
-        console.log(data);
-      });
-  }
+
 }

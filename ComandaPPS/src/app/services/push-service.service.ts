@@ -45,6 +45,7 @@ export class PushService {
   }
 
   sendPushNotification(req): Observable<any> {
+    console.log("push notification");
     return this.http.post<Observable<any>>(environment.fcmUrl, req, {
       headers: {
         // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -56,13 +57,14 @@ export class PushService {
   }
   
   private async addListeners(): Promise<void> {
+    console.log("asdad");
     //Ocurre cuando el registro de las push notifications finaliza sin errores
     await PushNotifications.addListener(
       'registration',
       async (token: Token) => {
         //AcÃ¡ deberiamos asociar el token a nuestro usario en nuestra bd
         console.log('Registration token: ', token.value);
-        const aux = doc(this.firestore, `personas/${this.user.id}`);
+        const aux = doc(this.firestore, `usuarios/${this.user.id}`);
         await updateDoc(aux, {
           token: token.value,
         });

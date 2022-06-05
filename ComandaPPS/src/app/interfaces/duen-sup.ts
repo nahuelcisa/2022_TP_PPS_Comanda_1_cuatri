@@ -6,5 +6,6 @@ export interface DuenSup {
     email : string,
     clave : string,
     foto: string,
-    perfil: string
+    perfil: string,
+    token : string
 }

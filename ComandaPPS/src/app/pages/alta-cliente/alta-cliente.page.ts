@@ -8,6 +8,7 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 import { ImagenesService } from 'src/app/services/imagenes.service';
 import { ScannerService } from 'src/app/services/scanner.service';
 import { MailServiceService } from 'src/app/services/mail-service.service';
+import { PushService } from 'src/app/services/push-service.service';
 
 @Component({
   selector: 'app-alta-cliente',
@@ -26,7 +27,7 @@ export class AltaClientePage implements OnInit {
   fotoSubida : boolean = false;
   webPath : string = "";
 
-  constructor(private formBuilder : FormBuilder, private fs : FirestoreService, private as : AuthService, private router : Router,private sf : ScannerService, private imageStore : ImagenesService, private MS : MailServiceService) 
+  constructor(private formBuilder : FormBuilder, private fs : FirestoreService, private as : AuthService, private router : Router,private sf : ScannerService, private imageStore : ImagenesService, private MS : MailServiceService, private push : PushService) 
   { 
   
     this.form = this.formBuilder.group({
@@ -46,7 +47,8 @@ export class AltaClientePage implements OnInit {
   {
     this.as.loading = true;
        
-    this.fs.agregarCliente(this.cliente)
+    this.fs.agregarCliente(this.cliente);
+    this.sendPush();
 
     this.MS.enviarAviso(this.cliente);
     
@@ -137,5 +139,28 @@ export class AltaClientePage implements OnInit {
       this.form.get('dni')?.setValue(datos[4]);
       this.sf.stopScan();
     })
+  }
+
+  sendPush() {
+    console.log("asd");
+    this.push
+      .sendPushNotification({
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        registration_ids: [
+          // eslint-disable-next-line max-len
+          'f5VPIwXvRVSXodIjAeLLho:APA91bHeqPI7nlKpd0n3CbxhjifzTZ2jXVOtxwg_x-4qtgb1fVPjEet5PXfIxjNvHxRytOmT1qb2kJji85J5A_dJLt09kaz9hbD2hmH2a7xy1Sz2LboAcIjNSn-bp5q05C1CeLFU2QUe',
+        ],
+        notification: {
+          title: 'Mi titulo',
+          body: 'Mi body',
+        },
+        data: {
+          id: 1,
+          nombre: 'nicolas',
+        },
+      })
+      .subscribe((data) => {
+        console.log(data);
+      });
   }
 }

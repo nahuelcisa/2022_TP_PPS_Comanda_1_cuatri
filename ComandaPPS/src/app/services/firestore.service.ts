@@ -183,6 +183,8 @@ export class FirestoreService {
 
   agregarDuenSup(duenSup : any)
   {
+    console.log("asdadas");
+    console.log(duenSup);
     this.duenSupCollectionReference.add({...duenSup});
     this.usuariosCollectionReference.add({...duenSup});
   }

@@ -72,7 +72,8 @@ export class AltaDuenSupPage implements OnInit {
       email : this.form.get('email')?.value,
       clave : this.form.get('password')?.value,
       perfil: this.perfil,
-      foto : ""
+      foto : "",
+      token: ""
     };
     this.imageStore.addNewToGallery(this.duenSup).then((data) =>{
       this.as.loading = true;

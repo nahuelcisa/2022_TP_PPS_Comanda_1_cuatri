@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { FirestoreService } from './firestore.service';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -13,7 +12,7 @@ export class AuthService {
   loading : boolean = false;
   logeado : any;
   usuarios : any;
-  usuariosArray : any;
+  usuariosArray : any = [];
 
   constructor(public auth : AngularFireAuth, public router : Router, private toastController : ToastController, private fs : FirestoreService) 
   { 
@@ -61,10 +60,6 @@ export class AuthService {
      }    
       setTimeout(() => {
         this.loading = false;
-        this.logeado = {
-          email : email,
-          password : password,
-        }
         this.router.navigate(['/home']);
       }, 2500); 
     }).catch(response =>{

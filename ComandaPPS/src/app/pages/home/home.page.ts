@@ -35,6 +35,7 @@ export class HomePage implements OnInit{
   }
   
   ngOnInit() {
+
    this.homePage();
   }
 
@@ -49,7 +50,7 @@ export class HomePage implements OnInit{
     this.view_pageAnonimo = false;
 
     //Default HomePage Clientes
-    switch (this.usuarioLogeado.perfil) {
+    switch (this.as.logeado.perfil) {
       case "supervisor":
           this.view_pageSupervisor = true;                  
           this.page_titulo = "Supervisor";
