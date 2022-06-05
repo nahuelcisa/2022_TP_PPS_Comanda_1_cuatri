@@ -11,6 +11,10 @@ export class FirestoreService {
   usuarios : Observable<any>;
   usuariosArray : any = [];
 
+  listaEsperaCollectionReference: any;
+  listaEspera : Observable<any>;
+  listaEsperaArray : any = [];
+
   clientesCollectionReference: any;
   clientes: Observable<any>;
 
@@ -50,6 +54,13 @@ export class FirestoreService {
   
   constructor(private angularF : AngularFirestore) 
   {
+    this.listaEsperaCollectionReference = this.angularF.collection<any>('listaEspera');
+    this.listaEspera = this.listaEsperaCollectionReference.valueChanges({idField: 'id'});
+
+    this.traerlistaEspera().subscribe(value =>{
+      this.listaEsperaArray = value;
+    });
+
     this.usuariosCollectionReference = this.angularF.collection<any>('usuarios');
     this.usuarios = this.usuariosCollectionReference.valueChanges({idField: 'id'});
 
@@ -116,6 +127,11 @@ export class FirestoreService {
   {
     return this.usuarios;
   }
+
+  traerlistaEspera()
+  {
+    return this.listaEspera;
+  }
  
   traerProductos()
   {
@@ -163,6 +179,7 @@ export class FirestoreService {
   {
       this.clientesCollectionReference.add({...cliente});
       this.usuariosCollectionReference.add({...cliente});
+      this.listaEsperaCollectionReference.add({...cliente});
   }
 
   agregarEmpleado(empleado : any)
