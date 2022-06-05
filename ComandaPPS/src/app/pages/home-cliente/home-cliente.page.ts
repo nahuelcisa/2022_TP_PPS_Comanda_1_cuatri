@@ -7,9 +7,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeClientePage implements OnInit {
 
-  constructor() { }
+
+  loading: boolean = false;
+
+  //1 - Escaneo QR Local
+  escaneoQR: boolean = true;
+  
+  //2- 2 botones de Ver encuestas - Entrar Lista espera
+  menuOpciones: boolean = false;
+
+  //3- Esperando a Asignacion de Mesa
+  esperaAsignacionMesa: boolean = false;
+
+  
+  constructor() 
+  { 
+    //Busco en la coleccion de Lista de espera si esta, sino esta sigo en pantalla esperaAsignacionMesa
+  }
 
   ngOnInit() {
   }
 
+  onEscanearQR(){
+    //alert("Escaneo qr");
+
+    this.escaneoQR = false;   
+    
+    this.menuOpciones = true;    
+  }
+
+  onVerEncuestas(){
+      alert("Encuestas");
+  }
+
+  onEntrarListaEspera(){
+    this.menuOpciones = false;
+
+    this.loading = true;
+    this.esperaAsignacionMesa = true;
+  }
 }
