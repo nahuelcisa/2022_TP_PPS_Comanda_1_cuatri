@@ -57,7 +57,8 @@ export class AltaClientePage implements OnInit {
         this.fotoSubida = false;
         this.as.loading = false;
         this.webPath = "";
-      }, 2500);
+        this.router.navigate(['/login']);
+    }, 2500);
 
   }
 
@@ -151,12 +152,8 @@ export class AltaClientePage implements OnInit {
           'f5VPIwXvRVSXodIjAeLLho:APA91bHeqPI7nlKpd0n3CbxhjifzTZ2jXVOtxwg_x-4qtgb1fVPjEet5PXfIxjNvHxRytOmT1qb2kJji85J5A_dJLt09kaz9hbD2hmH2a7xy1Sz2LboAcIjNSn-bp5q05C1CeLFU2QUe',
         ],
         notification: {
-          title: 'Mi titulo',
-          body: 'Mi body',
-        },
-        data: {
-          id: 1,
-          nombre: 'nicolas',
+          title: 'Nuevo cliente',
+          body: 'Hay un nuevo cliente esperando a ser habilitado.',
         },
       })
       .subscribe((data) => {

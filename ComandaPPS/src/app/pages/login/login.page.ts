@@ -111,16 +111,10 @@ export class LoginPage implements OnInit {
           this.form.get('password')?.setValue(this.password);
           break;
         case 5:
-          this.email = "registrado@registrado.com";
-          this.password = "registrado123";
-          this.form.get('email')?.setValue(this.email);
-          this.form.get('password')?.setValue(this.password);
+          this.router.navigate(['/alta-cliente']);
           break;
         case 6:
-          this.email = "anonimo@anonimo.com";
-          this.password = "anonimo123";
-          this.form.get('email')?.setValue(this.email);
-          this.form.get('password')?.setValue(this.password);
+          this.router.navigate(['/alta-anonimo']);
           break;
         case 7:
           this.email = "duenio@duenio.com";

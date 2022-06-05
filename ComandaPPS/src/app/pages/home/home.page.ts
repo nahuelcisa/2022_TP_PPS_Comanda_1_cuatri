@@ -19,7 +19,7 @@ export class HomePage implements OnInit{
 
   page_titulo: string = "";
 
-  view_pageSupervisor: boolean = true;
+  view_pageSupervisor: boolean = false;
   view_pageCocina: boolean = false;
   view_pageMetre: boolean = false;
   view_pageMozo: boolean = false;
@@ -30,7 +30,8 @@ export class HomePage implements OnInit{
   view_pageAnonimo: boolean = false;
 
   constructor(private as : AuthService, private fs : FirestoreService, private push : PushService) 
-  {    
+  {  
+    console.log("constructor");
     this.push.getUser(); 
   }
   
@@ -41,7 +42,7 @@ export class HomePage implements OnInit{
 
   homePage(){
 
-    this.view_pageSupervisor = true;
+    this.view_pageSupervisor = false;
     this.view_pageMozo = false;
     this.view_pageMetre = false;
     this.view_pageCocina = false;
@@ -59,7 +60,6 @@ export class HomePage implements OnInit{
       case "Dueño":
           this.view_pageSupervisor = true;
           this.page_titulo = "Dueño";
-          console.log("switch dueño");
         break;
 
       case "cocinero":
