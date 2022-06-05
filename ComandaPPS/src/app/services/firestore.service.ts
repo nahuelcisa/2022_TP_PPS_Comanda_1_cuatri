@@ -179,6 +179,10 @@ export class FirestoreService {
   {
       this.clientesCollectionReference.add({...cliente});
       this.usuariosCollectionReference.add({...cliente});
+  }
+
+  agregarAListaDeEspera(cliente : any)
+  {
       this.listaEsperaCollectionReference.add({...cliente});
   }
 
