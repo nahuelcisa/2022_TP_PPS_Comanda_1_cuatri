@@ -1,0 +1,62 @@
+.background{
+  --background: transparent !important;
+
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.494) 100%);
+}
+
+/*--------------------
+Input de Enviar Mensaje
+--------------------*/
+.message-box {
+    flex: 0 1 42px;
+    width: 90%;
+    background: #141c22; 
+    margin:2px auto;
+    padding: 10px;
+    position: fixed;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px; 
+    height:auto;
+    border:1px solid #ccc;
+
+    bottom: 0%;
+    margin-left: 18px;
+    margin-bottom: 6px;
+   
+    & .message-input {
+      background: none;
+      border: none;
+      outline: none!important;
+      resize: none; 
+      /* color: rgba(255, 255, 255, .8);*/
+      font-size: 15px;
+      height: 24px;
+      margin: 0;
+      padding-right: 20px;
+      width: 265px;
+      color: #fff;
+    }
+    textarea:focus:-webkit-placeholder {
+      color: transparent;
+    }
+    & .message-submit {
+      position: absolute;
+      z-index: 1;
+      top: 5px;
+      right: 10px;
+      color: #fff;
+      border: none;
+     /* background: #c29d5f;*/
+      background: transparent; 
+      font-size: 12px;
+      text-transform: uppercase;
+      line-height: 1;
+      padding: 6px 10px;
+      border-radius: 5px;
+      outline: none!important;
+      transition: background .2s ease;
+      cursor:pointer;    
+    }
+  }
+  
