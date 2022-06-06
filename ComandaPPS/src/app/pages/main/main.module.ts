@@ -9,16 +9,24 @@ import { MainPageRoutingModule } from './main-routing.module';
 import { MainPage } from './main.page';
 
 import { ChatComponent } from 'src/app/components/chat/chat.component';
+import { PiedraPapelTijeraComponent } from 'src/app/components/piedra-papel-tijera/piedra-papel-tijera.component';
+
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MainPageRoutingModule
-    
+    MainPageRoutingModule,
+    MatCardModule,
+    MatButtonModule
   ],
-  declarations: [MainPage,
-    ChatComponent]
+  declarations: [
+    MainPage,
+    ChatComponent,
+    PiedraPapelTijeraComponent
+  ]
 })
 export class MainPageModule {}
