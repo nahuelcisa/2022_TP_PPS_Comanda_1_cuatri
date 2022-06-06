@@ -114,6 +114,10 @@ const routes: Routes = [
     path: 'ta-te-ti',
     loadChildren: () => import('./pages/ta-te-ti/ta-te-ti.module').then( m => m.TaTeTiPageModule)
   },
+  {
+    path: 'cuenta',
+    loadChildren: () => import('./pages/cuenta/cuenta.module').then( m => m.CuentaPageModule)
+  },
 
 
   
