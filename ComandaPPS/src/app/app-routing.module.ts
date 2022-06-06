@@ -106,6 +106,14 @@ const routes: Routes = [
     path: 'home-cliente',
     loadChildren: () => import('./pages/home-cliente/home-cliente.module').then( m => m.HomeClientePageModule)
   },
+  {
+    path: 'splash',
+    loadChildren: () => import('./pages/splash/splash.module').then( m => m.SplashPageModule)
+  },
+  {
+    path: 'ta-te-ti',
+    loadChildren: () => import('./pages/ta-te-ti/ta-te-ti.module').then( m => m.TaTeTiPageModule)
+  },
 
 
   
