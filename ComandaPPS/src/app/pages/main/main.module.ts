@@ -8,13 +8,17 @@ import { MainPageRoutingModule } from './main-routing.module';
 
 import { MainPage } from './main.page';
 
+import { ChatComponent } from 'src/app/components/chat/chat.component';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     MainPageRoutingModule
+    
   ],
-  declarations: [MainPage]
+  declarations: [MainPage,
+    ChatComponent]
 })
 export class MainPageModule {}
