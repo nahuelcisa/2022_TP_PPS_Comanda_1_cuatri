@@ -7,13 +7,17 @@ import { IonicModule } from '@ionic/angular';
 import { TaTeTiPageRoutingModule } from './ta-te-ti-routing.module';
 
 import { TaTeTiPage } from './ta-te-ti.page';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TaTeTiPageRoutingModule
+    TaTeTiPageRoutingModule,
+    MatCardModule,
+    MatButtonModule
   ],
   declarations: [TaTeTiPage]
 })

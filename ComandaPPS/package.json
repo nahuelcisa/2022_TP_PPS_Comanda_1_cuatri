@@ -42,6 +42,7 @@
     "firebase-functions": "^3.21.2",
     "html2canvas": "^1.4.1",
     "rxjs": "~6.6.0",
+    "sweetalert2": "^11.4.17",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
   },
