@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class FirestoreService {
 
+  usuario: any;
+
   usuariosCollectionReference: any;
   usuarios : Observable<any>;
   usuariosArray : any = [];
@@ -155,16 +157,28 @@ export class FirestoreService {
   } */
 
   modificarCliente(objeto: any, id_objeto: any){
+    this.usuario = objeto;
     return this.angularF.collection('clientes').doc(id_objeto).update(objeto);
   }
+  
   modificarUsuario(objeto: any, id_objeto: any){
+    this.usuario = objeto;
     return this.angularF.collection('usuarios').doc(id_objeto).update(objeto);
+  }
+
+  modificarMesa(objeto: any, id_objeto: any){
+    return this.angularF.collection('mesas').doc(id_objeto).update(objeto);
+  }
+
+  eliminarListaEspera(id_objeto: any){
+    return this.angularF.collection('listaEspera').doc(id_objeto).delete();
   }
 
   agregarCliente(cliente : any)
   {
     this.clientesCollectionReference.add({...cliente});
     this.usuariosCollectionReference.add({...cliente});
+    console.log(this.usuario);
   }
 
   agregarAListaDeEspera(cliente : any)

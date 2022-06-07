@@ -47,6 +47,7 @@ export class AltaClientePage implements OnInit {
   {
     this.as.loading = true;
        
+    this.fs.usuario = this.cliente;
     this.fs.agregarCliente(this.cliente);
     this.sendPush();
 
@@ -73,7 +74,8 @@ export class AltaClientePage implements OnInit {
       clave : this.form.get('password')?.value,
       habilitado : false,
       encuesta : null,
-      perfil : "cliente"
+      perfil : "cliente",
+      mesa : 0
     };
     this.imageStore.addNewToGallery(this.cliente).then((data) =>{
       this.as.loading = true;

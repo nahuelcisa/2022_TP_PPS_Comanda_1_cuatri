@@ -4,23 +4,24 @@
     <ion-title>Tiempo estimado: {{tiempoEstimado}} minutos</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
+<div class="fondo">
+
   <img src="../../assets/Spinner.png" style="display: block; position: absolute;margin-top: 50%; z-index: 101;" [ngClass]="{'loading' : this.loading}" *ngIf="this.loading"/>
-  <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="realizarPedido()">
+  <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="realizarPedido()" style="margin-top: 10%;">
     <ion-fab-button color="custom">
       <ion-icon name="checkmark-done-sharp"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  <div class="container" style="margin-top: 2.5rem; padding-left: 2%; padding-right: 2%;">
+  <div class="container" style="margin-top: 2%; padding-left: 2%; padding-right: 2%;">
     <ion-grid style="display: flex;">
       <ion-row style="flex-grow: 1;">
         <ion-col size=6 *ngFor="let item of this.productosArray">
           <ion-card style="background-color: #000000bb;">
               <ion-slides class="img" style="margin-top: 15px">
                 <ion-slide>
-                  <div class="slide">
+                  
                     <img [src]="item.foto1" />
-                  </div>
+                  
                 </ion-slide>
       
                 <ion-slide>
@@ -62,4 +63,6 @@
       </ion-row>
     </ion-grid>
   </div>
-</ion-content>
+</div>
+
+

@@ -33,7 +33,8 @@ export class AuthService {
             header: 'Error',
             message: message,
             buttons: ['Ok'],
-            position: 'top'
+            position: 'top',
+            color: "danger"
     });
   }
 
@@ -43,7 +44,8 @@ export class AuthService {
             header: 'Registrado',
             message: message,
             buttons: ['Ok'],
-            position: 'top'
+            position: 'top',
+            color: "success"
     });
   }
 

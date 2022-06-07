@@ -12,6 +12,9 @@ import { HomeSupervisorPage } from '../home-supervisor/home-supervisor.page';
 import { HomeMetrePage } from '../home-metre/home-metre.page';
 import { HomeMozoPage } from '../home-mozo/home-mozo.page';
 import { HomeCocinaPage } from '../home-cocina/home-cocina.page'; 
+import { HomeClientePage } from '../home-cliente/home-cliente.page';
+
+import { ListaProductosPage } from '../lista-productos/lista-productos.page';
 
 //Falta page para clientes
 
@@ -29,7 +32,9 @@ import { HomeCocinaPage } from '../home-cocina/home-cocina.page';
     HomeSupervisorPage,
     HomeMetrePage,
     HomeMozoPage,
-    HomeCocinaPage
+    HomeCocinaPage,
+    HomeClientePage,
+    ListaProductosPage
   ],
   providers: [{
     provide: MAT_MENU_DEFAULT_OPTIONS,

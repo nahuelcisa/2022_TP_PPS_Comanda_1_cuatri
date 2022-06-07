@@ -8,4 +8,5 @@ export interface Cliente {
     habilitado: boolean;
     encuesta: any[];
     perfil : string;
+    mesa : number;
 }

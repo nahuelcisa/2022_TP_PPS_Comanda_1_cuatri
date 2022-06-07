@@ -28,6 +28,7 @@ export class HomePage implements OnInit{
   view_pageClientes: boolean = false;
   view_pageBartender: boolean = false;
   view_pageAnonimo: boolean = false;
+  view_pageCliente: boolean = false;
 
   constructor(private as : AuthService, private fs : FirestoreService, private push : PushService) 
   {  
@@ -50,11 +51,18 @@ export class HomePage implements OnInit{
     this.view_pageBartender = false;
     this.view_pageAnonimo = false;
 
+    this.view_pageCliente = false;
+
     //Default HomePage Clientes
     switch (this.as.logeado.perfil) {
       case "supervisor":
           this.view_pageSupervisor = true;                  
           this.page_titulo = "Supervisor";
+        break;
+      
+      case "cliente":
+          this.view_pageCliente = true;                  
+          this.page_titulo = "Cliente";
         break;
 
       case "Dueño":
