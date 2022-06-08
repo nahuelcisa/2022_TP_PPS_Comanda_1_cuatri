@@ -32,6 +32,8 @@ export class HomeMozoPage implements OnInit {
     this.loading = true;
 
     this.fs.traerPedidos().subscribe(value => {
+        this.confirmacionPedidosArray = [];
+        this.pedidosConfirmadosArray = [];
         this.pedidos = value;
         this.cargarArrayPedidos();
     });

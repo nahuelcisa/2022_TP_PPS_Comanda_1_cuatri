@@ -1,6 +1,6 @@
 
   <img src="../../assets/Spinner.png" style="display: block; position: absolute;margin-top: 50%; z-index: 101;" [ngClass]="{'loading' : this.loading}" *ngIf="this.loading || this.as.loading"/> 
-
+  
   
   <div style="padding-left: 2%; padding-right: 2%;">
     
@@ -9,21 +9,21 @@
           <ion-card-title style="font-weight: bold;color:azure;">{{titulo}}</ion-card-title>
       </ion-card-header>
     </ion-card>
-
+  
     <ion-fab vertical="top" horizontal="end" slot="fixed" style="position: fixed;margin-top: 15%;">
       <ion-fab-button *ngIf="listConfirmarPedido" color="success" (click)="onVerPedidosEnPreparacion()">
         <!-- <i class="fa fa-list-alt" aria-hidden="true" style="font-size: 30px;color: black;"></i> -->
         <i class="fa fa-id-badge" aria-hidden="true" style="font-size: 30px;color: black;"></i>
       </ion-fab-button>
-
+  
       <ion-fab-button *ngIf="listEnEspera" color="success" (click)="onVerPedidosAConfirmar()">
         <!-- <i class="fa fa-list-alt" aria-hidden="true" style="font-size: 30px;color: black;"></i> -->
         <i class="fa fa-list-alt" aria-hidden="true" style="font-size: 30px;color: black;"></i>
       </ion-fab-button>
     </ion-fab>
     
-
-
+  
+  
     <!--Recorro todos los Pedidos a Confirmar-->
     <div *ngIf="listConfirmarPedido">
       <ion-card *ngFor="let item of this.confirmacionPedidosArray; let i = index" data-index="i">
@@ -50,7 +50,7 @@
           </ion-row>
   
           Estado Pedido: <a style="color: azure;">{{item.estado}} </a>
-
+  
           <ion-row offset="1" size=10>
             <div style="width: 100%; height: 2px; background-color: azure;" ></div>
           </ion-row>
@@ -63,7 +63,7 @@
       </ion-card>
     </div>
     
-
+  
     <div *ngIf="listEnEspera">
       <ion-card *ngFor="let item of this.pedidosConfirmadosArray; let i = index" data-index="i">
         <ion-card-header>
@@ -89,7 +89,7 @@
           </ion-row>
   
           Estado Pedido: <a style="color: azure;">{{item.estado}} </a>
-
+  
           <ion-row offset="1" size=10>
             <div style="width: 100%; height: 2px; background-color: azure;" ></div>
           </ion-row>
@@ -101,5 +101,5 @@
         </ion-card-content>     
       </ion-card>
     </div>
-
+  
   </div>
