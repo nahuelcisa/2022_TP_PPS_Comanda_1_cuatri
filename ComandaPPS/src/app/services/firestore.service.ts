@@ -170,6 +170,11 @@ export class FirestoreService {
     return this.angularF.collection('mesas').doc(id_objeto).update(objeto);
   }
 
+  //Modificar Estado Pedido
+  modificarEstadoPedido(objeto: any, id_objeto: any){
+    return this.angularF.collection('pedidos').doc(id_objeto).update(objeto);
+  }
+
   eliminarListaEspera(id_objeto: any){
     return this.angularF.collection('listaEspera').doc(id_objeto).delete();
   }

@@ -1,9 +1,105 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>homeMozo</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content>
+  <img src="../../assets/Spinner.png" style="display: block; position: absolute;margin-top: 50%; z-index: 101;" [ngClass]="{'loading' : this.loading}" *ngIf="this.loading || this.as.loading"/> 
 
-</ion-content>
+  
+  <div style="padding-left: 2%; padding-right: 2%;">
+    
+    <ion-card>
+      <ion-card-header align="center">
+          <ion-card-title style="font-weight: bold;color:azure;">{{titulo}}</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+    <ion-fab vertical="top" horizontal="end" slot="fixed" style="position: fixed;margin-top: 15%;">
+      <ion-fab-button *ngIf="listConfirmarPedido" color="success" (click)="onVerPedidosEnPreparacion()">
+        <!-- <i class="fa fa-list-alt" aria-hidden="true" style="font-size: 30px;color: black;"></i> -->
+        <i class="fa fa-id-badge" aria-hidden="true" style="font-size: 30px;color: black;"></i>
+      </ion-fab-button>
+
+      <ion-fab-button *ngIf="listEnEspera" color="success" (click)="onVerPedidosAConfirmar()">
+        <!-- <i class="fa fa-list-alt" aria-hidden="true" style="font-size: 30px;color: black;"></i> -->
+        <i class="fa fa-list-alt" aria-hidden="true" style="font-size: 30px;color: black;"></i>
+      </ion-fab-button>
+    </ion-fab>
+    
+
+
+    <!--Recorro todos los Pedidos a Confirmar-->
+    <div *ngIf="listConfirmarPedido">
+      <ion-card *ngFor="let item of this.confirmacionPedidosArray; let i = index" data-index="i">
+        <ion-card-header>
+            <ion-card-subtitle><u style="font-weight: bold;color:azure;">Pedido del Cliente</u> : {{item.usuario}}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-row style="flex-grow: 1;">
+  
+            <ion-col style=" width: 100%;">
+            <u style="font-weight: bold;color:azure">PRODUCTOS</u>: 
+              <!--Muestro los Productos-->
+              <ion-label *ngFor="let itemP of item.productos; let ip = index" data-index="ip">              
+                <ion-row>
+                  <ion-col>
+                    {{ip}}) {{itemP.descripcion}}        
+                  </ion-col>
+                  <ion-col>
+                    Cantidad: {{itemP.cantidad}}
+                  </ion-col>
+                </ion-row>    
+              </ion-label>
+            </ion-col>  
+          </ion-row>
+  
+          Estado Pedido: <a style="color: azure;">{{item.estado}} </a>
+
+          <ion-row offset="1" size=10>
+            <div style="width: 100%; height: 2px; background-color: azure;" ></div>
+          </ion-row>
+  
+          <ion-button style="--background: #8D2CE2" (click)="onConfirmarPedido(item)">
+            Confirmar
+          </ion-button>
+  
+        </ion-card-content>     
+      </ion-card>
+    </div>
+    
+
+    <div *ngIf="listEnEspera">
+      <ion-card *ngFor="let item of this.pedidosConfirmadosArray; let i = index" data-index="i">
+        <ion-card-header>
+            <ion-card-subtitle><u style="font-weight: bold;color:azure;">Pedido del Cliente</u> : {{item.usuario}}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-row style="flex-grow: 1;">
+  
+            <ion-col style=" width: 100%;">
+            <u style="font-weight: bold;color:azure">PRODUCTOS</u>: 
+              <!--Muestro los Productos-->
+              <ion-label *ngFor="let itemP of item.productos; let ip = index" data-index="ip">              
+                <ion-row>
+                  <ion-col>
+                    {{ip}}) {{itemP.descripcion}}        
+                  </ion-col>
+                  <ion-col>
+                    Cantidad: {{itemP.cantidad}}
+                  </ion-col>
+                </ion-row>    
+              </ion-label>
+            </ion-col>  
+          </ion-row>
+  
+          Estado Pedido: <a style="color: azure;">{{item.estado}} </a>
+
+          <ion-row offset="1" size=10>
+            <div style="width: 100%; height: 2px; background-color: azure;" ></div>
+          </ion-row>
+  
+          <ion-button style="--background: #8D2CE2" (click)="onEntregarPedido(item)">
+            Entregar Pedido
+          </ion-button>
+  
+        </ion-card-content>     
+      </ion-card>
+    </div>
+
+  </div>
