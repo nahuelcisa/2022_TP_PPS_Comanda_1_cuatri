@@ -1,0 +1,17 @@
+.botonera
+{
+    display: grid;
+    grid-template-columns: repeat(3,2fr);
+    grid-template-rows: repeat(2,2fr);
+    grid-gap: 8px;
+}
+
+.operadores
+{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(2,1fr);
+    grid-gap: 8px;
+}
+
+

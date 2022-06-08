@@ -118,6 +118,10 @@ const routes: Routes = [
     path: 'cuenta',
     loadChildren: () => import('./pages/cuenta/cuenta.module').then( m => m.CuentaPageModule)
   },
+  {
+    path: 'aproxima2',
+    loadChildren: () => import('./pages/aproxima2/aproxima2.module').then( m => m.Aproxima2PageModule)
+  },
 
 
   

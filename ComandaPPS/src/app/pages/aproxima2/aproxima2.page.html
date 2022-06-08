@@ -1,0 +1,28 @@
+<div>
+    <div style="padding-left: 3%; padding-right: 3%;">
+        <div style="background-color: rgb(116, 37, 190); color: white; font-size: 45px;margin-top: 3%; border-radius: 5px; padding-right: 2%; text-align: end;" >{{this.aAproximarse}}</div>
+        <div style="float: right;" style="background-color: rgb(255, 115, 0); color: white; font-size: 45px; margin-top: 3%; border-radius: 5px; padding-right: 2%; text-align: end;">{{this.numeroActual}}</div>
+        <div align="center" style="background-color: rgb(255, 255, 255); font-size: 45px; margin-top: 3%; border-radius: 5px;">Operaciones: {{this.operaciones}}</div>
+    </div>             
+    <div style="margin-top: 10%; padding-left: 3%; padding-right: 3%;"> 
+        <div class="botonera" style="width: 100%;">
+            <ion-button color="custom" style="font-size: 30px;" *ngFor="let numero of operandos" size="large" (click)="asignarOperando(numero)" [disabled] = 'this.disabled'>{{numero}}</ion-button>
+        </div>
+    </div>  
+    
+    <div style="margin-top: 10%;">
+        <div style="margin-top: 3%; padding-left: 3%; padding-right: 3%;"> 
+            <div class="operadores">
+                <ion-button color="naranja" style="font-size: 25px;" size="large" (click)="operar('+')" [disabled] = 'this.disabledOperador'>+</ion-button>
+                <ion-button color="naranja" style="font-size: 25px;" size="large" (click)="operar('-')" [disabled] = 'this.disabledOperador'>-</ion-button>
+                <ion-button color="naranja" style="font-size: 25px;" size="large" (click)="operar('*')" [disabled] = 'this.disabledOperador'>*</ion-button>
+                <ion-button color="naranja" style="font-size: 25px;" size="large" (click)="operar('/')" [disabled] = 'this.disabledOperador'>/</ion-button>
+            </div>  
+            <div style="margin-top: 10%;">
+                <ion-button expand="block" size="large" color="dark" (click)="this.analisis()">Listo</ion-button>
+            </div>
+        </div>  
+    </div>
+</div>
+
+
