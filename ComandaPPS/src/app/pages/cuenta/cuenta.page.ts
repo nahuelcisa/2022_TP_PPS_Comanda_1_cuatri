@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CuentaPage implements OnInit {
 
+
+  pagado : boolean = false;
+  scaneo : boolean = true;
   constructor() { }
 
   ngOnInit() {
