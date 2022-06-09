@@ -14,7 +14,7 @@
     <!--Recorro todos los Pedidos En Preparacion-->   
     <ion-card *ngFor="let item of this.pedidosEnPreparacionArray; let i = index" data-index="i">
       <ion-card-header>
-          <ion-card-subtitle><u style="font-weight: bold;color:azure;">Pedido del Cliente</u> : {{item.usuario}}</ion-card-subtitle>
+          <ion-card-subtitle><u style="font-weight: bold;color:azure;">Pedido del Cliente</u> : {{item.usuario.nombre}}</ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
 
