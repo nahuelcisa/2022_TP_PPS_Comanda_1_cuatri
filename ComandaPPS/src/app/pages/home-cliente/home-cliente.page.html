@@ -33,6 +33,32 @@
               </ion-row>     
         </div>
       </div>
+
+      <div *ngIf="menuOpcionesConfirma" style="height: 100%;">
+        <div style="height: 100%;" align="center">               
+              <ion-row style="flex-grow: 1; height: 50%;">
+                <div style="width: 100%;height: 100%;"  (click)="verEncuestas()">
+                  <h2 style="width: 100%;height: 100%;margin-top: 50%;font-weight: bold;" align="center">
+                    ENTRAR A LOS JUEGOS
+                  </h2>     
+                </div>                                 
+              </ion-row>
+              <ion-row style="flex-grow: 1; height: 50%;background-color: black;">
+                <div style="width: 100%;height: 100%;" (click)="entrarListaEspera()">
+                  <h2 style="width: 100%;height: 100%;margin-top: 50%;font-weight: bold;color: white;" align="center">
+                    ENTRAR A LA ENCUESTA
+                  </h2>   
+                </div>                                   
+              </ion-row>     
+              <ion-row style="flex-grow: 1; height: 50%;background-color: black;">
+                <div style="width: 100%;height: 100%;" (click)="entrarListaEspera()">
+                  <h2 style="width: 100%;height: 100%;margin-top: 50%;font-weight: bold;color: white;" align="center">
+                    VER ESTADO DEL PEDIDO
+                  </h2>   
+                </div>                                   
+              </ion-row>     
+        </div>
+      </div>
             
 <!--       <div *ngIf='esperaAsignacionMesa && this.usuarioActual.mesa == ""'>
         <ion-grid style="display: flex; flex-flow: column;position: center;">
@@ -72,7 +98,7 @@
       </div>
       
       <div *ngIf="menu" style="height: 100%; width: 100%;">
-          <app-lista-productos></app-lista-productos>
+          <app-lista-productos (atrasEvent)="atrasCaptura($event)"></app-lista-productos>
       </div> 
 </div>
   

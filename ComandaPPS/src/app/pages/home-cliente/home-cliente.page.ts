@@ -17,17 +17,23 @@ export class HomeClientePage implements OnInit {
   menuOpciones: boolean = false;
   esperaAsignacionMesa: boolean = false;
   mesaAsignada : boolean = false;
+  menuOpcionesConfirma : boolean = false;
   usuariosArray : any = [];
   usuarioActual : any = "";
   numeroMesaEscaneada : string = "";
   menu : boolean = false;
   listaEspera : any = [];
   mesa : boolean = false;
+  listado : boolean;
+  pedido : any = [];
+  pedidoArray : any = [];
+  usuarioPedido : any = '';
   
   constructor(private fs : FirestoreService, private push : PushService, private sf : ScannerService, private toastController : ToastController) 
   { 
     //Busco en la coleccion de Lista de espera si esta, sino esta sigo en pantalla esperaAsignacionMesa
     console.log(this.fs.usuario);
+    
   }
 
   ngOnInit() 
@@ -44,6 +50,17 @@ export class HomeClientePage implements OnInit {
         }
       }
     });
+    console.log(this.fs.usuario);
+    this.fs.traerPedidos().subscribe(value =>{
+      this.pedido = value;
+      this.cargarArray();
+     });
+  }
+
+  cargarArray(){
+    for (const item of this.pedido) {
+      this.pedidoArray.push(item);
+    }
   }
 
   onEscanearQR(){
@@ -55,6 +72,8 @@ export class HomeClientePage implements OnInit {
   {
       
   }
+
+
 
   entrarListaEspera()
   {
@@ -105,18 +124,43 @@ export class HomeClientePage implements OnInit {
     fondo.classList.remove("fondo");
     fondo.classList.add("fondo2")
     console.log(this.fs.usuario);
-/*     this.escanearQRMesa();
+    /*     this.escanearQRMesa();
     if(this.numeroMesaEscaneada != this.fs.usuario.mesa)
     {
       this.MostrarToast(`Esta no es la mesa que se le fue asignada, esta es la ${this.numeroMesaEscaneada} y usted tiene la ${this.fs.usuario.mesa}`,"Mesa incorrecta","danger").then((toast : any) =>{
         toast.present();
       });
     }
-    else
-    { */
+    else */if(this.usuarioPedido != ''){
+      this.menuOpcionesConfirma = true;
+      this.menu = false;
+      this.mesa = false;
+      console.log('lalal');
+    }else
+    { 
       this.mesa = false;
       this.menu = true;
-    //}
+      this.menuOpcionesConfirma = false;
+    }
+  }
+  
+  atrasCaptura(dato : boolean){
+    this.menu = dato;
+    this.mesa = true;
+    let test;
+    setTimeout(() => {
+      for (const iterator of this.pedidoArray) {
+        console.log(iterator.usuario.nombre);
+        console.log(this.fs.usuario.nombre);
+        if(iterator.usuario.nombre == this.fs.usuario.nombre){
+          test = iterator;
+          console.log("entre al fi");
+          break;
+        }
+      }
+      this.usuarioPedido = test;
+      console.log(this.usuarioPedido);
+    }, 500);
   }
 
   MostrarToast(message : string, header : string, color : string)

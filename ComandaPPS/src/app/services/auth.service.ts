@@ -13,6 +13,7 @@ export class AuthService {
   logeado : any;
   usuarios : any;
   usuariosArray : any = [];
+  objUsuarioLogeado : any;
 
   constructor(public auth : AngularFireAuth, public router : Router, private toastController : ToastController, private fs : FirestoreService) 
   { 

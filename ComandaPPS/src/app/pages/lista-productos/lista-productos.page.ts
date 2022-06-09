@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { PushService } from 'src/app/services/push-service.service';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-lista-productos',
@@ -13,12 +14,13 @@ export class ListaProductosPage implements OnInit {
   productos : any = [];
   productosArray : any = [];
 
+  @Output() atrasEvent = new EventEmitter<boolean>();
+
   loading : boolean = false;
 
   carrito : any = [];
   precioCarrito : number = 0;
   tiempoEstimado : number = 0;
-  usuario : any = "jajaxdlol";
 
   constructor(public fs: FirestoreService, private toast : ToastController, private push : PushService) {
     this.fs.traerProductos().subscribe((value=>{
@@ -61,7 +63,7 @@ export class ListaProductosPage implements OnInit {
     let pedido = {
       productos : this.carrito,
       precioTotal : this.precioCarrito,
-      usuario : this.usuario,
+      usuario : this.fs.usuario,
       tiempoEstimado : this.tiempoEstimado,
       estado : "espera"
     }
@@ -75,6 +77,7 @@ export class ListaProductosPage implements OnInit {
       this.loading = false;
 
       //esconder la lista de productos
+      this.atrasEvent.emit(false);
     }, 3000);
 
   }
