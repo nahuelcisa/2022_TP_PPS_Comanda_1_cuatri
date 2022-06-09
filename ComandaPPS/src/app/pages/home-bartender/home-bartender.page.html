@@ -7,7 +7,7 @@
     
     <ion-card>
       <ion-card-header align="center">
-          <ion-card-title style="font-weight: bold;color:azure;">Home Cocina</ion-card-title>
+          <ion-card-title style="font-weight: bold;color:azure;">Home Bartender</ion-card-title>
       </ion-card-header>
     </ion-card>
   
@@ -32,7 +32,7 @@
         </ion-row>
 
         <ion-label *ngFor="let itemP of item.productos; let ip = index" data-index="ip">   
-          <ion-row *ngIf="itemP.tipo == 'cocina'" style="flex-grow: 1;">               
+          <ion-row *ngIf="itemP.tipo == 'bar'" style="flex-grow: 1;">               
               <ion-col style="text-align:left">              
                 <!--Muestro los Productos-->                      
                       {{itemP.descripcion}} - ({{itemP.nombre}})

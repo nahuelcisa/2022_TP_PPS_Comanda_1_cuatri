@@ -6,11 +6,11 @@ import { FirestoreService } from 'src/app/services/firestore.service';
 import { PushService } from 'src/app/services/push-service.service';
 
 @Component({
-  selector: 'app-home-cocina',
-  templateUrl: './home-cocina.page.html',
-  styleUrls: ['./home-cocina.page.scss'],
+  selector: 'app-home-bartender',
+  templateUrl: './home-bartender.page.html',
+  styleUrls: ['./home-bartender.page.scss'],
 })
-export class HomeCocinaPage implements OnInit {
+export class HomeBartenderPage implements OnInit {
 
   pedidosEnPreparacion: any = [];
   pedidosEnPreparacionArray: any = []; //Cargo los pedidos con estado En preparacion
@@ -38,7 +38,7 @@ export class HomeCocinaPage implements OnInit {
   async SuccessToastProductoTerminado() {
     const toast = await this.toast.create({
       position: 'top',
-      message: 'Comida Terminada.',
+      message: 'Bebida Terminada.',
       duration: 1100,
       color: 'success'
     });
@@ -50,15 +50,13 @@ export class HomeCocinaPage implements OnInit {
       this.pedidosEnPreparacionArray.push(item);   
     }
 
-
     this.loading = false;
     
     this.pedidosEnPreparacionArray = this.pedidosEnPreparacionArray.filter(this.filtrarPedidosNoEnPreparacion);    
-    
   }
 
   filtrarPedidosNoEnPreparacion(item){
-    if(item.estado == 'en preparacion' && item.estadoCocina == false){      
+    if(item.estado == 'en preparacion' && item.estadoBartender == false){      
       return true;
     }else{
       return false;
@@ -67,11 +65,11 @@ export class HomeCocinaPage implements OnInit {
 
   onPedidolisto(item: any){    
 
-    item.estadoCocina = true;
+    item.estadoBartender = true;
     
-    if(item.estadoBartender == true){
+    if(item.estadoCocina == true){
       item.estado = "terminado"
-    }else if(item.estadoBartender == undefined || item.estadoBartender == null){
+    }else if(item.estadoCocina == undefined || item.estadoCocina == null){
       item.estado = "terminado"
     }
 

@@ -47,21 +47,16 @@ export class HomeMozoPage implements OnInit {
       this.confirmacionPedidosArray.push(item);   
       this.pedidosConfirmadosArray.push(item);   
     }
-
-    //console.log(this.confirmacionPedidosArray);
-
     this.loading = false;
+
     //Filtro los pedidos que no esten en estado Terminado
     this.confirmacionPedidosArray = this.confirmacionPedidosArray.filter(this.filtrarPedidosAConfirmar);
     this.pedidosConfirmadosArray = this.pedidosConfirmadosArray.filter(this.filtrarPedidosEnPreparacion);
-
-    //console.log(this.confirmacionPedidosArray);
-    //console.log(this.pedidosConfirmadosArray);
   }
   
 
   filtrarPedidosEnPreparacion(item){
-    if(item.estado == 'en preparacion' || item.estado == 'listo'){
+    if(item.estado == 'en preparacion' || item.estado == 'listo' || item.estado == "terminado"){
       return true;
     }else{
       return false;
@@ -106,21 +101,26 @@ export class HomeMozoPage implements OnInit {
     toast.present();
   }
 
-  onConfirmarPedido(item: any){
-    //Doy de alta a las collecciones de bartender y cocina 
-    //asociando el pedido con su id + campoEstadoBart(si no tiene vacio) + Cocina (si no tiene vacio) 
+  onConfirmarPedido(item: any){  
+    item.estado = "en preparacion";
     
-    // console.log("Pedido a Modificar");
-    // console.log("ID:" + item.id);
-    // console.log(item);
-
-    
-    item.estado = "en preparacion"; //Cambio el estado a "En preparacion"
-
-    this.fs.modificarEstadoPedido(item, item.id); //Modifico en el Firebase
+    //Si el item tiene Productos de Tipo COCINA le agrego el estadoCocina = false
+    //Si el item tiene Productos de Tipo BAR le agrego el estadoBartender = false 
+    for (let index = 0; index < item.productos.length; index++) {
+        if(item.productos[index].tipo == "cocina"){
+          item.estadoCocina = false;
+        }
+        if(item.productos[index].tipo == "bar"){
+          item.estadoBartender = false;   
+        }
+    }
+              
+    this.fs.modificarEstadoPedido(item, item.id); 
 
     this.SuccessToastPedidoConfirmado();
   }
+  
+
 
   onVerPedidosEnPreparacion(){
 
@@ -147,18 +147,16 @@ export class HomeMozoPage implements OnInit {
        
   }
 
-  onEntregarPedido(item : any){
-    
+  onEntregarPedido(item : any){    
     if(item.estado == "en preparacion"){
       this.DangerToastPedidoEnPreparacion();
-    }else{
-      this.SuccessToastPedidoEntregado();
+    }else if(item.estado == "terminado"){
+        item.estado = "entregado";
+               
+        this.fs.modificarEstadoPedido(item, item.id);
 
-      //Cuando este el pedido Listo doy a Entregar y se Elimina de la lista
-    }
-    
-
-
+        this.SuccessToastPedidoEntregado();                 
+    }    
   }
 
 }

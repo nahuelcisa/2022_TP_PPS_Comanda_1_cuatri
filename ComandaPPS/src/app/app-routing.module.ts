@@ -122,6 +122,10 @@ const routes: Routes = [
     path: 'aproxima2',
     loadChildren: () => import('./pages/aproxima2/aproxima2.module').then( m => m.Aproxima2PageModule)
   },
+  {
+    path: 'home-bartender',
+    loadChildren: () => import('./pages/home-bartender/home-bartender.module').then( m => m.HomeBartenderPageModule)
+  },
 
 
   
