@@ -126,6 +126,10 @@ const routes: Routes = [
     path: 'home-bartender',
     loadChildren: () => import('./pages/home-bartender/home-bartender.module').then( m => m.HomeBartenderPageModule)
   },
+  {
+    path: 'alta-anonimo',
+    loadChildren: () => import('./pages/alta-anonimo/alta-anonimo.module').then( m => m.AltaAnonimoPageModule)
+  },
 
 
   
