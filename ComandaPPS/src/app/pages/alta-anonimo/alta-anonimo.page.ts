@@ -63,7 +63,10 @@ export class AltaAnonimoPage implements OnInit {
       foto : "",
       encuesta : null,
       perfil : "cliente",
-      mesa : 0
+      mesa : 0,
+      juegoJugado: false,
+      descuento: ""
+
     };
     this.imageStore.addNewToGallery(this.cliente).then((data) =>{
       this.as.loading = true;

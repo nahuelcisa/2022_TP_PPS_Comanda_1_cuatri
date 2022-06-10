@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
@@ -12,6 +12,7 @@ import { ToastController } from '@ionic/angular';
 })
 export class EncuestaClientePage implements OnInit {
 
+  @Output() volverEvent = new EventEmitter<boolean>();
   respuestaAutoCompletada : string;
   respuestaRange : any = 0;
   respuestaRadio : string = "";
@@ -219,6 +220,7 @@ export class EncuestaClientePage implements OnInit {
       this.noCheckBox = false;
       this.momCheckBox = false;
       this.respuestaRadio2 = "";
+      this.volverEvent.emit(false);
     }, 3000);
     
   }

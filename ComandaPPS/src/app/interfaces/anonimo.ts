@@ -4,4 +4,7 @@ export interface Anonimo {
     mesa : number,
     encuesta : any,
     perfil : string
+    juegoJugado : boolean;
+    descuento : any;
+
 }

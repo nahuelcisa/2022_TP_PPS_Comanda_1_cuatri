@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ToastController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
+import { FirestoreService } from 'src/app/services/firestore.service';
 
 @Component({
   selector: 'app-aproxima2',
@@ -7,6 +9,8 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./aproxima2.page.scss'],
 })
 export class Aproxima2Page implements OnInit {
+
+  @Output() terminadoEvent = new EventEmitter<boolean>();
   numeros : Array<number> = [];
   aAproximarse : number = 0;  
   operandos : Array<number> = [];
@@ -16,14 +20,31 @@ export class Aproxima2Page implements OnInit {
   disabled : boolean = false;
   disabledOperador : boolean = true;
   puntaje : number = 0;
+  usuarioActual : any;
+  usuarios : any = [];
+  descuento : number = 0;
 
   
-  constructor(private toast : ToastController) {
+  constructor(private toast : ToastController, private fs : FirestoreService, private as : AuthService) {
     this.numeros = [1,2,3,4,5,6,7,8,9,10,
                     11,12,13,14,15,16,17,18,
                     19,20];
     
     this.inicializar();
+
+    this.fs.traerUsuarios().subscribe((value) =>
+    {
+      this.usuarios = value;
+
+      for(let item of this.usuarios) 
+      {
+        if(this.fs.usuario.nombre == item.nombre)
+        {
+          this.usuarioActual = item;
+          break;
+        }
+      }
+    })
    }
 
   ngOnInit(): void {
@@ -96,6 +117,7 @@ export class Aproxima2Page implements OnInit {
     if(resultado == 0)
     {
       this.puntaje = 10;
+      this.descuento = 20;
       this.MostrarToast("Has igualado el numero, tu puntaje es: " + this.puntaje,"Te haz aproximado","success").then((toast : any) =>{
         toast.present();
       });
@@ -105,62 +127,36 @@ export class Aproxima2Page implements OnInit {
       if(this.numeroActual > this.aAproximarse)
       {
         this.puntaje = 0;
+        this.descuento = 0;
         this.MostrarToast("Te haz pasado, tu puntaje es: " + this.puntaje,"No te has aproximado","danger").then((toast : any) =>{
           toast.present();
         });
       }
       else
-      {
-        if(resultado <= 20 && resultado > 10)
+      { 
+        if(this.numeroActual < this.aAproximarse)
         {
-          this.puntaje = 7;
-          this.MostrarToast("Te haz aproximado, tu puntaje es: " + this.puntaje,"Te haz aproximado","warning").then((toast : any) =>{
+          this.puntaje = 0;
+          this.descuento = 0;
+          this.MostrarToast("Te haz quedado en el camino, tu puntaje es: " + this.puntaje,"No te haz aproximado","danger").then((toast : any) =>{
             toast.present();
           });
-
         }
-        else
-        {
-          if(resultado <= 10 && resultado > 5)
-          {
-            this.puntaje = 8;
-            this.MostrarToast("Te haz aproximado, tu puntaje es: " + this.puntaje,"Te haz aproximado","warning").then((toast : any) =>{
-              toast.present();
-            });
-  
-          }
-          else
-          {
-            if(resultado <= 5)
-            {
-              this.puntaje = 9;
-              this.MostrarToast("Te haz aproximado, tu puntaje es: " + this.puntaje,"Te haz aproximado","warning").then((toast : any) =>{
-                toast.present();
-              });
-            }
-            else
-            {
-              if(resultado > 20)
-              {
-                this.puntaje = 0;
-                this.MostrarToast("Te haz quedado en el camino, tu puntaje es: " + this.puntaje,"No te haz aproximado","danger").then((toast : any) =>{
-                  toast.present();
-                });
-              }
-            }
-          }
-        }
-      }
+      }  
     }
+    this.as.loading = true;
+    this.usuarioActual.juegoJugado = true;
+    this.usuarioActual.descuento = this.descuento;
+
+    this.fs.modificarUsuario(this.usuarioActual,this.usuarioActual.id);
+    this.fs.modificarCliente(this.usuarioActual,this.usuarioActual.id);
+
     this.disabledOperador = true;
     this.disabled = true;
     setTimeout(() => {
-      this.numeros = [1,2,3,4,5,6,7,8,9,10,
-                      11,12,13,14,15,16,17,18,
-                      19,20];
-      this.operandos = [];
-      this.inicializar();
-    }, 2000);
+      this.as.loading = false;
+      this.terminadoEvent.emit(false);
+    }, 3000);
   }
 
   MostrarToast(message : string, header : string, color : string)

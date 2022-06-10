@@ -28,6 +28,12 @@ export class HomeClientePage implements OnInit {
   pedido : any = [];
   pedidoArray : any = [];
   usuarioPedido : any = '';
+  tateti : boolean = false;
+  ppt : boolean = false;
+  aproxima2 : boolean = false;
+  estadoPedido : boolean = false;
+  juegos : boolean = false;
+  encuesta : boolean = false;
   
   constructor(private fs : FirestoreService, private push : PushService, private sf : ScannerService, private toastController : ToastController) 
   { 
@@ -72,8 +78,6 @@ export class HomeClientePage implements OnInit {
   {
       
   }
-
-
 
   entrarListaEspera()
   {
@@ -123,7 +127,8 @@ export class HomeClientePage implements OnInit {
     let fondo = document.getElementById("1");
     fondo.classList.remove("fondo");
     fondo.classList.add("fondo2")
-    console.log(this.fs.usuario);
+    this.estadoPedido = false;
+   
     /*     this.escanearQRMesa();
     if(this.numeroMesaEscaneada != this.fs.usuario.mesa)
     {
@@ -135,13 +140,23 @@ export class HomeClientePage implements OnInit {
       this.menuOpcionesConfirma = true;
       this.menu = false;
       this.mesa = false;
-      console.log('lalal');
-    }else
-    { 
-      this.mesa = false;
-      this.menu = true;
-      this.menuOpcionesConfirma = false;
-    }
+      }
+      else 
+      {
+        if(this.usuarioPedido.estado == "en preparación")
+        {
+          this.menuOpcionesConfirma = true;
+          this.mesa = false;
+          this.menu = false;
+          this.estadoPedido = false;
+        }
+        else
+        { 
+          this.mesa = false;
+          this.menu = true;
+          this.menuOpcionesConfirma = false;
+        }
+      }
   }
   
   atrasCaptura(dato : boolean){
@@ -161,6 +176,70 @@ export class HomeClientePage implements OnInit {
       this.usuarioPedido = test;
       console.log(this.usuarioPedido);
     }, 500);
+  }
+
+  irJuegos()
+  {
+    this.juegos = true;
+    this.menuOpcionesConfirma = false;
+  }
+
+  mostrarJuego(dato : number)
+  {
+    switch(dato)
+    {
+      case 1:
+        this.tateti = true;
+        this.juegos = false;
+        break;
+
+      case 2:
+        this.ppt = true;
+        this.juegos = false;
+        break;
+
+      case 3:
+        this.aproxima2 = true;
+        this.juegos = false;
+        break;
+    }
+  }
+
+  mostrarEstadoPedido()
+  {
+    this.estadoPedido = true;
+    this.menuOpcionesConfirma = false;
+  }
+
+  mostrarEncuesta()
+  {
+    this.encuesta = true;
+    this.menuOpcionesConfirma = false;
+  }
+
+  volverAtras(dato : boolean)
+  {
+    this.encuesta = dato;
+    this.menuOpcionesConfirma = true;
+  }
+
+  terminar(dato : boolean)
+  {
+    if(this.tateti)
+    {
+      this.tateti = dato;
+    }
+    else
+    {
+      if(this.ppt)
+      {
+        this.ppt = dato
+      }
+      else
+      {
+        this.aproxima2 = dato;
+      }
+    }
   }
 
   MostrarToast(message : string, header : string, color : string)

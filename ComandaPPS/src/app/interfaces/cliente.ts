@@ -6,7 +6,9 @@ export interface Cliente {
     email : string;
     clave : string;
     habilitado: boolean;
-    encuesta: any[];
+    encuesta: any;
     perfil : string;
     mesa : number;
+    juegoJugado : boolean;
+    descuento : any;
 }

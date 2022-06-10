@@ -34,32 +34,6 @@
         </div>
       </div>
 
-      <div *ngIf="menuOpcionesConfirma" style="height: 100%;">
-        <div style="height: 100%;" align="center">               
-              <ion-row style="flex-grow: 1; height: 50%;">
-                <div style="width: 100%;height: 100%;"  (click)="verEncuestas()">
-                  <h2 style="width: 100%;height: 100%;margin-top: 50%;font-weight: bold;" align="center">
-                    ENTRAR A LOS JUEGOS
-                  </h2>     
-                </div>                                 
-              </ion-row>
-              <ion-row style="flex-grow: 1; height: 50%;background-color: black;">
-                <div style="width: 100%;height: 100%;" (click)="entrarListaEspera()">
-                  <h2 style="width: 100%;height: 100%;margin-top: 50%;font-weight: bold;color: white;" align="center">
-                    ENTRAR A LA ENCUESTA
-                  </h2>   
-                </div>                                   
-              </ion-row>     
-              <ion-row style="flex-grow: 1; height: 50%;background-color: black;">
-                <div style="width: 100%;height: 100%;" (click)="entrarListaEspera()">
-                  <h2 style="width: 100%;height: 100%;margin-top: 50%;font-weight: bold;color: white;" align="center">
-                    VER ESTADO DEL PEDIDO
-                  </h2>   
-                </div>                                   
-              </ion-row>     
-        </div>
-      </div>
-            
 <!--       <div *ngIf='esperaAsignacionMesa && this.usuarioActual.mesa == ""'>
         <ion-grid style="display: flex; flex-flow: column;position: center;">
           <ion-row style="flex-grow: 1;">
@@ -100,5 +74,89 @@
       <div *ngIf="menu" style="height: 100%; width: 100%;">
           <app-lista-productos (atrasEvent)="atrasCaptura($event)"></app-lista-productos>
       </div> 
+
+      <div *ngIf="menuOpcionesConfirma" style="height: 100%;">
+        <div style="height: 100%;" align="center">               
+              <ion-row style="flex-grow: 1; height: 33%;">
+                <div style="width: 100%;height: 100%;"  (click)="irJuegos()">
+                  <h2 style="width: 100%;height: 100%;margin-top: 50%;font-weight: bold;" align="center">
+                    ENTRAR A LOS JUEGOS
+                  </h2>     
+                </div>                                 
+              </ion-row>
+              <ion-row style="flex-grow: 1; height: 33%;background-color: black;">
+                <div style="width: 100%;height: 100%;" (click)="mostrarEncuesta()">
+                  <h2 style="width: 100%;height: 100%;margin-top: 50%;font-weight: bold;color: white;" align="center">
+                    COMPLETAR ENCUESTA
+                  </h2>   
+                </div>                                   
+              </ion-row>     
+              <ion-row style="flex-grow: 1; height: 33%;background-color: black;">
+                <div style="width: 100%;height: 100%;" (click)="mostrarEstadoPedido()">
+                  <h2 style="width: 100%;height: 100%;margin-top: 50%;font-weight: bold;color: white;" align="center">
+                    VER ESTADO DEL PEDIDO
+                  </h2>   
+                </div>                                   
+              </ion-row>     
+        </div>
+      </div>
+
+      <div *ngIf="juegos" style="height: 100%;">
+      <!-- <div *ngIf="juegos && !this.fs.usuario.juegoJugado" style="height: 100%;"> -->
+        <div style="height: 100%;" align="center">               
+              <ion-row style="flex-grow: 1; height: 33%;">
+                <div style="width: 100%;height: 100%;"  (click)="mostrarJuego(1)">
+                  <h2 style="width: 100%;height: 100%;margin-top: 50%;font-weight: bold;" align="center">
+                    TA-TE-TI
+                  </h2>     
+                </div>                                 
+              </ion-row>
+              <ion-row style="flex-grow: 1; height: 33%;background-color: black;">
+                <div style="width: 100%;height: 100%;" (click)="mostrarJuego(2)">
+                  <h2 style="width: 100%;height: 100%;margin-top: 50%;font-weight: bold;color: white;" align="center">
+                    PIEDRA-PAPEL-TIJERA
+                  </h2>   
+                </div>                                   
+              </ion-row>     
+              <ion-row style="flex-grow: 1; height: 33%;background-color: black;">
+                <div style="width: 100%;height: 100%;" (click)="mostrarJuego(3)">
+                  <h2 style="width: 100%;height: 100%;margin-top: 50%;font-weight: bold;color: white;" align="center">
+                    APROXIMA2
+                  </h2>   
+                </div>                                   
+              </ion-row>     
+        </div>
+      </div>
+      
+            
+      <div *ngIf="this.tateti || this.ppt || this.aproxima2" style="height: 100%; width: 100%;">
+        <app-ta-te-ti *ngIf="this.tateti"></app-ta-te-ti>
+        <app-piedra-papel-tijera *ngIf="this.ppt"></app-piedra-papel-tijera>
+        <app-aproxima2 *ngIf="this.aproxima2" (terminadoEvent)="terminar($event)"></app-aproxima2>
+      </div> 
+
+      <div *ngIf='estadoPedido'>
+        <!-- <div *ngIf='mesaAsignada && this.usuarioActual.mesa == ""'></div> -->
+        <ion-grid style="display: flex; flex-flow: column;position: center;">
+          <ion-row style="flex-grow: 1;">
+            <ion-col>
+              <label style="margin-bottom: 120px;font-size: 50px;">Su pedido está en</label>  
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col style="width: 100%; margin-top: 15%;"> 
+              <label style="margin-bottom: 120px;margin-top: 120px; font-size: 100px;">{{usuarioPedido.estado}}</label>                                      
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col style="width: 70%;"> 
+              <ion-button expand="block" size="large" color="light" (click)="mostrarMenu()" style="--padding-top: 5%; --padding-bottom: 5%;">Escanear QR de la Mesa</ion-button>                                        
+            </ion-col>
+          </ion-row>
+        </ion-grid>  
+      </div>
+
+      <div *ngIf="this.encuesta" style="height: 100%; width: 100%;">
+        <app-encuesta-cliente (volverEvent)="volverAtras($event)"></app-encuesta-cliente>
+      </div> 
 </div>
-  

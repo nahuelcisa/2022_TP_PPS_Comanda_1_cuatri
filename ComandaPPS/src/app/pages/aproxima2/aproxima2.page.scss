@@ -15,3 +15,28 @@
 }
 
 
+ion-content{
+    --ion-background-color:#000000;
+}
+
+
+.loading {
+ 
+    animation: rotate 1.5s linear infinite; 
+    //animation: myAnim 1s ease 0s 1 normal both;
+  }
+  
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg)
+    }
+    20% {
+      transform: rotate(25deg)
+    }
+    99% {
+      transform: rotate(360deg)
+    }
+    100% {
+      transform: rotate(360deg)
+    }
+  }
