@@ -26,13 +26,15 @@ export class PiedraPapelTijeraComponent implements OnInit {
 
   loading: boolean = false;
 
+  descuento: any;
+  
   constructor() { }
 
   ngOnInit() {}
 
   pick(value: any){
 
-    if(this.scores[0] != 3 && this.scores[1] != 3){
+    if(this.scores[0] != 5 && this.scores[1] != 5){
       switch (value) {
         case 0:
           //Piedra
@@ -60,7 +62,7 @@ export class PiedraPapelTijeraComponent implements OnInit {
       this.respuestaCliente = value;
   
 
-      if(this.scores[0] != 3 && this.scores[1] != 3){
+      if(this.scores[0] != 5 && this.scores[1] != 5){
         this.loading = true;
         this.respuestaRestobar = false;
         setTimeout(() => {  
@@ -69,13 +71,16 @@ export class PiedraPapelTijeraComponent implements OnInit {
           this.loading = false;
           this.respuestaRestobar = true;   
                     
-          this.mejorDe3();
+          this.mejorDe5();
 
 
-          if(this.scores[0] == 3){
-            this.alert('success', 'Ganaste un descuento!');  
+          if(this.scores[0] == 5){            
+            this.calcularDescuento();
+            
+            this.alert('success', 'Ganaste un ' + this.descuento + '% de descuento!');  
             this.yaJugo = true;  
-          }else if(this.scores[1] == 3){
+          }else if(this.scores[1] == 5){
+            this.calcularDescuento();
             this.alert('error', 'Perdiste!');
             this.yaJugo = true;  
           }
@@ -86,6 +91,21 @@ export class PiedraPapelTijeraComponent implements OnInit {
       this.alert('info', 'Reinicie el Juego para seguir jugando');
     }
    
+  }
+
+  calcularDescuento(){
+
+    if(this.scores[0] == 5 && this.scores[1] == 0){
+      this.descuento = 20;
+    }else if(this.scores[0] == 5 && this.scores[1] == 1){
+      this.descuento = 15;
+    }else if((this.scores[0] == 5 && this.scores[1] == 2) || (this.scores[0] == 5 && this.scores[1] == 3)){
+      this.descuento = 10;
+    }else if(this.scores[0] == 5 && this.scores[1] == 4){
+      this.descuento = 5;
+    }else{
+      this.descuento = 0;
+    }
   }
 
   alert(icon: SweetAlertIcon, text: string) {
@@ -159,7 +179,7 @@ export class PiedraPapelTijeraComponent implements OnInit {
     this.tijeraCL = false;
   }
 
-  mejorDe3(){
+  mejorDe5(){
 
     // console.log("Respuestas");
     // console.log(this.piedraCL);
