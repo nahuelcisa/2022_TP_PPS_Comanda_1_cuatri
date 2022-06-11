@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Swal, { SweetAlertIcon } from 'sweetalert2';
+import { AuthService } from 'src/app/services/auth.service';
+import { FirestoreService } from 'src/app/services/firestore.service';
 
 @Component({
   selector: 'app-piedra-papel-tijera',
@@ -22,19 +24,46 @@ export class PiedraPapelTijeraComponent implements OnInit {
   papelCL: boolean = false;
   tijeraCL: boolean = false;
 
-  yaJugo: boolean = false;
 
   loading: boolean = false;
 
   descuento: any;
   
-  constructor() { }
+  Listusuarios : any = [];
+  ListaDeUsuariosArray: any = [];
+
+  //Datos Usuario Logueado
+  itemUsuarioUpdate: any;
+  //descuento : %
+  //juegojugado: booleand //true o false
+
+  constructor(
+    private as : AuthService, 
+    private fs : FirestoreService
+  ) {
+    this.fs.usuarios
+    this.fs.traerUsuarios().subscribe((value) =>
+    {
+      this.Listusuarios = value;
+      this.cargarArrayUsuarios();    
+    });
+
+  }
+
+  cargarArrayUsuarios(){
+    for (const item of this.Listusuarios) {
+      this.ListaDeUsuariosArray.push(item);    
+    }    
+
+    //console.log(this.ListaDeUsuariosArray);
+    this.buscoElItemDatosUsuarioLogueado();  //Descomentar Al final      
+  }
 
   ngOnInit() {}
 
   pick(value: any){
 
-    if(this.scores[0] != 5 && this.scores[1] != 5){
+    if(this.scores[0] != 3 && this.scores[1] != 3){
       switch (value) {
         case 0:
           //Piedra
@@ -62,7 +91,7 @@ export class PiedraPapelTijeraComponent implements OnInit {
       this.respuestaCliente = value;
   
 
-      if(this.scores[0] != 5 && this.scores[1] != 5){
+      if(this.scores[0] != 3 && this.scores[1] != 3){
         this.loading = true;
         this.respuestaRestobar = false;
         setTimeout(() => {  
@@ -74,16 +103,41 @@ export class PiedraPapelTijeraComponent implements OnInit {
           this.mejorDe5();
 
 
-          if(this.scores[0] == 5){            
-            this.calcularDescuento();
+          if(this.scores[0] == 3){                      
             
-            this.alert('success', 'Ganaste un ' + this.descuento + '% de descuento!');  
-            this.yaJugo = true;  
-          }else if(this.scores[1] == 5){
-            this.calcularDescuento();
+            //descuento : %
+            //juegojugado: booleand //true o false
+            if(this.itemUsuarioUpdate.descuento == "" &&
+              this.itemUsuarioUpdate.juegojugado == false
+            ){
+              this.descuento = 10;
+              this.alert('success', 'Ganaste un ' + this.descuento + '% de descuento!');              
+              
+              //Cambio los datos del usuario del firebase
+              this.itemUsuarioUpdate.descuento = this.descuento;
+              this.itemUsuarioUpdate.juegojugado = true;            
+              this.fs.modificarUsuario(this.itemUsuarioUpdate, this.itemUsuarioUpdate.id);
+            }else{
+              this.alert('success', 'Ganaste!');              
+            }
+
+          }else if(this.scores[1] == 3){
+
+            if(this.itemUsuarioUpdate.descuento == "" &&
+              this.itemUsuarioUpdate.juegojugado == false
+              ){
+                //Cambio los datos del usuario del firebase
+                this.itemUsuarioUpdate.descuento = 0;
+                this.itemUsuarioUpdate.juegojugado = true;
+                this.fs.modificarUsuario(this.itemUsuarioUpdate, this.itemUsuarioUpdate.id);
+            }
+
+            this.descuento = 0;
             this.alert('error', 'Perdiste!');
-            this.yaJugo = true;  
+            
           }
+
+
         }, 1000);        
       }
   
@@ -93,20 +147,20 @@ export class PiedraPapelTijeraComponent implements OnInit {
    
   }
 
-  calcularDescuento(){
+  buscoElItemDatosUsuarioLogueado(){
+    //descuento : %
+    //juegojugado: booleand //true o false
+    //this.fs.usuario.nombre //Tengo el usuario Anonimo y con esto busco en el array de usuarios      
 
-    if(this.scores[0] == 5 && this.scores[1] == 0){
-      this.descuento = 20;
-    }else if(this.scores[0] == 5 && this.scores[1] == 1){
-      this.descuento = 15;
-    }else if((this.scores[0] == 5 && this.scores[1] == 2) || (this.scores[0] == 5 && this.scores[1] == 3)){
-      this.descuento = 10;
-    }else if(this.scores[0] == 5 && this.scores[1] == 4){
-      this.descuento = 5;
-    }else{
-      this.descuento = 0;
+    this.fs.usuario = {nombre: "cacac"};
+
+    for (let index = 0; index < this.ListaDeUsuariosArray.length; index++) {
+      if(this.ListaDeUsuariosArray[index].nombre == this.fs.usuario.nombre){
+        this.itemUsuarioUpdate = this.ListaDeUsuariosArray[index];
+      }
     }
   }
+
 
   alert(icon: SweetAlertIcon, text: string) {
     const Toast = Swal.mixin({
