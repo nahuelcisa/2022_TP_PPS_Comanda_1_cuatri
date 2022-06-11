@@ -98,7 +98,8 @@ const routes: Routes = [
   {
     path: 'encuesta-cliente',
     loadChildren: () => import('./pages/encuesta-cliente/encuesta-cliente.module').then( m => m.EncuestaClientePageModule)
-  },  {
+  },
+  {
     path: 'lista-productos',
     loadChildren: () => import('./pages/lista-productos/lista-productos.module').then( m => m.ListaProductosPageModule)
   },
@@ -129,6 +130,10 @@ const routes: Routes = [
   {
     path: 'alta-anonimo',
     loadChildren: () => import('./pages/alta-anonimo/alta-anonimo.module').then( m => m.AltaAnonimoPageModule)
+  },
+  {
+    path: 'chart-encuesta-clientes',
+    loadChildren: () => import('./pages/chart-encuesta-clientes/chart-encuesta-clientes.module').then( m => m.ChartEncuestaClientesPageModule)
   },
 
 

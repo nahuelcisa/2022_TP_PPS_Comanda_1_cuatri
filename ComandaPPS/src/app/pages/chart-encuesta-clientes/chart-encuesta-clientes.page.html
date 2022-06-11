@@ -1,0 +1,101 @@
+<ion-header>
+  <ion-toolbar align="center">
+    <ion-title>ChartEncuestaClientes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <img src="../../assets/Spinner.png" style="display: block; position: absolute;margin-top: 50%; z-index: 101;" [ngClass]="{'loading' : this.loading}" *ngIf="this.loading || this.as.loading"/> 
+  <div style="width: 100%;">
+      <ion-row style="width: 100%;background-color: #8E2CE3;font-weight: bold;">
+        <ion-col>
+          <div style="height: 260px ;width: 100%;margin-left: 15px;font-size: 30px;">
+            <ngx-charts-advanced-pie-chart 
+              scheme="cool"
+              [results]="preguntas1"
+              [gradient]="gradient"
+              label="¿Qué tan conforme esta con el servicio brindado?"
+              [tooltipDisabled]="tooltipDisabled"
+              >
+            </ngx-charts-advanced-pie-chart>
+          </div>
+        </ion-col>
+      </ion-row>
+      
+      <ion-row offset="1" size=10>
+        <div style="width: 100%; height: 2px; background-color: azure;" ></div>
+      </ion-row>
+
+      <ion-row style="width: 100%;background-color: #33539E;font-weight: bold;">
+        <ion-col>
+          <div style="height: 260px ;width: 100%;margin-left: 15px;">
+            <ngx-charts-advanced-pie-chart
+              scheme="cool"
+              [results]="preguntas2"
+              [gradient]="gradient"
+              label="¿Recomendaría el restobar a algún conocido?"
+              [tooltipDisabled]="tooltipDisabled"
+              >
+            </ngx-charts-advanced-pie-chart>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row offset="1" size=10>
+        <div style="width: 100%; height: 2px; background-color: azure;" ></div>
+      </ion-row>
+
+      <ion-row style="width: 100%;background-color: #DF7E59;font-weight: bold;">
+        <ion-col>
+          <div style="height: 260px ;width: 100%;margin-left: 15px;">
+            <ngx-charts-advanced-pie-chart
+              scheme="cool"
+              [results]="preguntas3"
+              [gradient]="gradient"
+              label="¿Cuál es su opinión respecto a la calidad de la comida?"
+              [tooltipDisabled]="tooltipDisabled"
+              >
+            </ngx-charts-advanced-pie-chart>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row offset="1" size=10>
+        <div style="width: 100%; height: 3px; background-color: azure;" ></div>
+      </ion-row>
+      
+      <ion-row style="width: 100%;background-color: #12C489;font-weight: bold;">
+        <ion-col>
+          <div style="height: 260px ;width: 100%;margin-left: 15px;">
+            <ngx-charts-advanced-pie-chart
+              scheme="cool"
+              [results]="preguntas4"
+              [gradient]="gradient"
+              label="¿Se encontraba el establecimiento en óptimas condiciones?"
+              [tooltipDisabled]="tooltipDisabled"
+              >
+            </ngx-charts-advanced-pie-chart>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row offset="1" size=10>
+        <div style="width: 100%; height: 2px; background-color: azure;" ></div>
+      </ion-row>
+      
+      <ion-row style="width: 100%;background-color: #522157;font-weight: bold;">
+        <ion-col>
+          <div style="height: 260px ;width: 100%;margin-left: 15px;">
+            <ngx-charts-advanced-pie-chart
+              scheme="cool"
+              [results]="preguntas5"
+              [gradient]="gradient"
+              label="¿Asistiria nuevamente en otra ocasión?"
+              [tooltipDisabled]="tooltipDisabled"
+              >
+            </ngx-charts-advanced-pie-chart>
+          </div>
+        </ion-col>
+      </ion-row>      
+  </div>
+</ion-content>
