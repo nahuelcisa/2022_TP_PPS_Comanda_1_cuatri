@@ -15,7 +15,7 @@ import { HomeCocinaPage } from '../home-cocina/home-cocina.page';
 import { HomeClientePage } from '../home-cliente/home-cliente.page';
 
 import { ListaProductosPage } from '../lista-productos/lista-productos.page';
-
+import {NgxChartsModule} from '@swimlane/ngx-charts';
 //Falta page para clientes
 
 @NgModule({
@@ -25,7 +25,8 @@ import { ListaProductosPage } from '../lista-productos/lista-productos.page';
     ReactiveFormsModule,
     IonicModule,
     HomePageRoutingModule,
-    MatMenuModule
+    MatMenuModule,
+    NgxChartsModule
   ],
   declarations: [
     HomePage,

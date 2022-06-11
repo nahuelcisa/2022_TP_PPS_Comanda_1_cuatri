@@ -15,6 +15,7 @@ import { PiedraPapelTijeraComponent } from 'src/app/components/piedra-papel-tije
 import {MatRadioModule} from '@angular/material/radio';
 import {MatMenuModule, MAT_MENU_DEFAULT_OPTIONS} from '@angular/material/menu';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {NgxChartsModule} from '@swimlane/ngx-charts';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatRadioModule,
     MatMenuModule,
     MatCheckboxModule,
+    NgxChartsModule
   ],
   declarations: [HomeClientePage,ListaProductosPage,EncuestaClientePage,TaTeTiPage,Aproxima2Page,PiedraPapelTijeraComponent]
 })
