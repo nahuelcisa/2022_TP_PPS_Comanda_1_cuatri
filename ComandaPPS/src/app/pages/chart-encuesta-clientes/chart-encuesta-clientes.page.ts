@@ -61,7 +61,7 @@ export class ChartEncuestaClientesPage implements OnInit {
   // options Pie Chart
   gradient: boolean = true;
   showLegend: boolean = true;
-  showLabels: boolean = true;
+  showLabels: boolean = false;
   isDoughnut: boolean = false;
   legendPosition: string = 'below';
 

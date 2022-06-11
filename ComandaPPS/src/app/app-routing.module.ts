@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'chart-encuesta-clientes',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
