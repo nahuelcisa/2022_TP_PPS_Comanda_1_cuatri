@@ -12,16 +12,58 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 export class ChartEncuestaClientesPage implements OnInit {
 
   // options advanced Pie Chart
-
-  // options
-  gradient: boolean = false;
+  gradientChartAdvanced: boolean = false;
   // showLegend: boolean = false;
   // showLabels: boolean = false;
   // isDoughnut: boolean = false;
+  tooltipDisabledChartAdvanced: boolean = false;
 
-  tooltipDisabled: boolean = false;
+  // options Pie Grid Chart
+  // showLegendChartGrid: boolean = true;
+  // showLabelsChartGrid: boolean = true;
 
-  // options advanced Pie Chart
+
+  // options Bar Horizontal Chart ChartBarHorizontal
+  gradientChartBarHorizontal: boolean = false;
+  showXAxisChartBarHorizontal: boolean = true;
+  showYAxisChartBarHorizontal: boolean = true;  
+  showLegendChartBarHorizontal: boolean = false;
+  showXAxisLabelChartBarHorizontal: boolean = true;
+  yAxisLabelChartBarHorizontal: string = 'Preguntas';
+  showYAxisLabelChartBarHorizontal: boolean = true;
+  xAxisLabelChartBarHorizontal: string = 'Cantidad Respuestas';
+  showDataLabelChartBarHorizontal: boolean = true;
+
+
+  // options Bar Vertial Chart ChartBarVertical
+  showXAxisChartBarVertical = true;
+  showYAxisChartBarVertical = true;
+  gradientChartBarVertical = false;
+  showLegendChartBarVertical = false;
+  showXAxisLabelChartBarVertical = true;
+  xAxisLabelChartBarVertical = 'Preguntas';
+  showYAxisLabelChartBarVertical = true;
+  yAxisLabelChartBarVertical = 'Cantidad Respuestas';
+
+
+  // options Chart Line
+  // legend: boolean = true;
+  // showLabels: boolean = true;
+  // animations: boolean = true;
+  // xAxis: boolean = true;
+  // yAxis: boolean = true;
+  // showYAxisLabel: boolean = true;
+  // showXAxisLabel: boolean = true;
+  // xAxisLabel: string = 'Year';
+  // yAxisLabel: string = 'Population';
+  // timeline: boolean = true;
+
+  // options Pie Chart
+  gradient: boolean = true;
+  showLegend: boolean = true;
+  showLabels: boolean = true;
+  isDoughnut: boolean = false;
+  legendPosition: string = 'below';
 
   preguntas1 = []; //Datos del Chart
   preguntas2 = []; //Datos del Chart
@@ -318,5 +360,34 @@ export class ChartEncuestaClientesPage implements OnInit {
         "value": this.valorRespuesta5[1]
       }
     ];
+
+    //Linea Chart
+    // this.preguntas5 = [
+    //   {
+    //     "name": "Mañana",
+    //     "series": 
+    //     [{
+    //       "name": "Si",
+    //       "value": this.valorRespuesta5[0]
+    //     }]
+    //   },
+    //   {
+    //     "name": "Tarde",
+    //     "series": 
+    //     [{
+    //       "name": "Tal vez",
+    //       "value": this.valorRespuesta5[2]
+    //     }]
+    //   },
+    //   {
+    //     "name": "Noche",
+    //     "series": 
+    //     [{
+    //       "name": "No",
+    //       "value": this.valorRespuesta5[1]
+    //     }]
+    //   },
+
+    // ];
   }
 }
