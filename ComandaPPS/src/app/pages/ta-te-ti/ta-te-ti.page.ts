@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { AnyMxRecord } from 'dns';
+import { FirestoreService } from 'src/app/services/firestore.service';
 import Swal, { SweetAlertIcon } from 'sweetalert2';
 
 @Component({
@@ -11,11 +13,18 @@ export class TaTeTiPage implements OnInit {
 
   board: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0];
   table: HTMLElement[];
+  @Output() terminadoEvent = new EventEmitter<boolean>();
 
   symbol: number = -1;
   gameRunning: boolean = true;
+  usuarios : any;
+  usuario : any;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private fs : FirestoreService) {
+    this.fs.traerUsuarios().subscribe(value=>{
+      this.usuarios = value;
+    });
+  }
 
    ngOnInit(): void {
     let cell11: HTMLElement = <HTMLElement>document.getElementById("cell11");
@@ -41,7 +50,7 @@ export class TaTeTiPage implements OnInit {
     cell32.onclick = (e) => { this.ClickCell(3, 2); }
     cell33.onclick = (e) => { this.ClickCell(3, 3); }
 
-    reset.onclick = (e) => { this.Reset(); }
+     
   }
 
   game(t: HTMLElement[]) {
@@ -93,10 +102,30 @@ export class TaTeTiPage implements OnInit {
           if (this.win(this.board) == 1) {
             this.gameRunning = false;
             this.alert('success', 'Ganaste un descuento!');
+            for (const iterator of this.usuarios) {
+              if(this.fs.usuario.nombre == iterator.nombre){
+                this.usuario = iterator;
+              }
+            }
+            this.usuario.descuento = 15;
+            this.usuario.juegoJugado = true;
+            this.fs.modificarUsuario(this.usuario,this.usuario.id);
+            this.terminadoEvent.emit(false);
+
           } else {
             if (this.IsFull()) {
               this.gameRunning = false;
               this.alert('info', 'Empate!');
+              for (const iterator of this.usuarios) {
+                if(this.fs.usuario.nombre == iterator.nombre){
+                  this.usuario = iterator;
+                }
+              }
+              this.usuario.descuento = 0;
+              this.usuario.juegoJugado = true;
+              this.fs.modificarUsuario(this.usuario,this.usuario.id);
+              this.terminadoEvent.emit(false);
+
             } else {
               let v = this.minimax(-1, true);
               this.board[v] = -1;
@@ -105,6 +134,17 @@ export class TaTeTiPage implements OnInit {
               if (this.win(this.board) == -1) {
                 this.gameRunning = false;
                 this.alert('error', 'Perdiste!');
+                for (const iterator of this.usuarios) {
+                  if(this.fs.usuario.nombre == iterator.nombre){
+                    this.usuario = iterator;
+                  }
+                }
+                
+                this.usuario.descuento = 0;
+                this.usuario.juegoJugado = true;
+                this.fs.modificarUsuario(this.usuario,this.usuario.id);
+                this.terminadoEvent.emit(false);
+
               } else {
                 if (this.IsFull()) {
                   this.gameRunning = false;
