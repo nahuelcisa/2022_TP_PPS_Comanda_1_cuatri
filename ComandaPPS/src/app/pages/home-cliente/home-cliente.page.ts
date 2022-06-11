@@ -34,6 +34,7 @@ export class HomeClientePage implements OnInit {
   estadoPedido : boolean = false;
   juegos : boolean = false;
   encuesta : boolean = false;
+  todasEncuestas : boolean = false;
   
   constructor(private fs : FirestoreService, private push : PushService, private sf : ScannerService, private toastController : ToastController) 
   { 
@@ -76,7 +77,14 @@ export class HomeClientePage implements OnInit {
 
   verEncuestas()
   {
-      
+    this.todasEncuestas = true;
+    this.menuOpciones = false;
+  }
+
+  esconderEncuestas()
+  {
+    this.todasEncuestas = false;
+    this.menuOpciones = true;
   }
 
   entrarListaEspera()
@@ -125,8 +133,7 @@ export class HomeClientePage implements OnInit {
   mostrarMenu()
   {
     let fondo = document.getElementById("1");
-    fondo.classList.remove("fondo");
-    fondo.classList.add("fondo2")
+
     this.estadoPedido = false;
    
     /*     this.escanearQRMesa();
@@ -241,6 +248,15 @@ export class HomeClientePage implements OnInit {
       }
     }
   }
+
+  confirmarEntrega()
+  {
+    this.usuarioPedido.entregaConfirmada = true;
+    this.fs.modificarEstadoPedido(this.usuarioPedido,this.usuarioPedido.id);
+    this.estadoPedido = false;
+    this.mesa = true;
+  }
+
 
   MostrarToast(message : string, header : string, color : string)
     {
