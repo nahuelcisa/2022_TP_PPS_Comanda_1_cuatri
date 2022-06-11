@@ -152,8 +152,6 @@ export class PiedraPapelTijeraComponent implements OnInit {
     //juegojugado: booleand //true o false
     //this.fs.usuario.nombre //Tengo el usuario Anonimo y con esto busco en el array de usuarios      
 
-    this.fs.usuario = {nombre: "cacac"};
-
     for (let index = 0; index < this.ListaDeUsuariosArray.length; index++) {
       if(this.ListaDeUsuariosArray[index].nombre == this.fs.usuario.nombre){
         this.itemUsuarioUpdate = this.ListaDeUsuariosArray[index];
@@ -234,15 +232,6 @@ export class PiedraPapelTijeraComponent implements OnInit {
   }
 
   mejorDe5(){
-
-    // console.log("Respuestas");
-    // console.log(this.piedraCL);
-    // console.log(this.papelCL);
-    // console.log(this.tijeraCL);
-    // console.log("_____");
-    // console.log(this.piedraRB);
-    // console.log(this.papelRB);
-    // console.log(this.tijeraRB);
 
     if(this.piedraCL){
       if(this.piedraRB){
