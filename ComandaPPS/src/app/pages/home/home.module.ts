@@ -17,6 +17,7 @@ import { HomeClientePage } from '../home-cliente/home-cliente.page';
 import { ListaProductosPage } from '../lista-productos/lista-productos.page';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 import { ChartEncuestaClientesPage } from '../chart-encuesta-clientes/chart-encuesta-clientes.page';
+import { CuentaPage } from '../cuenta/cuenta.page';
 //Falta page para clientes
 
 @NgModule({
@@ -37,7 +38,8 @@ import { ChartEncuestaClientesPage } from '../chart-encuesta-clientes/chart-encu
     HomeCocinaPage,
     HomeClientePage,
     ListaProductosPage,
-    ChartEncuestaClientesPage
+    ChartEncuestaClientesPage,
+    CuentaPage
   ],
   providers: [{
     provide: MAT_MENU_DEFAULT_OPTIONS,

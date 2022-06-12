@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { ScannerService } from 'src/app/services/scanner.service';
@@ -9,59 +9,79 @@ import { ScannerService } from 'src/app/services/scanner.service';
   styleUrls: ['./cuenta.page.scss'],
 })
 export class CuentaPage implements OnInit {
-
-
+  
   pagado : boolean = false;
   loading : boolean = false;
   scaneo : boolean = false;
   propina : string;
   propinaporc : number = 5;
-  pedido : any;
+  pedido : any = [];
   precioTotal : number ;
   pedidoElegido : any;
   mesa : any;
+  usuariosArray : any = [];
+  usuarioActual : any;
+  mesaArray : any = [];
 
   constructor(private fs : FirestoreService, private as : AuthService, private scan : ScannerService) { 
-    this.fs.traerPedidos().subscribe(value =>{
-     this.pedido = value;
-     this.pedidoElegido = this.pedido[29];
-     if(this.fs.usuario.descuento != '' && this.fs.usuario.descuento != 0){
-      this.pedidoElegido.precioTotal = this.pedidoElegido.precioTotal * this.fs.usuario.descuento;
-     }
-
-     this.pedidoElegido = this.pedido.filter(this.usuarioPedido);
-
-     this.fs.traerMesas().subscribe(value =>{
-      this.mesa = value;
-      for (const iterator of this.mesa) {
-        if(this.pedidoElegido.mesa == iterator.nroMesa){
-          this.mesa = iterator;
-          break;
-        }
-      }
-     });
-    });
+    
   }
   
-  ngOnInit() {
+  ngOnInit() 
+  {
+    this.fs.traerPedidos().subscribe(value =>{
+      this.pedido = value;
+
+      for (const item of this.pedido) {
+       if(item.usuario.nombre == this.fs.usuario.nombre)
+       {
+         this.pedidoElegido = item;
+       }
+      }
+
+      setTimeout(() => {
+        this.fs.traerMesas().subscribe(value =>{
+         this.mesaArray = value;
+         for (const iterator of this.mesaArray) {
+           if(this.pedidoElegido.mesa == iterator.nroMesa){
+             this.mesa = iterator;
+             console.log(this.mesa);
+             break;
+           }
+         }
+   
+         this.fs.traerUsuarios().subscribe((value) =>
+         { 
+           this.usuariosArray = value;
+   
+           for (const iterator of this.usuariosArray) 
+           {
+             if(iterator.nombre == this.fs.usuario.nombre)
+             {
+               this.usuarioActual = iterator;
+               break;
+             }
+           }
+   
+           if(this.usuarioActual.descuento != '' && this.usuarioActual.descuento != 0){
+             this.pedidoElegido.precioTotal = this.pedidoElegido.precioTotal * this.usuarioActual.descuento;
+            }
+         })
+        }); 
+      }, 3000);
+     });
   }
    
   
-  usuarioPedido(item){
-    if(item.usuario == this.fs.usuario){
-      return true;
-    }else{
-      return false;
-    }
-  }
+
 
   pagar(){
     this.pedidoElegido.estado = 'pagado';
     this.fs.modificarEstadoPedido(this.pedidoElegido,this.pedidoElegido.id);
-    this.fs.usuario.mesa = 0;
-    this.fs.usuario.juegoJugado = false;
-    this.fs.usuario.descuento = "";
-    this.fs.modificarUsuario(this.fs.usuario,this.fs.usuario.id);
+    this.usuarioActual.mesa = 0;
+    this.usuarioActual.juegoJugado = false;
+    this.usuarioActual.descuento = "";
+    this.fs.modificarUsuario(this.usuarioActual,this.usuarioActual.id);
     this.mesa.ocupada = false;
     this.fs.modificarMesa(this.mesa, this.mesa.id);
     this.loading = true;

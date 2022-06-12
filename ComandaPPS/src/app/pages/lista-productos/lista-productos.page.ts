@@ -13,6 +13,8 @@ export class ListaProductosPage implements OnInit {
 
   productos : any = [];
   productosArray : any = [];
+  usuarios : any = [];
+  usuarioActual : any;
 
   @Output() atrasEvent = new EventEmitter<boolean>();
 
@@ -26,6 +28,19 @@ export class ListaProductosPage implements OnInit {
     this.fs.traerProductos().subscribe((value=>{
       this.productos = value;
       this.cargarArray();
+    }));
+
+    this.fs.traerUsuarios().subscribe((value=>{
+      this.usuarios = value;
+
+      for (const iterator of this.usuarios) 
+      {
+        if(iterator.nombre == this.fs.usuario.nombre)
+        {
+          this.usuarioActual = iterator;
+          break;
+        }
+      }
     }));
    }
 
@@ -63,10 +78,11 @@ export class ListaProductosPage implements OnInit {
     let pedido = {
       productos : this.carrito,
       precioTotal : this.precioCarrito,
-      usuario : this.fs.usuario,
+      usuario : this.usuarioActual,
       tiempoEstimado : this.tiempoEstimado,
       estado : "espera",
-      entregaConfirmada : false
+      entregaConfirmada : false,
+      mesa : this.usuarioActual.mesa
     }
 
     this.loading = true;

@@ -35,6 +35,7 @@ export class HomeClientePage implements OnInit {
   juegos : boolean = false;
   encuesta : boolean = false;
   todasEncuestas : boolean = false;
+  cuenta : boolean = false;
   
   constructor(private fs : FirestoreService, private push : PushService, private sf : ScannerService, private toastController : ToastController) 
   { 
@@ -50,7 +51,7 @@ export class HomeClientePage implements OnInit {
       this.usuariosArray = value;
       for (let item of this.usuariosArray) 
       {
-        if(item.nombre == "pppp")
+        if(item.nombre == this.fs.usuario.nombre)
         {
           this.usuarioActual = item;
           break;
@@ -61,6 +62,19 @@ export class HomeClientePage implements OnInit {
     this.fs.traerPedidos().subscribe(value =>{
       this.pedido = value;
       this.cargarArray();
+
+      for (const iterator of this.pedidoArray) 
+      {
+        if(iterator.usuario.nombre == this.fs.usuario.nombre)
+        {
+          this.usuarioPedido = iterator;
+          if(iterator.estado == "pagado")
+          {
+            this.cuenta = false;
+            this.escaneoQR = true;
+          }    
+        }
+      }
      });
   }
 
@@ -263,6 +277,12 @@ export class HomeClientePage implements OnInit {
   consultarMozo()
   {
 
+  }
+
+  pedirCuenta()
+  {
+    this.cuenta = true;
+    this.menuOpcionesConfirma = false;
   }
 
   MostrarToast(message : string, header : string, color : string)
