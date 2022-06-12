@@ -149,7 +149,7 @@ export class Aproxima2Page implements OnInit {
     this.usuarioActual.descuento = this.descuento;
 
     this.fs.modificarUsuario(this.usuarioActual,this.usuarioActual.id);
-    this.fs.modificarCliente(this.usuarioActual,this.usuarioActual.id);
+    
 
     this.disabledOperador = true;
     this.disabled = true;

@@ -16,7 +16,7 @@ import { Console } from 'console';
   templateUrl: './alta-mesa.page.html',
   styleUrls: ['./alta-mesa.page.scss'],
 })
-export class AltaMesaPage implements OnInit, Mesa{
+export class AltaMesaPage implements OnInit{
   
   qrDate: any = "@";
   webPathQR : string = "";
@@ -118,7 +118,8 @@ export class AltaMesaPage implements OnInit, Mesa{
       cantComensales: this.cantComensales,
       tipo: this.tipo,
       foto: "",
-      Qr: ""
+      Qr: "",
+      ocupada: false
     };
 
     this.imageStore.addFotoMesa(this.mesa).then((data) =>{
@@ -197,7 +198,8 @@ export class AltaMesaPage implements OnInit, Mesa{
             cantComensales: this.cantComensales,
             tipo: this.tipo,
             foto: this.webPath,
-            Qr: this.webPathQR
+            Qr: this.webPathQR,
+            ocupada: false
           };  
     
           this.fs.agregarMesa(this.mesa);

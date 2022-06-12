@@ -235,16 +235,19 @@ export class HomeClientePage implements OnInit {
     if(this.tateti)
     {
       this.tateti = dato;
+      this.menuOpcionesConfirma = true;
     }
     else
     {
       if(this.ppt)
       {
         this.ppt = dato
+        this.menuOpcionesConfirma = true;
       }
       else
       {
         this.aproxima2 = dato;
+        this.menuOpcionesConfirma = true;
       }
     }
   }
@@ -257,6 +260,10 @@ export class HomeClientePage implements OnInit {
     this.mesa = true;
   }
 
+  consultarMozo()
+  {
+
+  }
 
   MostrarToast(message : string, header : string, color : string)
     {

@@ -73,13 +73,14 @@ export class AltaAnonimoPage implements OnInit {
       this.storage = data.storage;
       this.url = data.url;
       this.capturedPhoto = data.capturedPhoto;
-      this.fotoSubida = true;
+      
       uploadString(this.storage,this.capturedPhoto.dataUrl, 'data_url').then((data) =>{    
         this.url.getDownloadURL().subscribe((url1 : any)=>{
           this.webPath = url1;
           this.cliente.foto = url1;
           setTimeout(() => {
             this.as.loading = false;
+            this.fotoSubida = true;
           }, 2000);
         });
       });

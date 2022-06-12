@@ -3,5 +3,6 @@ export interface Mesa{
     cantComensales: number,
     tipo: string,
     foto: string,
-    Qr: string
+    Qr: string,
+    ocupada : boolean
 }
