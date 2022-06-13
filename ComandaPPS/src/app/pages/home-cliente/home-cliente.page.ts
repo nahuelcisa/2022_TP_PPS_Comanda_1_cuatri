@@ -36,6 +36,7 @@ export class HomeClientePage implements OnInit {
   encuesta : boolean = false;
   todasEncuestas : boolean = false;
   cuenta : boolean = false;
+  chat : boolean = false;
   
   constructor(private fs : FirestoreService, private push : PushService, private sf : ScannerService, private toastController : ToastController) 
   { 
@@ -51,23 +52,25 @@ export class HomeClientePage implements OnInit {
       this.usuariosArray = value;
       for (let item of this.usuariosArray) 
       {
-        if(item.nombre == this.fs.usuario.nombre)
+        if(item.nombre == "qqqq")
         {
           this.usuarioActual = item;
           break;
         }
       }
     });
-    console.log(this.fs.usuario);
+    
     this.fs.traerPedidos().subscribe(value =>{
       this.pedido = value;
       this.cargarArray();
 
       for (const iterator of this.pedidoArray) 
       {
-        if(iterator.usuario.nombre == this.fs.usuario.nombre)
+        if(iterator.usuario.nombre == this.usuarioActual.nombre)
         {
+          console.log("pedidos");
           this.usuarioPedido = iterator;
+          
           if(iterator.estado == "pagado")
           {
             this.cuenta = false;
@@ -186,8 +189,7 @@ export class HomeClientePage implements OnInit {
     let test;
     setTimeout(() => {
       for (const iterator of this.pedidoArray) {
-        console.log(iterator.usuario.nombre);
-        console.log(this.fs.usuario.nombre);
+   
         if(iterator.usuario.nombre == this.fs.usuario.nombre){
           test = iterator;
           console.log("entre al fi");
@@ -276,7 +278,14 @@ export class HomeClientePage implements OnInit {
 
   consultarMozo()
   {
+    this.chat = true;
+    this.menuOpcionesConfirma = false;
+  }
 
+  esconderChat()
+  {
+    this.chat = false;
+    this.menuOpcionesConfirma = true;
   }
 
   pedirCuenta()

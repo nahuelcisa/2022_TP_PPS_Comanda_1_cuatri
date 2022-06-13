@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { ChatComponent } from './components/chat/chat.component';
 
 const routes: Routes = [
   {
@@ -134,10 +135,11 @@ const routes: Routes = [
   {
     path: 'chart-encuesta-clientes',
     loadChildren: () => import('./pages/chart-encuesta-clientes/chart-encuesta-clientes.module').then( m => m.ChartEncuestaClientesPageModule)
+  },   {
+    path: 'chat',
+    loadChildren: () => import('./pages/chat/chat.module').then( m => m.ChatPageModule)
   },
-
-
-  
+ 
 ];
 
 @NgModule({

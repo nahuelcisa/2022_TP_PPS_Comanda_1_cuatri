@@ -1,15 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonContent, ToastController } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { ChatService } from 'src/app/services/chat.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
 
 @Component({
   selector: 'app-chat',
-  templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.scss'],
+  templateUrl: './chat.page.html',
+  styleUrls: ['./chat.page.scss'],
 })
-export class ChatComponent implements OnInit {
+export class ChatPage implements OnInit {
 
   mensajes : any;
   mensaje : any;
@@ -44,4 +43,5 @@ export class ChatComponent implements OnInit {
     this.mensajeEnviar = '';
 
   }
+
 }
