@@ -52,8 +52,9 @@ export class HomeClientePage implements OnInit {
       this.usuariosArray = value;
       for (let item of this.usuariosArray) 
       {
-        if(item.nombre == "qqqq")
+        if(item.nombre == this.fs.usuario.nombre)
         {
+          console.log("EN EL IF DEL PRIMER SUBSCRIBE");
           this.usuarioActual = item;
           break;
         }
@@ -64,9 +65,11 @@ export class HomeClientePage implements OnInit {
       this.pedido = value;
       this.cargarArray();
 
+      console.log(this.fs.usuario.nombre);
       for (const iterator of this.pedidoArray) 
       {
-        if(iterator.usuario.nombre == this.usuarioActual.nombre)
+        console.log(iterator.usuario.nombre);
+        if(iterator.usuario.nombre == this.fs.usuario.nombre)
         {
           console.log("pedidos");
           this.usuarioPedido = iterator;
@@ -152,6 +155,8 @@ export class HomeClientePage implements OnInit {
     let fondo = document.getElementById("1");
 
     this.estadoPedido = false;
+    console.log(this.usuarioPedido);
+    console.log(this.usuarioActual);
    
     /*     this.escanearQRMesa();
     if(this.numeroMesaEscaneada != this.fs.usuario.mesa)
@@ -192,7 +197,6 @@ export class HomeClientePage implements OnInit {
    
         if(iterator.usuario.nombre == this.fs.usuario.nombre){
           test = iterator;
-          console.log("entre al fi");
           break;
         }
       }

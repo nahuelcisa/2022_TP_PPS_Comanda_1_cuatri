@@ -18,7 +18,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 import { ChartEncuestaClientesPage } from '../chart-encuesta-clientes/chart-encuesta-clientes.page';
 import { CuentaPage } from '../cuenta/cuenta.page';
-import { ChatComponent } from 'src/app/components/chat/chat.component';
+import { ChatPage } from '../chat/chat.page';
 
 @NgModule({
   imports: [
@@ -31,6 +31,6 @@ import { ChatComponent } from 'src/app/components/chat/chat.component';
     MatCheckboxModule,
     NgxChartsModule
   ],
-  declarations: [HomeClientePage,ListaProductosPage,EncuestaClientePage,TaTeTiPage,Aproxima2Page,ChartEncuestaClientesPage,PiedraPapelTijeraComponent,CuentaPage,ChatComponent]
+  declarations: [HomeClientePage,ListaProductosPage,EncuestaClientePage,TaTeTiPage,Aproxima2Page,ChartEncuestaClientesPage,PiedraPapelTijeraComponent,CuentaPage,ChatPage]
 })
 export class HomeClientePageModule {}

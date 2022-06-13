@@ -18,7 +18,7 @@ import { ListaProductosPage } from '../lista-productos/lista-productos.page';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 import { ChartEncuestaClientesPage } from '../chart-encuesta-clientes/chart-encuesta-clientes.page';
 import { CuentaPage } from '../cuenta/cuenta.page';
-import { ChatComponent } from 'src/app/components/chat/chat.component';
+import { ChatPage } from '../chat/chat.page';
 //Falta page para clientes
 
 @NgModule({
@@ -41,7 +41,7 @@ import { ChatComponent } from 'src/app/components/chat/chat.component';
     ListaProductosPage,
     ChartEncuestaClientesPage,
     CuentaPage,
-    ChatComponent
+    ChatPage
   ],
   providers: [{
     provide: MAT_MENU_DEFAULT_OPTIONS,
