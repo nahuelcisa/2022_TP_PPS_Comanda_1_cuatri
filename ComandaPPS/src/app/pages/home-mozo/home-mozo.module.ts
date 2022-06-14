@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { HomeMozoPageRoutingModule } from './home-mozo-routing.module';
 
 import { HomeMozoPage } from './home-mozo.page';
+import { ChatMozoPage } from '../chat-mozo/chat-mozo.page';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { HomeMozoPage } from './home-mozo.page';
     IonicModule,
     HomeMozoPageRoutingModule
   ],
-  declarations: [HomeMozoPage]
+  declarations: [HomeMozoPage,ChatMozoPage]
 })
 export class HomeMozoPageModule {}

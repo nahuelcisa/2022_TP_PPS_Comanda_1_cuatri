@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { ChatService } from 'src/app/services/chat.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
 
 @Component({
-  selector: 'app-chat',
-  templateUrl: './chat.page.html',
-  styleUrls: ['./chat.page.scss'],
+  selector: 'app-chat-mozo',
+  templateUrl: './chat-mozo.page.html',
+  styleUrls: ['./chat-mozo.page.scss'],
 })
-export class ChatPage implements OnInit {
+export class ChatMozoPage implements OnInit {
 
+  @Input() receptor : any;
   mensajes : any;
   mensaje : any;
   mensajeEnviar: any = "";
@@ -31,23 +32,16 @@ export class ChatPage implements OnInit {
   sendMessage()
   {
     let hora = new Date();
-    let consulta : any;
-     
 
-    this.mensaje.user = this.fs.usuario.nombre;
-    this.mensaje.perfil = this.fs.usuario.perfil;
-    this.mensaje.receptor = "";
+    this.mensaje.user = this.as.logeado.nombre;
+    this.mensaje.receptor = this.receptor.nombre;
     this.mensaje.message = this.mensajeEnviar;
 
     this.mensaje.date = hora.getHours() + ':' + hora.getMinutes();
-    consulta = {
-      nombre : this.fs.usuario.nombre,
-      date : this.mensaje.date
-    }
     this.chat.sendMessage(this.mensaje);
+    this.fs.eliminarConsulta(this.receptor.id);
     this.mensaje.message = '';
     this.mensajeEnviar = '';
-    this.fs.agregarConsulta(consulta);
 
   }
 

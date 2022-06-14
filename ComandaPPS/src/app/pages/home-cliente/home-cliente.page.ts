@@ -194,7 +194,8 @@ export class HomeClientePage implements OnInit {
     let test;
     setTimeout(() => {
       for (const iterator of this.pedidoArray) {
-   
+        
+        console.log(iterator);;
         if(iterator.usuario.nombre == this.fs.usuario.nombre){
           test = iterator;
           break;

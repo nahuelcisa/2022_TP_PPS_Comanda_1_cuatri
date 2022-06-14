@@ -13,6 +13,10 @@ export class FirestoreService {
   usuarios : Observable<any>;
   usuariosArray : any = [];
 
+  consultasCollectionReference: any;
+  consultas : Observable<any>;
+  consultasArray : any = [];
+
   listaEsperaCollectionReference: any;
   listaEspera : Observable<any>;
   listaEsperaArray : any = [];
@@ -63,6 +67,9 @@ export class FirestoreService {
     this.listaEsperaCollectionReference = this.angularF.collection<any>('listaEspera');
     this.listaEspera = this.listaEsperaCollectionReference.valueChanges({idField: 'id'});
 
+    this.consultasCollectionReference = this.angularF.collection<any>('consultas');
+    this.consultas = this.consultasCollectionReference.valueChanges({idField: 'id'});
+
     
     this.pedidosCollectionReference = this.angularF.collection<any>('pedidos');
     this.pedidos = this.pedidosCollectionReference.valueChanges({idField: 'id'});
@@ -109,6 +116,11 @@ export class FirestoreService {
   traerUsuarios()
   {
     return this.usuarios;
+  }
+
+  traerConsultas()
+  {
+    return this.consultas;
   }
 
   traerlistaEspera()
@@ -183,7 +195,16 @@ export class FirestoreService {
   {
     this.clientesCollectionReference.add({...cliente});
     this.usuariosCollectionReference.add({...cliente});
-    console.log(this.usuario);
+
+  }
+
+  agregarConsulta(consulta : any)
+  {
+    this.consultasCollectionReference.add({...consulta});
+  }
+
+  eliminarConsulta(id_objeto: any){
+    return this.angularF.collection('consultas').doc(id_objeto).delete();
   }
 
   agregarAListaDeEspera(cliente : any)

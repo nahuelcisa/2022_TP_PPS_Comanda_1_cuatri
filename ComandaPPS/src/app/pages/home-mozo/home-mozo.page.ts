@@ -22,6 +22,11 @@ export class HomeMozoPage implements OnInit {
   pedidosConfirmadosArray: any = [];//Cargo los pedidos ya confirmados en este array 
 
   titulo: string = "Pedidos a Confirmar";
+  consulta : boolean = false;
+  consultas : any = [];
+  chat : boolean = false;
+  emisor : any;
+  principal : boolean = true;
 
   constructor(
     private fs : FirestoreService, 
@@ -37,6 +42,10 @@ export class HomeMozoPage implements OnInit {
         this.pedidos = value;
         this.cargarArrayPedidos();
     });
+
+    this.fs.traerConsultas().subscribe(value => {
+      this.consultas = value;
+  });
   }
 
   ngOnInit() {    
@@ -143,6 +152,8 @@ export class HomeMozoPage implements OnInit {
     setTimeout(() => {
       this.loading = false;
       this.listConfirmarPedido = true;
+      this.consulta = false;
+      this.principal = true;
     }, 1000);
        
   }
@@ -157,6 +168,26 @@ export class HomeMozoPage implements OnInit {
 
         this.SuccessToastPedidoEntregado();                 
     }    
+  }
+
+  verConsultas()
+  {
+    this.consulta = true;
+    this.principal = false;
+  }
+
+  responderConsulta(dato : any)
+  {
+    this.chat = true;
+    this.emisor = dato;
+    this.consulta = false;
+  }
+
+  esconderChat()
+  {
+    this.consulta = true;
+    this.chat = false;
+    this.emisor = "";
   }
 
 }

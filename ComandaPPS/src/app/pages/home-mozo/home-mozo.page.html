@@ -3,8 +3,9 @@
   <img src="../../assets/Spinner.png" style="display: block; position: absolute;margin-top: 50%; z-index: 101;" [ngClass]="{'loading' : this.loading}" *ngIf="this.loading || this.as.loading"/> 
   
   
-  <div style="padding-left: 2%; padding-right: 2%;">
+  <div style="padding-left: 2%; padding-right: 2%;" *ngIf="this.principal">
     
+    <ion-button expand="block" style="--background: rgb(255, 115, 0); padding-left: 15%; padding-right: 15%;" (click)="verConsultas()">Consultas de Clientes</ion-button>
     <ion-card>
       <ion-card-header align="center">
           <ion-card-title style="font-weight: bold;color:azure;">{{titulo}}</ion-card-title>
@@ -12,12 +13,12 @@
     </ion-card>
   
     <ion-fab vertical="top" horizontal="end" slot="fixed" style="position: fixed;margin-top: 15%;">
-      <ion-fab-button *ngIf="listConfirmarPedido" color="success" (click)="onVerPedidosEnPreparacion()">
+      <ion-fab-button *ngIf="listConfirmarPedido" color="naranja" (click)="onVerPedidosEnPreparacion()">
         <!-- <i class="fa fa-list-alt" aria-hidden="true" style="font-size: 30px;color: black;"></i> -->
         <i class="fa fa-id-badge" aria-hidden="true" style="font-size: 30px;color: black;"></i>
       </ion-fab-button>
   
-      <ion-fab-button *ngIf="listEnEspera" color="success" (click)="onVerPedidosAConfirmar()">
+      <ion-fab-button *ngIf="listEnEspera" color="naranja" (click)="onVerPedidosAConfirmar()">
         <!-- <i class="fa fa-list-alt" aria-hidden="true" style="font-size: 30px;color: black;"></i> -->
         <i class="fa fa-list-alt" aria-hidden="true" style="font-size: 30px;color: black;"></i>
       </ion-fab-button>
@@ -143,6 +144,42 @@
       </ion-card>
     </div>
 
-  
+    
   </div>
+  <div *ngIf="this.consulta">
+    <ion-card>
+      <ion-card-header align="center">
+          <ion-card-title style="font-weight: bold;color:azure;">Consultas de clientes</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+    <ion-fab vertical="top" horizontal="end" slot="fixed" style="position: fixed;margin-top: 15%;">
+      <ion-fab-button color="naranja" (click)="onVerPedidosAConfirmar()">
+        <!-- <i class="fa fa-list-alt" aria-hidden="true" style="font-size: 30px;color: black;"></i> -->
+        <i class="fa fa-list-alt" aria-hidden="true" style="font-size: 30px;color: black;"></i>
+      </ion-fab-button>
+    </ion-fab>
+
+
+    <ion-card *ngFor="let item of this.consultas; let i = index" data-index="i">
+      <ion-card-header>
+          <ion-card-subtitle><u style="font-weight: bold;color:azure;">Consulta del Cliente</u> : {{item.nombre}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-row>
+          <ion-col>
+            <ion-button style="--background: #8D2CE2" (click)="responderConsulta(item)">
+              Responder
+            </ion-button>    
+          </ion-col>         
+        </ion-row>
+      </ion-card-content>     
+    </ion-card>
+  </div>
+
+  <div *ngIf="chat" style="height: 100%; width: 100%;">
+    <div>
+      <ion-button expand="block" color="dark" (click)="esconderChat()">Volver</ion-button>
+    </div>
+    <app-chat-mozo [receptor]="this.emisor"></app-chat-mozo>
+  </div> 
 </ion-content>
