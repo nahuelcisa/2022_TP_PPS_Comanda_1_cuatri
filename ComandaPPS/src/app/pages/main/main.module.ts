@@ -10,6 +10,8 @@ import { MainPage } from './main.page';
 
 import { ChatComponent } from 'src/app/components/chat/chat.component';
 import { PiedraPapelTijeraComponent } from 'src/app/components/piedra-papel-tijera/piedra-papel-tijera.component';
+import { ChatMozoPage } from '../chat-mozo/chat-mozo.page';
+import { ChatPage } from '../chat/chat.page';
 
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
@@ -26,7 +28,9 @@ import {MatButtonModule} from '@angular/material/button';
   declarations: [
     MainPage,
     ChatComponent,
-    PiedraPapelTijeraComponent
+    PiedraPapelTijeraComponent,
+    ChatMozoPage,
+    ChatPage
   ]
 })
 export class MainPageModule {}

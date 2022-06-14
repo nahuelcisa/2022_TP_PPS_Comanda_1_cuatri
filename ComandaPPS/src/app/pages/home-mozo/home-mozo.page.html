@@ -8,11 +8,11 @@
     <ion-button expand="block" style="--background: rgb(255, 115, 0); padding-left: 15%; padding-right: 15%;" (click)="verConsultas()">Consultas de Clientes</ion-button>
     <ion-card>
       <ion-card-header align="center">
-          <ion-card-title style="font-weight: bold;color:azure;">{{titulo}}</ion-card-title>
+          <ion-card-title style="font-size: 26px;font-weight: bold;color:azure;">{{titulo}}</ion-card-title>
       </ion-card-header>
     </ion-card>
   
-    <ion-fab vertical="top" horizontal="end" slot="fixed" style="position: fixed;margin-top: 15%;">
+    <ion-fab vertical="top" horizontal="end" slot="fixed" style="position: fixed;margin-top: 25%;">
       <ion-fab-button *ngIf="listConfirmarPedido" color="naranja" (click)="onVerPedidosEnPreparacion()">
         <!-- <i class="fa fa-list-alt" aria-hidden="true" style="font-size: 30px;color: black;"></i> -->
         <i class="fa fa-id-badge" aria-hidden="true" style="font-size: 30px;color: black;"></i>
@@ -30,12 +30,12 @@
     <div *ngIf="listConfirmarPedido">
       <ion-card *ngFor="let item of this.confirmacionPedidosArray; let i = index" data-index="i">
         <ion-card-header>
-            <ion-card-subtitle><u style="font-weight: bold;color:azure;">Pedido del Cliente</u> : {{item.usuario.nombre}}</ion-card-subtitle>
+            <ion-card-subtitle style="font-size: 19px;"><u style="font-weight: bold;color:azure;">Pedido del Cliente</u> : {{item.usuario.nombre}}</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>
 
-          <ion-row style="width: 100%;">
-            <ion-col style="text-align:left;font-weight: bold;color:azure">
+          <ion-row style="width: 100%;font-size: 17px;color:azure">
+            <ion-col style="text-align:left;">
               PRODUCTOS
             </ion-col>
             <ion-col style="text-align:right">
@@ -48,15 +48,16 @@
           </ion-row>
 
           <ion-label *ngFor="let itemP of item.productos; let ip = index" data-index="ip">   
-            <ion-row style="flex-grow: 1;">               
-                <ion-col style="text-align:left">              
-                  <!--Muestro los Productos-->                      
-                        {{itemP.descripcion}} - ({{itemP.nombre}})
-                </ion-col>  
-                <ion-col style="text-align:right">
-                    {{itemP.cantidad}} 
-                </ion-col>                              
-            </ion-row>            
+            <ion-row style="flex-grow: 1;font-size: 17px">  
+                                              
+              <ion-col style="text-align:left">                                                
+                {{itemP.descripcion}} - ({{itemP.nombre}})
+              </ion-col>        
+              <ion-col style="text-align:right">
+                  {{itemP.cantidad}} 
+              </ion-col>  
+            </ion-row>   
+
         </ion-label>         
   
           <ion-row offset="1" size=10>
@@ -64,9 +65,9 @@
           </ion-row>
   
           
-          <ion-row>
+          <ion-row style="font-size: 16px;">
             <ion-col>
-              <ion-button style="--background: #8D2CE2" (click)="onConfirmarPedido(item)">
+              <ion-button style="--background: #8D2CE2; font-size: 17px;" (click)="onConfirmarPedido(item)">
                 Confirmar
               </ion-button>    
             </ion-col>
@@ -75,7 +76,7 @@
                 <u>Estado Pedido</u>
               </ion-row>
               <ion-row>
-                <a style="color: azure;">{{item.estado}} </a>
+                <a style="font-size: 17px;color: azure;">{{item.estado}} </a>
               </ion-row> 
             </ion-col>            
           </ion-row>
@@ -90,12 +91,12 @@
     <div *ngIf="listEnEspera">
       <ion-card *ngFor="let item of this.pedidosConfirmadosArray; let i = index" data-index="i">
         <ion-card-header>
-            <ion-card-subtitle><u style="font-weight: bold;color:azure;">Pedido del Cliente</u> : {{item.usuario}}</ion-card-subtitle>
+            <ion-card-subtitle style="font-size: 19px;"><u style="font-weight: bold;color:azure;">Pedido del Cliente</u> : {{item.usuario.nombre}}</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>
 
-          <ion-row style="width: 100%;">
-            <ion-col style="text-align:left;font-weight: bold;color:azure">
+          <ion-row style="width: 100%;font-size: 17px;color:azure">
+            <ion-col style="text-align:left;">
               PRODUCTOS
             </ion-col>
             <ion-col style="text-align:right">
@@ -108,7 +109,7 @@
           </ion-row>
 
           <ion-label *ngFor="let itemP of item.productos; let ip = index" data-index="ip">   
-            <ion-row style="flex-grow: 1;">               
+            <ion-row style="flex-grow: 1;font-size: 17px">               
                 <ion-col style="text-align:left">              
                   <!--Muestro los Productos-->                      
                         {{itemP.descripcion}} - ({{itemP.nombre}})
@@ -124,7 +125,7 @@
           </ion-row>
   
           
-          <ion-row>
+          <ion-row style="font-size: 16px;">
             <ion-col>
               <ion-button style="--background: #8D2CE2" (click)="onEntregarPedido(item)">
                 Entregar Pedido
@@ -135,7 +136,7 @@
                 <u>Estado Pedido</u>
               </ion-row>
               <ion-row>
-                <a style="color: azure;">{{item.estado}} </a>
+                <a style="font-size: 17px;color: azure;">{{item.estado}} </a>
               </ion-row>               
             </ion-col>
           </ion-row>
@@ -149,7 +150,7 @@
   <div *ngIf="this.consulta">
     <ion-card>
       <ion-card-header align="center">
-          <ion-card-title style="font-weight: bold;color:azure;">Consultas de clientes</ion-card-title>
+          <ion-card-title style="font-size: 26px;font-weight: bold;color:azure;">Consultas de clientes</ion-card-title>
       </ion-card-header>
     </ion-card>
     <ion-fab vertical="top" horizontal="end" slot="fixed" style="position: fixed;margin-top: 15%;">
@@ -162,12 +163,12 @@
 
     <ion-card *ngFor="let item of this.consultas; let i = index" data-index="i">
       <ion-card-header>
-          <ion-card-subtitle><u style="font-weight: bold;color:azure;">Consulta del Cliente</u> : {{item.nombre}}</ion-card-subtitle>
+          <ion-card-subtitle style="font-size: 18px;"><u style="color:azure;">Consulta del Cliente</u> : {{item.nombre}}</ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
         <ion-row>
           <ion-col>
-            <ion-button style="--background: #8D2CE2" (click)="responderConsulta(item)">
+            <ion-button style="--background: #8D2CE2;font-size: 17px;" (click)="responderConsulta(item)">
               Responder
             </ion-button>    
           </ion-col>         

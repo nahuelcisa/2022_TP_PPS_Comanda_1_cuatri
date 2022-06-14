@@ -7,19 +7,19 @@
     
     <ion-card>
       <ion-card-header align="center">
-          <ion-card-title style="font-weight: bold;color:azure;">Home Cocina</ion-card-title>
+          <ion-card-title style="font-size: 26px;font-weight: bold;color:azure;">Home Cocina</ion-card-title>
       </ion-card-header>
     </ion-card>
   
     <!--Recorro todos los Pedidos En Preparacion-->   
     <ion-card *ngFor="let item of this.pedidosEnPreparacionArray; let i = index" data-index="i">
       <ion-card-header>
-          <ion-card-subtitle><u style="font-weight: bold;color:azure;">Pedido del Cliente</u> : {{item.usuario.nombre}}</ion-card-subtitle>
+          <ion-card-subtitle style="font-size: 19px;"><u style="font-weight: bold;color:azure;">Pedido del Cliente</u> : {{item.usuario.nombre}}</ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
 
-        <ion-row style="width: 100%;">
-          <ion-col style="text-align:left;font-weight: bold;color:azure">
+        <ion-row style="width: 100%;font-size: 17px;color:azure">
+          <ion-col style="text-align:left;">
             PRODUCTOS
           </ion-col>
           <ion-col style="text-align:right">
@@ -32,7 +32,7 @@
         </ion-row>
 
         <ion-label *ngFor="let itemP of item.productos; let ip = index" data-index="ip">   
-          <ion-row *ngIf="itemP.tipo == 'cocina'" style="flex-grow: 1;">               
+          <ion-row *ngIf="itemP.tipo == 'cocina'" style="flex-grow: 1;font-size: 17px">               
               <ion-col style="text-align:left">              
                 <!--Muestro los Productos-->                      
                       {{itemP.descripcion}} - ({{itemP.nombre}})
@@ -48,9 +48,9 @@
         </ion-row>
 
         
-        <ion-row>
+        <ion-row style="font-size: 16px;">
           <ion-col>
-            <ion-button style="--background: #8D2CE2" (click)="onPedidolisto(item)">
+            <ion-button style="--background: #8D2CE2;font-size: 17px;" (click)="onPedidolisto(item)">
               Finalizar Pedido
             </ion-button>    
           </ion-col>
@@ -59,7 +59,7 @@
               <u>Estado Pedido</u>
             </ion-row>
             <ion-row>
-              <a style="color: azure;">{{item.estado}} </a>
+              <a style="font-size: 17px;color: azure;">{{item.estado}} </a>
             </ion-row> 
           </ion-col>            
         </ion-row>
