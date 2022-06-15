@@ -40,9 +40,7 @@ export class HomeMozoPage implements OnInit {
   ){ 
     this.loading = true;
 
-    this.fs.traerPedidosConfirmar().subscribe(value=>{
-      this.pedidosConfirmarPagoArray = value;
-    });
+
 
     this.fs.traerMesas().subscribe(value =>{
       this.mesasArray = value;
@@ -61,6 +59,9 @@ export class HomeMozoPage implements OnInit {
   }
 
   ngOnInit() {    
+    this.fs.traerPedidosConfirmar().subscribe(value=>{
+      this.pedidosConfirmarPagoArray = value;
+    });
   }
 
   cargarArrayPedidos(){

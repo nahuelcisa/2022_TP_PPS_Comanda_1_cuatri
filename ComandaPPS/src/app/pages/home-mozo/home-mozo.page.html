@@ -194,8 +194,8 @@
 
     <ion-card *ngFor="let item of this.pedidosConfirmarPagoArray; let i = index" data-index="i">
       <ion-card-header>
-          <ion-card-subtitle style="font-size: 18px;"><u style="color:azure;">Pedido del cliente</u> : {{item.usuario.nombre}}</ion-card-subtitle>
-          <ion-card-subtitle style="font-size: 18px;"><u style="color:azure;">Mesa</u> : {{item.mesa}}</ion-card-subtitle>
+          <ion-card-subtitle style="font-size: 18px;"><u style="color:azure;">Pedido del cliente</u> : {{item.pedido.usuario.nombre}}</ion-card-subtitle>
+          <ion-card-subtitle style="font-size: 18px;"><u style="color:azure;">Mesa</u> : {{item.pedido.mesa}}</ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
         <ion-row>
