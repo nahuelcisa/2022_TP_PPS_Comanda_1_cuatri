@@ -5,14 +5,15 @@
   
   <div style="padding-left: 2%; padding-right: 2%;" *ngIf="this.principal">
     
-    <ion-button expand="block" style="--background: rgb(255, 115, 0); padding-left: 15%; padding-right: 15%;" (click)="verConsultas()">Consultas de Clientes</ion-button>
+    <ion-button expand="block" style="--background: black; padding-left: 15%; padding-right: 15%; " (click)="verConsultas()">Consultas de Clientes</ion-button>
+    <ion-button expand="block" style="--background: rgb(255, 115, 0); padding-left: 15%; padding-right: 15%; margin-top: 10px;" (click)="listConfirmaPago()">Confirmar pagos</ion-button>
     <ion-card>
       <ion-card-header align="center">
           <ion-card-title style="font-size: 26px;font-weight: bold;color:azure;">{{titulo}}</ion-card-title>
       </ion-card-header>
     </ion-card>
   
-    <ion-fab vertical="top" horizontal="end" slot="fixed" style="position: fixed;margin-top: 25%;">
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" style="position: fixed;margin-top: 30%;">
       <ion-fab-button *ngIf="listConfirmarPedido" color="naranja" (click)="onVerPedidosEnPreparacion()">
         <!-- <i class="fa fa-list-alt" aria-hidden="true" style="font-size: 30px;color: black;"></i> -->
         <i class="fa fa-id-badge" aria-hidden="true" style="font-size: 30px;color: black;"></i>
@@ -153,7 +154,7 @@
           <ion-card-title style="font-size: 26px;font-weight: bold;color:azure;">Consultas de clientes</ion-card-title>
       </ion-card-header>
     </ion-card>
-    <ion-fab vertical="top" horizontal="end" slot="fixed" style="position: fixed;margin-top: 15%;">
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" style="position: fixed;margin-top: 15%;">
       <ion-fab-button color="naranja" (click)="onVerPedidosAConfirmar()">
         <!-- <i class="fa fa-list-alt" aria-hidden="true" style="font-size: 30px;color: black;"></i> -->
         <i class="fa fa-list-alt" aria-hidden="true" style="font-size: 30px;color: black;"></i>
@@ -170,6 +171,37 @@
           <ion-col>
             <ion-button style="--background: #8D2CE2;font-size: 17px;" (click)="responderConsulta(item)">
               Responder
+            </ion-button>    
+          </ion-col>         
+        </ion-row>
+      </ion-card-content>     
+    </ion-card>
+  </div>
+
+  <div *ngIf="this.confirmaPago">
+    <ion-card>
+      <ion-card-header align="center">
+          <ion-card-title style="font-size: 26px;font-weight: bold;color:azure;">Confirmar pagos de clientes.</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" style="position: fixed;margin-top: 15%;">
+      <ion-fab-button color="naranja" (click)="onVerPedidosAConfirmar()">
+        <!-- <i class="fa fa-list-alt" aria-hidden="true" style="font-size: 30px;color: black;"></i> -->
+        <i class="fa fa-list-alt" aria-hidden="true" style="font-size: 30px;color: black;"></i>
+      </ion-fab-button>
+    </ion-fab>
+
+
+    <ion-card *ngFor="let item of this.pedidosConfirmarPagoArray; let i = index" data-index="i">
+      <ion-card-header>
+          <ion-card-subtitle style="font-size: 18px;"><u style="color:azure;">Pedido del cliente</u> : {{item.usuario.nombre}}</ion-card-subtitle>
+          <ion-card-subtitle style="font-size: 18px;"><u style="color:azure;">Mesa</u> : {{item.mesa}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-row>
+          <ion-col>
+            <ion-button style="--background: #8D2CE2;font-size: 17px;" (click)="cambiarEstadoConfirmarPago(item)">
+              Confirmar Pago.
             </ion-button>    
           </ion-col>         
         </ion-row>

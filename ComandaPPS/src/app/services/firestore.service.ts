@@ -61,9 +61,17 @@ export class FirestoreService {
   encuestasEmpleados: Observable<any>;
 
   encuestaArray : any = [];
+
+  pedidosConfirmadosCollectionReference : any;
+  pedidosConfirmados : Observable<any>;
+  pedidosConfirmadosArray : any = [];
   
   constructor(private angularF : AngularFirestore) 
   {
+
+    this.pedidosConfirmadosCollectionReference = this.angularF.collection<any>('pagosAConfirmar');
+    this.pedidosConfirmados = this.pedidosConfirmadosCollectionReference.valueChanges({idField : 'id'});
+
     this.listaEsperaCollectionReference = this.angularF.collection<any>('listaEspera');
     this.listaEspera = this.listaEsperaCollectionReference.valueChanges({idField: 'id'});
 
@@ -106,6 +114,11 @@ export class FirestoreService {
     this.encuestasEmpleados = this.encuestaEmpleadoCollectionReference.valueChanges({idField: 'id'});
 
 
+  }
+
+  traerPedidosConfirmar()
+  {
+    return this.pedidosConfirmados;
   }
 
   traerClientes()
@@ -167,6 +180,15 @@ export class FirestoreService {
   {
     return this.angularF.collection(coleccion).doc(id).update(foto);
   } */
+
+
+  agregarEstadoPedidoConfirmarPago(objeto: any){
+    return this.angularF.collection('pagosAConfirmar').add(objeto);
+  }
+
+  eliminarPedidoConfirmarPago(id_objeto: any){
+    return this.angularF.collection('pagosAConfirmar').doc(id_objeto).delete();
+  }
 
   modificarCliente(objeto: any, id_objeto: any){
     this.usuario = objeto;

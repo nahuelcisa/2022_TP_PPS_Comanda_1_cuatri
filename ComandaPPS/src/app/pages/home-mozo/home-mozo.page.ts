@@ -20,6 +20,9 @@ export class HomeMozoPage implements OnInit {
   pedidos: any = [];
   confirmacionPedidosArray: any = [];//Cargo los pedidos a confirmar en este array 
   pedidosConfirmadosArray: any = [];//Cargo los pedidos ya confirmados en este array 
+  pedidosConfirmarPagoArray : any = [];
+  mesasArray : any = [];
+  mesaActual : any;
 
   titulo: string = "Pedidos a Confirmar";
   consulta : boolean = false;
@@ -27,6 +30,7 @@ export class HomeMozoPage implements OnInit {
   chat : boolean = false;
   emisor : any;
   principal : boolean = true;
+  confirmaPago : boolean = false;
 
   constructor(
     private fs : FirestoreService, 
@@ -36,9 +40,17 @@ export class HomeMozoPage implements OnInit {
   ){ 
     this.loading = true;
 
+    this.fs.traerPedidosConfirmar().subscribe(value=>{
+      this.pedidosConfirmarPagoArray = value;
+    });
+
+    this.fs.traerMesas().subscribe(value =>{
+      this.mesasArray = value;
+    });
     this.fs.traerPedidos().subscribe(value => {
         this.confirmacionPedidosArray = [];
         this.pedidosConfirmadosArray = [];
+        this.pedidosConfirmarPagoArray = [];
         this.pedidos = value;
         this.cargarArrayPedidos();
     });
@@ -84,6 +96,16 @@ export class HomeMozoPage implements OnInit {
     const toast = await this.toast.create({
       position: 'top',
       message: 'Pedido Confirmado.',
+      duration: 1100,
+      color: 'success'
+    });
+    toast.present();
+  }
+
+  async SuccessToastPagoConfirmado() {
+    const toast = await this.toast.create({
+      position: 'top',
+      message: 'Pago Confirmado.',
       duration: 1100,
       color: 'success'
     });
@@ -190,4 +212,35 @@ export class HomeMozoPage implements OnInit {
     this.emisor = "";
   }
 
+  listConfirmaPago(){
+    this.principal = false;
+    this.confirmaPago = true;
+  }
+
+  cambiarEstadoConfirmarPago(item : any){
+    
+    for (const iterator of this.mesasArray) {
+      if(iterator.nroMesa == item.mesa){
+        this.mesaActual = iterator;
+        break;
+      }
+    }
+
+    
+    item.estadoPedido = 'pagado';
+    this.mesaActual.mesa = 0;
+    item.juegoJugado = false;
+    item.descuento = "";
+    this.fs.modificarUsuario(item.usuario,item.usuario.id);
+    this.mesaActual.ocupada = false;
+    this.fs.modificarMesa(this.mesaActual, this.mesaActual.id);
+    this.fs.modificarEstadoPedido(item,item.pedidoElegido.id);
+    this.fs.eliminarPedidoConfirmarPago(item.id);
+
+    this.loading = true;
+    setTimeout(() => {
+      this.SuccessToastPagoConfirmado();
+      this.loading = false;
+    }, 3000);
+  }
 }

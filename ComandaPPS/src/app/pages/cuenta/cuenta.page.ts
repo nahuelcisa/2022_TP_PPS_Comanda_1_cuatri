@@ -77,13 +77,8 @@ export class CuentaPage implements OnInit {
 
   pagar(){
     this.pedidoElegido.estado = 'pagado';
-    this.fs.modificarEstadoPedido(this.pedidoElegido,this.pedidoElegido.id);
-    this.usuarioActual.mesa = 0;
-    this.usuarioActual.juegoJugado = false;
-    this.usuarioActual.descuento = "";
-    this.fs.modificarUsuario(this.usuarioActual,this.usuarioActual.id);
-    this.mesa.ocupada = false;
-    this.fs.modificarMesa(this.mesa, this.mesa.id);
+    this.fs.agregarEstadoPedidoConfirmarPago(this.pedidoElegido);
+
     this.loading = true;
     setTimeout(() => {
       this.pagado = true;
