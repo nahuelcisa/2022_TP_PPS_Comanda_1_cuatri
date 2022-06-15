@@ -176,6 +176,7 @@ export class HomeMozoPage implements OnInit {
       this.listConfirmarPedido = true;
       this.consulta = false;
       this.principal = true;
+      this.confirmaPago = false;
     }, 1000);
        
   }
