@@ -90,6 +90,7 @@ export class ListaProductosPage implements OnInit {
     setTimeout(() => {
 
       this.fs.agregarPedido(pedido);
+      this.reproducirSonido();
       this.successToast();
       this.loading = false;
 
@@ -117,5 +118,24 @@ export class ListaProductosPage implements OnInit {
       color: 'success'
     });
     toast.present();
+  }
+
+  reproducirSonido()
+  {
+    let ruta : string = '../../../assets/sonidos/';
+    let nombreArchivo : string = "";
+    let audioNombre : string = "";
+
+    audioNombre = "audioBueno1.mp3"; 
+    nombreArchivo = ruta + audioNombre;
+
+    this.reproducir(nombreArchivo);
+           
+  }
+
+  reproducir(ruta : string)
+  {
+    let audio = new Audio(ruta);
+    audio.play();   
   }
 }

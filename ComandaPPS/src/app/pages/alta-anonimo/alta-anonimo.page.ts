@@ -51,8 +51,9 @@ export class AltaAnonimoPage implements OnInit {
         this.fotoSubida = false;
         this.as.loading = false;
         this.webPath = "";
+        this.reproducirSonido();
         this.router.navigate(['/home']);
-    }, 2500);
+    }, 3000);
 
   }
 
@@ -153,6 +154,25 @@ export class AltaAnonimoPage implements OnInit {
       .subscribe((data) => {
         console.log(data);
       });
+  }
+
+  reproducirSonido()
+  {
+    let ruta : string = '../../../assets/sonidos/';
+    let nombreArchivo : string = "";
+    let audioNombre : string = "";
+
+    audioNombre = "audioInicio3.mp3"; 
+    nombreArchivo = ruta + audioNombre;
+
+    this.reproducir(nombreArchivo);
+           
+  }
+
+  reproducir(ruta : string)
+  {
+    let audio = new Audio(ruta);
+    audio.play();   
   }
 
 }
