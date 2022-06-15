@@ -14,7 +14,7 @@ export class HomeClientePage implements OnInit {
 
 
   loading: boolean = false;
-  escaneoQR: boolean = true; 
+  escaneoQR: boolean = false; 
   menuOpciones: boolean = false;
   esperaAsignacionMesa: boolean = false;
   mesaAsignada : boolean = false;
@@ -39,12 +39,13 @@ export class HomeClientePage implements OnInit {
   cuenta : boolean = false;
   chat : boolean = false;
   encuestaCargada : boolean = false;
+  esperarPago : boolean = false;
 
   constructor(private fs : FirestoreService, private push : PushService, private sf : ScannerService, private toastController : ToastController, private router : Router) 
   { 
     //Busco en la coleccion de Lista de espera si esta, sino esta sigo en pantalla esperaAsignacionMesa
     console.log(this.fs.usuario);
-    
+    this.escaneoQR = true;
   }
 
   ngOnInit() 
@@ -80,7 +81,17 @@ export class HomeClientePage implements OnInit {
           {
             this.cuenta = false;
             this.escaneoQR = true;
-          }    
+          }  
+          else
+          {
+            console.log("iterator.pagoConfirmado");
+            console.log(iterator.pagoConfirmado);
+            if(iterator.pagoConfirmado)
+            {
+              this.esperarPago = false;
+              console.log("holaaaa");
+            }
+          }  
         }
       }
      });
@@ -101,12 +112,21 @@ export class HomeClientePage implements OnInit {
   {
     this.todasEncuestas = true;
     this.menuOpciones = false;
+    this.menuOpcionesConfirma = false;
   }
 
   esconderEncuestas()
   {
     this.todasEncuestas = false;
-    this.menuOpciones = true;
+
+    if(this.usuarioPedido != '')
+    {
+      this.menuOpcionesConfirma = true;
+    }
+    else{
+
+      this.menuOpciones = true;
+    }
   }
 
   entrarListaEspera()
@@ -240,12 +260,16 @@ export class HomeClientePage implements OnInit {
   {
     this.estadoPedido = true;
     this.menuOpcionesConfirma = false;
+    this.escaneoQR = false;
   }
 
   mostrarEncuesta()
   {
     this.encuesta = true;
     this.menuOpcionesConfirma = false;
+    this.escaneoQR = false;
+    this.usuarioPedido.pagoConfirmado = false;
+    this.esperarPago = false;
   }
 
   volverAtras(dato : boolean)
@@ -253,6 +277,7 @@ export class HomeClientePage implements OnInit {
     this.encuesta = dato;
     this.menuOpcionesConfirma = true;
     this.encuestaCargada = true;
+    this.escaneoQR = false;
   }
 
   terminar(dato : boolean)
@@ -283,34 +308,41 @@ export class HomeClientePage implements OnInit {
     this.fs.modificarEstadoPedido(this.usuarioPedido,this.usuarioPedido.id);
     this.estadoPedido = false;
     this.mesa = true;
+    this.escaneoQR = false;
   }
 
   consultarMozo()
   {
     this.chat = true;
     this.menuOpcionesConfirma = false;
+    this.escaneoQR = false;
   }
 
   esconderChat()
   {
     this.chat = false;
     this.menuOpcionesConfirma = true;
+    this.escaneoQR = false;
   }
 
   pedirCuenta()
   {
     this.cuenta = true;
     this.menuOpcionesConfirma = false;
+    this.escaneoQR = false;
   }
 
   pagadoAtras(dato : boolean)
   {
     this.cuenta = dato;
-    this.menuOpcionesConfirma = true;
+    this.escaneoQR = false;
+    this.menuOpcionesConfirma = false;
+    this.esperarPago = true;
   }
 
   salir()
   {
+    this.esperarPago = false;
     this.router.navigate(['/login']);
   }
 

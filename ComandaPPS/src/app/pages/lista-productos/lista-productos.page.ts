@@ -83,7 +83,8 @@ export class ListaProductosPage implements OnInit {
       tiempoEstimado : this.tiempoEstimado,
       estado : "espera",
       entregaConfirmada : false,
-      mesa : this.usuarioActual.mesa
+      mesa : this.usuarioActual.mesa,
+      pagoConfirmado : false
     }
 
     this.loading = true;

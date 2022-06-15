@@ -83,10 +83,10 @@ export class CuentaPage implements OnInit {
       pedido : this.pedidoElegido
     };
     pedidoASubir.pedido.estado = 'pagado';
-    this.fs.agregarEstadoPedidoConfirmarPago(pedidoASubir);
-
+    
     this.loading = true;
     setTimeout(() => {
+      this.fs.agregarEstadoPedidoConfirmarPago(pedidoASubir);
       this.pagado = true;
       this.loading = false;
       this.pagadoEvent.emit(false);

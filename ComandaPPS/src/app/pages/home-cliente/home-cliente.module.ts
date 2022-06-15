@@ -20,6 +20,7 @@ import { ChartEncuestaClientesPage } from '../chart-encuesta-clientes/chart-encu
 import { CuentaPage } from '../cuenta/cuenta.page';
 import { ChatPage } from '../chat/chat.page';
 
+
 @NgModule({
   imports: [
     CommonModule,

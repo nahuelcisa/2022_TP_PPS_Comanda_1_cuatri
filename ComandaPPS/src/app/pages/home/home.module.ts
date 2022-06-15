@@ -19,6 +19,9 @@ import {NgxChartsModule} from '@swimlane/ngx-charts';
 import { ChartEncuestaClientesPage } from '../chart-encuesta-clientes/chart-encuesta-clientes.page';
 import { CuentaPage } from '../cuenta/cuenta.page';
 import { ChatPage } from '../chat/chat.page';
+import { EncuestaClientePage } from '../encuesta-cliente/encuesta-cliente.page';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 //Falta page para clientes
 
 @NgModule({
@@ -29,7 +32,9 @@ import { ChatPage } from '../chat/chat.page';
     IonicModule,
     HomePageRoutingModule,
     MatMenuModule,
-    NgxChartsModule
+    NgxChartsModule,
+    MatRadioModule,
+    MatCheckboxModule
   ],
   declarations: [
     HomePage,
@@ -41,7 +46,8 @@ import { ChatPage } from '../chat/chat.page';
     ListaProductosPage,
     ChartEncuestaClientesPage,
     CuentaPage,
-    ChatPage
+    ChatPage,
+    EncuestaClientePage
   ],
   providers: [{
     provide: MAT_MENU_DEFAULT_OPTIONS,
