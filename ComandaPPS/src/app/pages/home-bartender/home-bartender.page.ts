@@ -75,6 +75,26 @@ export class HomeBartenderPage implements OnInit {
 
     this.fs.modificarEstadoPedido(item, item.id);
 
+    this.reproducirSonido("audioBueno2");
     this.SuccessToastProductoTerminado();
+  }
+
+  reproducirSonido(dato : string)
+  {
+    let ruta : string = '../../../assets/sonidos/';
+    let nombreArchivo : string = "";
+    let audioNombre : string = "";
+
+    audioNombre = dato + ".mp3"; 
+    nombreArchivo = ruta + audioNombre;
+
+    this.reproducir(nombreArchivo);
+           
+  }
+
+  reproducir(ruta : string)
+  {
+    let audio = new Audio(ruta);
+    audio.play();   
   }
 }

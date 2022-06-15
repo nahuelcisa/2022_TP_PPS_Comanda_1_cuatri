@@ -74,8 +74,10 @@ export class LoginPage implements OnInit {
       this.as.login(this.email,this.password);
       setTimeout(() => {
         this.form.reset();
+        this.reproducirSonido("audioInicio");
       }, 5000);
     }else{
+      this.reproducirSonido("audioError");
       this.DangerToastHabilitado();
     }
 
@@ -141,6 +143,25 @@ export class LoginPage implements OnInit {
         
       }, 1000);
     
+  }
+
+  reproducirSonido(dato : string)
+  {
+    let ruta : string = '../../../assets/sonidos/';
+    let nombreArchivo : string = "";
+    let audioNombre : string = "";
+
+    audioNombre = dato + ".mp3"; 
+    nombreArchivo = ruta + audioNombre;
+
+    this.reproducir(nombreArchivo);
+           
+  }
+
+  reproducir(ruta : string)
+  {
+    let audio = new Audio(ruta);
+    audio.play();   
   }
 
 }

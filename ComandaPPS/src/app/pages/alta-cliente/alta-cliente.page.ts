@@ -58,6 +58,7 @@ export class AltaClientePage implements OnInit {
         this.fotoSubida = false;
         this.as.loading = false;
         this.webPath = "";
+        this.reproducirSonido("audioInicio");
         this.router.navigate(['/login']);
     }, 2500);
 
@@ -163,5 +164,24 @@ export class AltaClientePage implements OnInit {
       .subscribe((data) => {
         console.log(data);
       });
+  }
+
+  reproducirSonido(dato : string)
+  {
+    let ruta : string = '../../../assets/sonidos/';
+    let nombreArchivo : string = "";
+    let audioNombre : string = "";
+
+    audioNombre = dato + ".mp3"; 
+    nombreArchivo = ruta + audioNombre;
+
+    this.reproducir(nombreArchivo);
+           
+  }
+
+  reproducir(ruta : string)
+  {
+    let audio = new Audio(ruta);
+    audio.play();   
   }
 }

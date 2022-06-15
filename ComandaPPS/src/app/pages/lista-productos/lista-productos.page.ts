@@ -60,6 +60,7 @@ export class ListaProductosPage implements OnInit {
       this.tiempoEstimado += parseInt(item.tiempoPromedio);
       this.precioCarrito += parseInt(item.precio);
     }else{
+      this.reproducirSonido("audioError");
       this.ErrorToastCarrito();
     }
   }
@@ -90,7 +91,7 @@ export class ListaProductosPage implements OnInit {
     setTimeout(() => {
 
       this.fs.agregarPedido(pedido);
-      this.reproducirSonido();
+      this.reproducirSonido("audioBueno2");
       this.successToast();
       this.loading = false;
 
@@ -120,13 +121,13 @@ export class ListaProductosPage implements OnInit {
     toast.present();
   }
 
-  reproducirSonido()
+  reproducirSonido(dato : string)
   {
     let ruta : string = '../../../assets/sonidos/';
     let nombreArchivo : string = "";
     let audioNombre : string = "";
 
-    audioNombre = "audioBueno1.mp3"; 
+    audioNombre = dato + ".mp3"; 
     nombreArchivo = ruta + audioNombre;
 
     this.reproducir(nombreArchivo);

@@ -221,21 +221,21 @@ export class HomeMozoPage implements OnInit {
   cambiarEstadoConfirmarPago(item : any){
     
     for (const iterator of this.mesasArray) {
-      if(iterator.nroMesa == item.mesa){
+      if(iterator.nroMesa == item.pedido.mesa){
         this.mesaActual = iterator;
         break;
       }
     }
 
     
-    item.estadoPedido = 'pagado';
-    this.mesaActual.mesa = 0;
-    item.juegoJugado = false;
-    item.descuento = "";
-    this.fs.modificarUsuario(item.usuario,item.usuario.id);
+    item.pedido.estadoPedido = 'pagado';
+    item.pedido.usuario.juegoJugado = false;
+    item.pedido.usuario.descuento = "";
+    item.pedido.usuario.mesa = 0;
+    this.fs.modificarUsuario(item.pedido.usuario,item.pedido.usuario.id);
     this.mesaActual.ocupada = false;
     this.fs.modificarMesa(this.mesaActual, this.mesaActual.id);
-    this.fs.modificarEstadoPedido(item,item.pedidoElegido.id);
+    this.fs.modificarEstadoPedido(item.pedido,item.pedido.id);
     this.fs.eliminarPedidoConfirmarPago(item.id);
 
     this.loading = true;

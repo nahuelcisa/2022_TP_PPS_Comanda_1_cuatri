@@ -71,6 +71,7 @@ export class HomeMetrePage implements OnInit {
     this.fs.modificarMesa(mesaAModificar,mesaAModificar.id);
     this.fs.modificarUsuario(usuarioAModificar,usuarioAModificar.id);
     this.fs.eliminarListaEspera(usuario.id);
+    this.reproducirSonido("audioBueno2");
     this.MostrarToast(`La mesa ${this.mesaSeleccionada} ha sido asignada a ${usuario.nombre}`).then((toast : any) =>{
       toast.present();
     });
@@ -87,4 +88,22 @@ export class HomeMetrePage implements OnInit {
     });
   }
 
+  reproducirSonido(dato : string)
+  {
+    let ruta : string = '../../../assets/sonidos/';
+    let nombreArchivo : string = "";
+    let audioNombre : string = "";
+
+    audioNombre = dato + ".mp3"; 
+    nombreArchivo = ruta + audioNombre;
+
+    this.reproducir(nombreArchivo);
+           
+  }
+
+  reproducir(ruta : string)
+  {
+    let audio = new Audio(ruta);
+    audio.play();   
+  }
 }

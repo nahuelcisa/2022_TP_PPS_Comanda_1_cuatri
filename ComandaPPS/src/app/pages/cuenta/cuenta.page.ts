@@ -10,6 +10,7 @@ import { ScannerService } from 'src/app/services/scanner.service';
 })
 export class CuentaPage implements OnInit {
   
+  @Output() pagadoEvent = new EventEmitter<boolean>();
   pagado : boolean = false;
   loading : boolean = false;
   scaneo : boolean = false;
@@ -22,6 +23,7 @@ export class CuentaPage implements OnInit {
   usuariosArray : any = [];
   usuarioActual : any;
   mesaArray : any = [];
+
 
   constructor(private fs : FirestoreService, private as : AuthService, private scan : ScannerService) { 
     
@@ -76,13 +78,18 @@ export class CuentaPage implements OnInit {
 
 
   pagar(){
-    this.pedidoElegido.estado = 'pagado';
-    this.fs.agregarEstadoPedidoConfirmarPago(this.pedidoElegido);
+    let pedidoASubir = 
+    {
+      pedido : this.pedidoElegido
+    };
+    pedidoASubir.pedido.estado = 'pagado';
+    this.fs.agregarEstadoPedidoConfirmarPago(pedidoASubir);
 
     this.loading = true;
     setTimeout(() => {
       this.pagado = true;
       this.loading = false;
+      this.pagadoEvent.emit(false);
     }, 3000);
 
   }

@@ -59,6 +59,7 @@ export class HomeSupervisorPage implements OnInit {
             this.loading = false;
             this.as.registro(item);
             console.log(item);
+            this.reproducirSonido("audioBueno2");
             this.SuccessToastEncuesta();
           });
         });
@@ -76,5 +77,23 @@ export class HomeSupervisorPage implements OnInit {
     toast.present();
   }
 
+  reproducirSonido(dato : string)
+  {
+    let ruta : string = '../../../assets/sonidos/';
+    let nombreArchivo : string = "";
+    let audioNombre : string = "";
+
+    audioNombre = dato + ".mp3"; 
+    nombreArchivo = ruta + audioNombre;
+
+    this.reproducir(nombreArchivo);
+           
+  }
+
+  reproducir(ruta : string)
+  {
+    let audio = new Audio(ruta);
+    audio.play();   
+  }
 
 }

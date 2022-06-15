@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { FirestoreService } from 'src/app/services/firestore.service';
 import { PushService } from 'src/app/services/push-service.service';
@@ -37,8 +38,9 @@ export class HomeClientePage implements OnInit {
   todasEncuestas : boolean = false;
   cuenta : boolean = false;
   chat : boolean = false;
-  
-  constructor(private fs : FirestoreService, private push : PushService, private sf : ScannerService, private toastController : ToastController) 
+  encuestaCargada : boolean = false;
+
+  constructor(private fs : FirestoreService, private push : PushService, private sf : ScannerService, private toastController : ToastController, private router : Router) 
   { 
     //Busco en la coleccion de Lista de espera si esta, sino esta sigo en pantalla esperaAsignacionMesa
     console.log(this.fs.usuario);
@@ -161,6 +163,7 @@ export class HomeClientePage implements OnInit {
     /*     this.escanearQRMesa();
     if(this.numeroMesaEscaneada != this.fs.usuario.mesa)
     {
+      this.reproducirSonido("audioError");
       this.MostrarToast(`Esta no es la mesa que se le fue asignada, esta es la ${this.numeroMesaEscaneada} y usted tiene la ${this.fs.usuario.mesa}`,"Mesa incorrecta","danger").then((toast : any) =>{
         toast.present();
       });
@@ -249,6 +252,7 @@ export class HomeClientePage implements OnInit {
   {
     this.encuesta = dato;
     this.menuOpcionesConfirma = true;
+    this.encuestaCargada = true;
   }
 
   terminar(dato : boolean)
@@ -297,6 +301,17 @@ export class HomeClientePage implements OnInit {
   {
     this.cuenta = true;
     this.menuOpcionesConfirma = false;
+  }
+
+  pagadoAtras(dato : boolean)
+  {
+    this.cuenta = dato;
+    this.menuOpcionesConfirma = true;
+  }
+
+  salir()
+  {
+    this.router.navigate(['/login']);
   }
 
   MostrarToast(message : string, header : string, color : string)
