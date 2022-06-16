@@ -58,7 +58,9 @@ export class AltaClientePage implements OnInit {
         this.fotoSubida = false;
         this.as.loading = false;
         this.webPath = "";
-        this.reproducirSonido("audioInicio");
+        if(this.fs.sonido){
+          this.reproducirSonido("audioInicio");
+        }
         this.router.navigate(['/login']);
     }, 2500);
 

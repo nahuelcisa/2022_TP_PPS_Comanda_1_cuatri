@@ -35,7 +35,7 @@ export class HomeMozoPage implements OnInit {
   constructor(
     private fs : FirestoreService, 
     private toast : ToastController,
-    private as : AuthService,
+    public as : AuthService,
     private push : PushService
   ){ 
     this.loading = true;
@@ -148,11 +148,50 @@ export class HomeMozoPage implements OnInit {
     }
               
     this.fs.modificarEstadoPedido(item, item.id); 
+    this.sendPushConfirmaPedido();
+    if(this.fs.sonido){
     this.reproducirSonido("audioBueno2");
+    }
     this.SuccessToastPedidoConfirmado();
   }
   
+  sendPushConfirmaPedido() 
+  {
+    this.push
+      .sendPushNotification({
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        registration_ids: [
+          // eslint-disable-next-line max-len
+          '',
+        ],
+        notification: {
+          title: 'Nuevo pedido.',
+          body: 'Hay un nuevo pedido para realizar.',
+        },
+      })
+      .subscribe((data) => {
+        console.log(data);
+      });
+  }
 
+  sendPushPedidoTerminado() 
+  {
+    this.push
+      .sendPushNotification({
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        registration_ids: [
+          // eslint-disable-next-line max-len
+          '',
+        ],
+        notification: {
+          title: 'Pedido Finalizado.',
+          body: 'Hay un pedido listo para ser entregado.',
+        },
+      })
+      .subscribe((data) => {
+        console.log(data);
+      });
+  }
 
   onVerPedidosEnPreparacion(){
 
@@ -186,10 +225,13 @@ export class HomeMozoPage implements OnInit {
     if(item.estado == "en preparacion"){
       this.DangerToastPedidoEnPreparacion();
     }else if(item.estado == "terminado"){
+      this.sendPushPedidoTerminado();
         item.estado = "entregado";
                
         this.fs.modificarEstadoPedido(item, item.id);
+        if(this.fs.sonido){
         this.reproducirSonido("audioBueno2");
+        }
         this.SuccessToastPedidoEntregado();                 
     }    
   }
@@ -230,6 +272,7 @@ export class HomeMozoPage implements OnInit {
 
     
     item.pedido.estadoPedido = 'pagado';
+    item.pedido.pagoConfirmado = true;
     item.pedido.usuario.juegoJugado = false;
     item.pedido.usuario.descuento = "";
     item.pedido.usuario.mesa = 0;
@@ -241,7 +284,9 @@ export class HomeMozoPage implements OnInit {
 
     this.loading = true;
     setTimeout(() => {
+      if(this.fs.sonido){
       this.reproducirSonido("audioBueno2");
+      }
       this.SuccessToastPagoConfirmado();
       this.loading = false;
     }, 3000);

@@ -103,7 +103,7 @@ export class AuthService {
     })
   }
 
-  logOut()
+  logout()
   {
     this.loading = true;
     this.auth.signOut();

@@ -69,7 +69,7 @@
                 
               </ion-row>
             -->
-            <ion-grid style="display: flex; flex-flow: column;">
+            <ion-grid style="display: flex; flex-flow: column; height: 50px;">
               <ion-row style="flex-grow: 1;">
                 <ion-col style="width: 70%;">
                   <div style="padding-left: 2%; padding-right: 2%; margin-bottom: 25px; margin-top: 5%; width: 100%;">
@@ -77,7 +77,7 @@
                   </div>
                 </ion-col>
                 <ion-col style="width: 30%;">
-                  <div style="padding-left: 2%; padding-right: 2%; margin-bottom: 25px; margin-top: 5%; width: 100%;">
+                  <div style="padding-left: 2%; padding-right: 2%; margin-top: 5%; width: 100%;">
                     <ion-button fill="clear" style=" width: 100%; border-radius: 5px; background-color: black; color: white;" (click)="cargarDatos(8)">Supervisor</ion-button>
                   </div>              
                 </ion-col>
@@ -85,13 +85,21 @@
             </ion-grid>
 
             
-                  <div style="padding-left: 2%; padding-right: 2%; margin-bottom: 16px; margin-top: 5%; width: 100%;">
+                  <div style="padding-left: 2%; padding-right: 2%; width: 100%; margin-top: 30px;">
                     <ion-button fill="clear" expand="block" [disabled]='form.invalid' (click)="login()" style=" width: 100%;border-radius: 5px; background-color: #8D2CE2; color: white;">
                           <ion-text>Iniciar Sesión</ion-text>
                     </ion-button>
                 </div>
- 
-            
+                
+                <ion-fab horizontal="center" vertical="bottom" slot="fixed">
+                  <ion-fab-button color="naranja" *ngIf="this.fs.sonido" (click)="sonido(true)">
+                    <ion-icon name="volume-high"></ion-icon>                 
+                  </ion-fab-button>
+
+                  <ion-fab-button color="naranja" *ngIf="!this.fs.sonido" (click)="sonido(false)">
+                    <ion-icon name="volume-mute" ></ion-icon>
+                  </ion-fab-button>
+                </ion-fab>
          
         </div>
     

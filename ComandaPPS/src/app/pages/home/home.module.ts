@@ -13,6 +13,7 @@ import { HomeMetrePage } from '../home-metre/home-metre.page';
 import { HomeMozoPage } from '../home-mozo/home-mozo.page';
 import { HomeCocinaPage } from '../home-cocina/home-cocina.page'; 
 import { HomeClientePage } from '../home-cliente/home-cliente.page';
+import { HomeBartenderPage } from '../home-bartender/home-bartender.page';
 
 import { ListaProductosPage } from '../lista-productos/lista-productos.page';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
@@ -47,7 +48,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     ChartEncuestaClientesPage,
     CuentaPage,
     ChatPage,
-    EncuestaClientePage
+    EncuestaClientePage,
+    HomeBartenderPage
   ],
   providers: [{
     provide: MAT_MENU_DEFAULT_OPTIONS,

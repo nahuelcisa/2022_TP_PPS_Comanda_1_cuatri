@@ -76,7 +76,9 @@ export class HomeCocinaPage implements OnInit {
     }
 
     this.fs.modificarEstadoPedido(item, item.id);
+    if(this.fs.sonido){
     this.reproducirSonido("audioBueno2");
+    }
     this.SuccessToastProductoTerminado();
   }
 

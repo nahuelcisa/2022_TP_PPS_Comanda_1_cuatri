@@ -59,7 +59,9 @@ export class HomeSupervisorPage implements OnInit {
             this.loading = false;
             this.as.registro(item);
             console.log(item);
+            if(this.fs.sonido){
             this.reproducirSonido("audioBueno2");
+            }
             this.SuccessToastEncuesta();
           });
         });

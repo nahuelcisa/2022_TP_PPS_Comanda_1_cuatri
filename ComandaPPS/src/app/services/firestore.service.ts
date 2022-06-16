@@ -9,6 +9,8 @@ export class FirestoreService {
 
   usuario: any;
 
+  sonido : boolean = true;
+
   usuariosCollectionReference: any;
   usuarios : Observable<any>;
   usuariosArray : any = [];

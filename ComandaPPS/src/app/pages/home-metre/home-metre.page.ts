@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 import { FirestoreService } from 'src/app/services/firestore.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class HomeMetrePage implements OnInit {
   listaEspera : any = [];
   mesaSeleccionada : any;
   usuariosArray : any = [];
-  constructor(private fs : FirestoreService, private toastController : ToastController) 
+  constructor(private fs : FirestoreService, private toastController : ToastController, public as : AuthService) 
   { 
 
   }
@@ -84,7 +85,9 @@ export class HomeMetrePage implements OnInit {
     this.fs.modificarMesa(mesaAModificar,mesaAModificar.id);
     this.fs.modificarUsuario(usuarioAModificar,usuarioAModificar.id);
     this.fs.eliminarListaEspera(usuario.id);
+    if(this.fs.sonido){
     this.reproducirSonido("audioBueno2");
+    }
     this.MostrarToast(`La mesa ${this.mesaSeleccionada} ha sido asignada a ${usuario.nombre}`).then((toast : any) =>{
       toast.present();
     });

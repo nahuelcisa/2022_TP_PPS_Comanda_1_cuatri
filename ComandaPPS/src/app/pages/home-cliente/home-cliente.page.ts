@@ -21,7 +21,7 @@ export class HomeClientePage implements OnInit {
   menuOpcionesConfirma : boolean = false;
   usuariosArray : any = [];
   usuarioActual : any = "";
-  numeroMesaEscaneada : string = "";
+  numeroMesaEscaneada : number;
   menu : boolean = false;
   listaEspera : any = [];
   mesa : boolean = false;
@@ -40,6 +40,7 @@ export class HomeClientePage implements OnInit {
   chat : boolean = false;
   encuestaCargada : boolean = false;
   esperarPago : boolean = false;
+  variableNormal : boolean = true;
 
   constructor(private fs : FirestoreService, private push : PushService, private sf : ScannerService, private toastController : ToastController, private router : Router) 
   { 
@@ -59,6 +60,10 @@ export class HomeClientePage implements OnInit {
         {
           console.log("EN EL IF DEL PRIMER SUBSCRIBE");
           this.usuarioActual = item;
+          if(this.usuarioActual.mesa != 0){
+            this.mesa = true;
+            this.variableNormal = false;
+          }
           break;
         }
       }
@@ -80,7 +85,6 @@ export class HomeClientePage implements OnInit {
           if(iterator.estado == "pagado")
           {
             this.cuenta = false;
-            this.escaneoQR = true;
           }  
           else
           {
@@ -104,9 +108,49 @@ export class HomeClientePage implements OnInit {
   }
 
   onEscanearQR(){
-    this.escaneoQR = false;     
-    this.menuOpciones = true;    
+
+    let datoAComparar : any;
+
+    this.sf.test().then((data) => {
+
+      datoAComparar = data;
+      this.sf.stopScan();
+      if(datoAComparar == "@Local")
+      {
+        this.escaneoQR = false;
+        this.menuOpciones = true;
+      }
+      else
+      {
+        if(this.fs.sonido){
+        this.reproducirSonido("audioError");
+        }
+        this.MostrarToast("Este no es el QR de este local","QR incorrecto","danger").then((toast : any) =>{
+          toast.present();
+        });
+      }
+    })
+
   }
+
+  reproducirSonido(dato : string)
+    {
+      let ruta : string = '../../../assets/sonidos/';
+      let nombreArchivo : string = "";
+      let audioNombre : string = "";
+
+      audioNombre = dato + ".mp3"; 
+      nombreArchivo = ruta + audioNombre;
+
+      this.reproducir(nombreArchivo);
+
+    }
+
+    reproducir(ruta : string)
+    {
+      let audio = new Audio(ruta);
+      audio.play();
+    }
 
   verEncuestas()
   {
@@ -138,7 +182,6 @@ export class HomeClientePage implements OnInit {
 
     this.loading = true;
     //this.esperaAsignacionMesa = true;
-    this.mesa = true;
   }
 
   sendPushMetre() 
@@ -162,12 +205,10 @@ export class HomeClientePage implements OnInit {
 
   escanearQRMesa()
   {
-    let datos : any = [];
     
     this.sf.test().then((data) => {
       
-      datos = data.split('@');
-      this.numeroMesaEscaneada = datos[0];
+      this.numeroMesaEscaneada = parseInt(data);
       this.sf.stopScan();
     })
   }
@@ -180,35 +221,55 @@ export class HomeClientePage implements OnInit {
     console.log(this.usuarioPedido);
     console.log(this.usuarioActual);
    
-    /*     this.escanearQRMesa();
-    if(this.numeroMesaEscaneada != this.fs.usuario.mesa)
-    {
-      this.reproducirSonido("audioError");
-      this.MostrarToast(`Esta no es la mesa que se le fue asignada, esta es la ${this.numeroMesaEscaneada} y usted tiene la ${this.fs.usuario.mesa}`,"Mesa incorrecta","danger").then((toast : any) =>{
-        toast.present();
-      });
-    }
-    else */if(this.usuarioPedido != ''){
-      this.menuOpcionesConfirma = true;
-      this.menu = false;
-      this.mesa = false;
-      }
-      else 
+    //this.escanearQRMesa();
+
+    this.sf.test().then((data) => {
+      
+      this.numeroMesaEscaneada = parseInt(data);
+      this.sf.stopScan();
+
+      if(this.numeroMesaEscaneada != this.usuarioActual.mesa)
       {
-        if(this.usuarioPedido.estado == "en preparación")
-        {
-          this.menuOpcionesConfirma = true;
-          this.mesa = false;
-          this.menu = false;
-          this.estadoPedido = false;
-        }
-        else
-        { 
-          this.mesa = false;
-          this.menu = true;
-          this.menuOpcionesConfirma = false;
+        if(this.usuarioActual.mesa == 0){
+          if(this.fs.sonido){
+          this.reproducirSonido("audioError");
+          }
+          this.MostrarToast("Usted no tiene una mesa asignada.","Error.","danger").then((toast : any) =>{
+          toast.present();
+        });
+        }else{
+          if(this.fs.sonido){
+          this.reproducirSonido("audioError");
+          }
+          this.MostrarToast(`Esta no es la mesa que se le fue asignada, esta es la ${this.numeroMesaEscaneada} y usted tiene la ${this.usuarioActual.mesa}`,"Mesa incorrecta","danger").then((toast : any) =>{
+            toast.present();
+          });
         }
       }
+      else if(this.usuarioPedido != ''){
+        this.menuOpcionesConfirma = true;
+        this.menu = false;
+        this.mesa = false;
+        }
+        else 
+        {
+          if(this.usuarioPedido.estado == "en preparación")
+          {
+            this.menuOpcionesConfirma = true;
+            this.mesa = false;
+            this.menu = false;
+            this.estadoPedido = false;
+          }
+          else
+          { 
+            this.mesa = false;
+            this.menu = true;
+            this.menuOpcionesConfirma = false;
+          }
+        }
+
+    });
+
   }
   
   atrasCaptura(dato : boolean){

@@ -1,4 +1,5 @@
 <ion-content>
+  <img src="../../assets/Spinner.png" style="display: block; position: absolute;margin-top: 50%; z-index: 101;" [ngClass]="{'loading' : this.loading || this.as.loading}" *ngIf="this.loading || this.as.loading"/> 
 
   <div class="ion-page" id="main-content">
     <ion-header>
@@ -33,4 +34,9 @@
       </ion-row>
     </ion-grid>
   </div>
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="naranja" (click)="this.as.logout()">
+      <ion-icon name="log-out-outline"></ion-icon>           
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

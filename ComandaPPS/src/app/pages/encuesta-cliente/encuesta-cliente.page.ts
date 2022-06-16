@@ -208,7 +208,9 @@ export class EncuestaClientePage implements OnInit {
     
     setTimeout(() => {
       this.as.loading = false;
+      if(this.fs.sonido){
       this.reproducirSonido("audioBueno2");
+      }
       this.MostrarToast("La encuesta ha sido cargada con exito").then((toast : any) =>{
         toast.present();
       });

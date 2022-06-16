@@ -33,12 +33,13 @@ export class HomePage implements OnInit{
   constructor(private as : AuthService, private fs : FirestoreService, private push : PushService) 
   {  
     console.log("constructor");
-    this.push.getUser(); 
+    //this.push.getUser(); 
+      this.homePage();
+
   }
   
   ngOnInit() {
-
-   this.homePage();
+    
   }
 
   homePage(){
@@ -52,15 +53,15 @@ export class HomePage implements OnInit{
     this.view_pageAnonimo = false;
 
     this.view_pageCliente = false;
-
+    console.log(this.as.logeado);
     //Default HomePage Clientes
     switch (this.as.logeado.perfil) {
-      case "supervisor":
+      case "Supervisor":
           this.view_pageSupervisor = true;                  
           this.page_titulo = "Supervisor";
         break;
       
-      case "cliente":
+      case "Cliente":
           this.view_pageCliente = true;                  
           this.page_titulo = "Cliente";
         break;
@@ -70,22 +71,22 @@ export class HomePage implements OnInit{
           this.page_titulo = "Dueño";
         break;
 
-      case "cocinero":
+      case "Cocinero":
           this.view_pageCocina = true;
           this.page_titulo = "Cocina";
         break;
 
-      case "metre":
+      case "Metre":
           this.view_pageMetre = true;
           this.page_titulo = "Metre";
         break;
 
-      case "mozo":
+      case "Mozo":
           this.view_pageMozo = true;
           this.page_titulo = "Mozo";
         break;
       
-      case "bartender":
+      case "Bartender":
           this.view_pageBartender = true;
           this.page_titulo = "Bartender";
         break;

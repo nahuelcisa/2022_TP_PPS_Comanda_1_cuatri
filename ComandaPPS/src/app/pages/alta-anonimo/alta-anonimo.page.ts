@@ -51,7 +51,9 @@ export class AltaAnonimoPage implements OnInit {
         this.fotoSubida = false;
         this.as.loading = false;
         this.webPath = "";
-        this.reproducirSonido();
+        if(this.fs.sonido){
+          this.reproducirSonido();
+        }
         this.router.navigate(['/home']);
     }, 3000);
 
@@ -137,7 +139,7 @@ export class AltaAnonimoPage implements OnInit {
     })
   }
 
-  sendPush() {
+  /* sendPush() {
     console.log("asd");
     this.push
       .sendPushNotification({
@@ -154,7 +156,7 @@ export class AltaAnonimoPage implements OnInit {
       .subscribe((data) => {
         console.log(data);
       });
-  }
+  } */
 
   reproducirSonido()
   {

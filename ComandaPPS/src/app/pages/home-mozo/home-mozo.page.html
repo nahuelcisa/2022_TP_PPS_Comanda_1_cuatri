@@ -1,6 +1,7 @@
 
 <ion-content>
-  <img src="../../assets/Spinner.png" style="display: block; position: absolute;margin-top: 50%; z-index: 101;" [ngClass]="{'loading' : this.loading}" *ngIf="this.loading || this.as.loading"/> 
+  <img src="../../assets/Spinner.png" style="display: block; position: absolute;margin-top: 50%; z-index: 101;" [ngClass]="{'loading' : this.loading || this.as.loading}" *ngIf="this.loading || this.as.loading"/> 
+
   
   
   <div style="padding-left: 2%; padding-right: 2%;" *ngIf="this.principal">
@@ -216,4 +217,10 @@
     </div>
     <app-chat-mozo [receptor]="this.emisor"></app-chat-mozo>
   </div> 
+
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="naranja" (click)="this.as.logout()">
+      <ion-icon name="log-out-outline"></ion-icon>           
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

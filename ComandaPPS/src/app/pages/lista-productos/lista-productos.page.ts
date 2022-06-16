@@ -60,7 +60,9 @@ export class ListaProductosPage implements OnInit {
       this.tiempoEstimado += parseInt(item.tiempoPromedio);
       this.precioCarrito += parseInt(item.precio);
     }else{
+      if(this.fs.sonido){
       this.reproducirSonido("audioError");
+      }
       this.ErrorToastCarrito();
     }
   }
@@ -92,7 +94,9 @@ export class ListaProductosPage implements OnInit {
     setTimeout(() => {
 
       this.fs.agregarPedido(pedido);
+      if(this.fs.sonido){
       this.reproducirSonido("audioBueno2");
+      }
       this.successToast();
       this.loading = false;
 

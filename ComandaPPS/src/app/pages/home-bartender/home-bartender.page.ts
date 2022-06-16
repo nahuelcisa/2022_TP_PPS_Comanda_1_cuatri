@@ -20,7 +20,7 @@ export class HomeBartenderPage implements OnInit {
   constructor(
     private fs : FirestoreService, 
     private toast : ToastController,
-    private as : AuthService,
+    public as : AuthService,
     private push : PushService
   ){
     this.loading = true;
@@ -74,8 +74,9 @@ export class HomeBartenderPage implements OnInit {
     }
 
     this.fs.modificarEstadoPedido(item, item.id);
-
+    if(this.fs.sonido){
     this.reproducirSonido("audioBueno2");
+    }
     this.SuccessToastProductoTerminado();
   }
 

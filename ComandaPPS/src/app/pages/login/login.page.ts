@@ -44,7 +44,9 @@ export class LoginPage implements OnInit {
     }
   }
 
-
+  sonido(a : boolean){
+    this.fs.sonido = a;
+  }
 
   async DangerToastHabilitado() {
     const toast = await this.toast.create({
@@ -74,10 +76,14 @@ export class LoginPage implements OnInit {
       this.as.login(this.email,this.password);
       setTimeout(() => {
         this.form.reset();
+        if(this.fs.sonido){
         this.reproducirSonido("audioInicio");
+        }
       }, 5000);
     }else{
+      if(this.fs.sonido){
       this.reproducirSonido("audioError");
+      }
       this.DangerToastHabilitado();
     }
 
@@ -90,25 +96,25 @@ export class LoginPage implements OnInit {
     {
         case 1:
           this.email = "mozo@mozo.com";
-          this.password = "mozo123";
+          this.password = "123456";
           this.form.get('email')?.setValue(this.email);
           this.form.get('password')?.setValue(this.password);
           break;
         case 2:
           this.email = "cocinero@cocinero.com";
-          this.password = "cocinero123";
+          this.password = "123456";
           this.form.get('email')?.setValue(this.email);
           this.form.get('password')?.setValue(this.password);
           break;
         case 3:
           this.email = "metre@metre.com";
-          this.password = "metre123";
+          this.password = "123456";
           this.form.get('email')?.setValue(this.email);
           this.form.get('password')?.setValue(this.password);
           break;
         case 4:
           this.email = "bartender@bartender.com";
-          this.password = "bartender123";
+          this.password = "123456";
           this.form.get('email')?.setValue(this.email);
           this.form.get('password')?.setValue(this.password);
           break;
@@ -119,8 +125,8 @@ export class LoginPage implements OnInit {
           this.router.navigate(['/alta-anonimo']);
           break;
         case 7:
-          this.email = "duenio@duenio.com";
-          this.password = "dueño123";
+          this.email = "nahuelcisa@hotmail.com";
+          this.password = "123456";
           this.form.get('email')?.setValue(this.email);
           this.form.get('password')?.setValue(this.password);
           break;
