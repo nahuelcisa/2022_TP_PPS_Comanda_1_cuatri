@@ -13,6 +13,8 @@ export class ChatPage implements OnInit {
   mensajes : any;
   mensaje : any;
   mensajeEnviar: any = "";
+  usuariosArray : any = [];
+  usuarioActual : any;
 
   constructor(private chat : ChatService,public as : AuthService, public fs : FirestoreService) { 
     this.mensajes = chat.items;
@@ -22,6 +24,18 @@ export class ChatPage implements OnInit {
       message: '',
       date: Date().toString(),
     }
+
+    this.fs.traerUsuarios().subscribe((value) =>{
+      this.usuariosArray = value;
+      for (const iterator of this.usuariosArray) 
+      {
+        if(iterator.nombre == this.fs.usuario.nombre)
+        {
+          this.usuarioActual = iterator;
+          break;
+        }
+      }
+    })
   }
 
   ngOnInit(){
@@ -42,7 +56,8 @@ export class ChatPage implements OnInit {
     this.mensaje.date = hora.getHours() + ':' + hora.getMinutes();
     consulta = {
       nombre : this.fs.usuario.nombre,
-      date : this.mensaje.date
+      date : this.mensaje.date,
+      mesa : this.usuarioActual.mesa
     }
     this.chat.sendMessage(this.mensaje);
     this.mensaje.message = '';

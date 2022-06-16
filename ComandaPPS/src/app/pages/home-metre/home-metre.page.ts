@@ -26,19 +26,32 @@ export class HomeMetrePage implements OnInit {
 
       this.fs.traerMesas().subscribe((datos) =>{
         this.mesas = datos;
-        for (let item of this.mesas) 
-        {
-          if(!item.ocupada)
-          {
-            this.mesasArray.push(item);
-          }
-        }
+        this.mesasArray = [];
+        this.cargarMesasLibres();
 
         this.fs.traerUsuarios().subscribe((value) =>{
           this.usuariosArray = value;
         });
       });
     });
+  }
+
+  
+  cargarMesasLibres()
+  {
+    for (const item of this.mesas) {
+      this.mesasArray.push(item);   
+    }
+    
+    this.mesasArray = this.mesasArray.filter(this.filtrarMesasLibres);    
+  }
+
+  filtrarMesasLibres(item){
+    if(!item.ocupada){      
+      return true;
+    }else{
+      return false;
+    }
   }
 
 
