@@ -34,6 +34,16 @@
     -Home cocina ✅
     -Home mozo ✅
     -PRE ENTREGA PUNTOS 1 AL 3.
+    
+<h1> Semana 04/6/2022 - 11/6/2022</h1>
+
+## Tareas realizadas: 
+    -SE REALIZARON LAS CORRECCIONES DE TODA LA APP (LO REALIZAMOS EN CONJUNTO LOS 3 INTEGRANTES).
+    
+<h1> Semana 11/6/2022 - 18/6/2022</h1>
+
+## Tareas realizadas: 
+    -SE CORRIGIERON ESTILOS, SE AGREGARON SONIDOS Y SE REALIZO LA PRE ENTREGA CON NOTA TENTATIVA.(LO REALIZAMOS EN CONJUNTO LOS 3 INTEGRANTES).
   
 <h1> Division de tareas:</h1>
   
