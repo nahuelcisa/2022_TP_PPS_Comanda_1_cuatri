@@ -13,7 +13,8 @@ export class CuentaPage implements OnInit {
   @Output() pagadoEvent = new EventEmitter<boolean>();
   pagado : boolean = false;
   loading : boolean = false;
-  scaneo : boolean = false;
+  scaneo : boolean = true;
+  precioPropina : number;
   propina : string;
   propinaporc : number = 5;
   pedido : any = [];
@@ -26,7 +27,7 @@ export class CuentaPage implements OnInit {
 
 
   constructor(private fs : FirestoreService, private as : AuthService, private scan : ScannerService) { 
-    
+
   }
   
   ngOnInit() 
@@ -101,6 +102,7 @@ export class CuentaPage implements OnInit {
       switch (this.propina) {
         case 'Excelente':
           this.precioTotal = this.pedidoElegido.precioTotal * 0.2 + this.pedidoElegido.precioTotal;
+          this.precioPropina = this.pedidoElegido.precioTotal * 0.2;
           this.propinaporc = 20;
           break;
         case 'MuyBueno':
