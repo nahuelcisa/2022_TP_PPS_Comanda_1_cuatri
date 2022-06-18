@@ -5,7 +5,7 @@ export interface Cliente {
     foto : string;
     email : string;
     clave : string;
-    habilitado: boolean;
+    habilitado: string;
     encuesta: any;
     perfil : string;
     mesa : number;

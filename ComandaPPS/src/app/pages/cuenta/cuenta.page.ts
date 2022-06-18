@@ -71,7 +71,7 @@ export class CuentaPage implements OnInit {
          })
         }); 
       }, 3000);
-     });
+    });
   }
    
   

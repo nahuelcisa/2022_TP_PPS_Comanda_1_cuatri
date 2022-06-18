@@ -92,11 +92,11 @@
                 </div>
                 
                 <ion-fab horizontal="center" vertical="bottom" slot="fixed">
-                  <ion-fab-button color="naranja" *ngIf="this.fs.sonido" (click)="sonido(true)">
+                  <ion-fab-button color="naranja" *ngIf="this.fs.sonido" (click)="sonido(false)">
                     <ion-icon name="volume-high"></ion-icon>                 
                   </ion-fab-button>
 
-                  <ion-fab-button color="naranja" *ngIf="!this.fs.sonido" (click)="sonido(false)">
+                  <ion-fab-button color="naranja" *ngIf="!this.fs.sonido" (click)="sonido(true)">
                     <ion-icon name="volume-mute" ></ion-icon>
                   </ion-fab-button>
                 </ion-fab>

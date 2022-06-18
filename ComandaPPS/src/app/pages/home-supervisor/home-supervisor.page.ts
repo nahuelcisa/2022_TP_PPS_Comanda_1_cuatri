@@ -31,17 +31,17 @@ export class HomeSupervisorPage implements OnInit {
   }
 
   filtarHabilitado(item){
-    if(item.habilitado){
-      return false;
-    }else{
+    console.log(item);
+    if(item.habilitado == "no"){
       return true;
+    }else{
+      return false;
     }
   }
 
-  habilitar(event, item){
+  habilitar(item : any, accion : boolean){
     let usu : any;
-    if(!event.target.checked)
-    {
+ 
       for (const iterator of this.usuarios) {
         if(iterator.DNI == item.DNI){
           usu = iterator;
@@ -49,10 +49,12 @@ export class HomeSupervisorPage implements OnInit {
           break;
         }
       }
+    if(accion){
       this.loading = true;
-      item.habilitado = true;
-      usu.habilitado = true;
+      item.habilitado = 'si';
+      usu.habilitado = 'si';
       this.mailS.enviarAvisoHabilitado(item);
+
       setTimeout(() =>{
         this.fs.modificarCliente(item, item.id).then(()=>{
           this.fs.modificarUsuario(usu,usu.id).then(()=>{
@@ -66,7 +68,26 @@ export class HomeSupervisorPage implements OnInit {
           });
         });
       },2500);
+    }else{
+      this.loading = true;
+      item.habilitado = 'rechazado';
+      usu.habilitado = 'rechazado';
+
+      this.mailS.enviarAvisoRechazado(item);
+
+      setTimeout(() =>{
+        this.fs.modificarCliente(item, item.id).then(()=>{
+          this.fs.modificarUsuario(usu,usu.id).then(()=>{
+            this.loading = false;
+            if(this.fs.sonido){
+            this.reproducirSonido("audioError");
+            }
+            this.SuccessToastRechazo();
+          });
+        });
+      },2500);
     }
+    
   }
 
   async SuccessToastEncuesta() {
@@ -75,6 +96,16 @@ export class HomeSupervisorPage implements OnInit {
       message: 'Cliente habilitado!!!',
       duration: 1100,
       color: 'success'
+    });
+    toast.present();
+  }
+
+  async SuccessToastRechazo() {
+    const toast = await this.toast.create({
+      position: 'top',
+      message: 'Cliente RECHAZADO!!!',
+      duration: 1100,
+      color: 'danger'
     });
     toast.present();
   }

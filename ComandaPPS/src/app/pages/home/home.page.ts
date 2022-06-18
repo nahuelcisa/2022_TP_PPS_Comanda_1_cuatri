@@ -33,7 +33,7 @@ export class HomePage implements OnInit{
   constructor(private as : AuthService, private fs : FirestoreService, private push : PushService) 
   {  
     console.log("constructor");
-    //this.push.getUser(); 
+    this.push.getUser(); 
       this.homePage();
 
   }
@@ -53,7 +53,7 @@ export class HomePage implements OnInit{
     this.view_pageAnonimo = false;
 
     this.view_pageCliente = false;
-    console.log(this.as.logeado);
+    console.log(this.as.logeado.perfil);
     //Default HomePage Clientes
     switch (this.as.logeado.perfil) {
       case "Supervisor":
@@ -61,7 +61,7 @@ export class HomePage implements OnInit{
           this.page_titulo = "Supervisor";
         break;
       
-      case "Cliente":
+      case "cliente":
           this.view_pageCliente = true;                  
           this.page_titulo = "Cliente";
         break;

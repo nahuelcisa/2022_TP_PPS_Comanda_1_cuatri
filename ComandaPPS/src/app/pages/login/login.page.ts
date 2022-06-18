@@ -58,33 +58,48 @@ export class LoginPage implements OnInit {
     toast.present();
   }
 
+  async DangerToastRechazado() {
+    const toast = await this.toast.create({
+      position: 'top',
+      message: 'Cliente RECHAZADO.!!!',
+      duration: 1100,
+      color: 'danger'
+    });
+    toast.present();
+  }
+
   login()
   {
 
     this.email = this.form.get('email')?.value;
     this.password = this.form.get('password')?.value;
 
-    let habilitado = true;
+    let habilitado;
 
     for (const iterator of this.clientes) {
       if(iterator.email == this.email){
-        habilitado = false;
+        habilitado = iterator.habilitado;
       }
     }
 
-    if(habilitado){
+    if(habilitado == 'si'){
       this.as.login(this.email,this.password);
       setTimeout(() => {
         this.form.reset();
         if(this.fs.sonido){
-        this.reproducirSonido("audioInicio");
+        this.reproducirSonido("audioInicio3");
         }
       }, 5000);
-    }else{
+    }else if(habilitado == 'no'){
       if(this.fs.sonido){
       this.reproducirSonido("audioError");
       }
       this.DangerToastHabilitado();
+    }else{
+      if(this.fs.sonido){
+        this.reproducirSonido("audioError");
+        }
+        this.DangerToastRechazado();
     }
 
 

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, IonMenu } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
@@ -20,6 +20,7 @@ import {NgxChartsModule} from '@swimlane/ngx-charts';
 import { ChartEncuestaClientesPage } from '../chart-encuesta-clientes/chart-encuesta-clientes.page';
 import { CuentaPage } from '../cuenta/cuenta.page';
 import { ChatPage } from '../chat/chat.page';
+import { ChatMozoPage } from '../chat-mozo/chat-mozo.page';
 import { EncuestaClientePage } from '../encuesta-cliente/encuesta-cliente.page';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -49,7 +50,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     CuentaPage,
     ChatPage,
     EncuestaClientePage,
-    HomeBartenderPage
+    HomeBartenderPage,
+    ChatMozoPage
   ],
   providers: [{
     provide: MAT_MENU_DEFAULT_OPTIONS,

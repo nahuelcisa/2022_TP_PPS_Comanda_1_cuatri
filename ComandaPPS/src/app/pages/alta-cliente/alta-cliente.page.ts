@@ -59,7 +59,7 @@ export class AltaClientePage implements OnInit {
         this.as.loading = false;
         this.webPath = "";
         if(this.fs.sonido){
-          this.reproducirSonido("audioInicio");
+          this.reproducirSonido("audioInicio3");
         }
         this.router.navigate(['/login']);
     }, 2500);
@@ -75,7 +75,7 @@ export class AltaClientePage implements OnInit {
       foto : "",
       email : this.form.get('email')?.value,
       clave : this.form.get('password')?.value,
-      habilitado : false,
+      habilitado : 'no',
       encuesta : null,
       perfil : "cliente",
       mesa : 0,
