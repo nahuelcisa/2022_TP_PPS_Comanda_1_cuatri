@@ -12,7 +12,7 @@ export class AppComponent {
   
   constructor(private platform: Platform, private router: Router) 
   {
-    //this.initializeApp();
+    this.initializeApp();
   }
 
   public initializeApp(){

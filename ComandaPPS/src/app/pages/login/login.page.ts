@@ -30,14 +30,14 @@ export class LoginPage implements OnInit {
   }
   
   ngOnInit() {
-    this.fs.traerClientes().subscribe(value => {
+    this.fs.traerUsuarios().subscribe(value => {
       this.clientes = value;
       this.clientes = this.clientes.filter(this.filtarHabilitado);
     });
   }
 
   filtarHabilitado(item){
-    if(item.habilitado){
+    if(item.habilitado != "si"){
       return false;
     }else{
       return true;
@@ -77,12 +77,15 @@ export class LoginPage implements OnInit {
     let habilitado;
 
     for (const iterator of this.clientes) {
+      console.log(iterator);
       if(iterator.email == this.email){
         habilitado = iterator.habilitado;
       }
     }
 
-    if(habilitado == 'si'){
+    console.log(habilitado);
+
+    if(habilitado == "si"){
       this.as.login(this.email,this.password);
       setTimeout(() => {
         this.form.reset();
@@ -90,7 +93,7 @@ export class LoginPage implements OnInit {
         this.reproducirSonido("audioInicio3");
         }
       }, 5000);
-    }else if(habilitado == 'no'){
+    }else if(habilitado == "no"){
       if(this.fs.sonido){
       this.reproducirSonido("audioError");
       }

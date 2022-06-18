@@ -13,7 +13,7 @@ export class CuentaPage implements OnInit {
   @Output() pagadoEvent = new EventEmitter<boolean>();
   pagado : boolean = false;
   loading : boolean = false;
-  scaneo : boolean = true;
+  scaneo : boolean = false;
   precioPropina : number;
   propina : string;
   propinaporc : number = 5;
