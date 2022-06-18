@@ -15,20 +15,27 @@
       
         <div *ngIf="menuOpciones" style="height: 100%;">
           <div style="height: 100%;" align="center">               
-                <ion-row style="flex-grow: 1; height: 45%; background-color: #8D2CE2; margin-left: 3%; margin-right: 3%; margin-bottom: 5%; margin-top: 5%;">
+                <ion-row style="flex-grow: 1; height: 30%; background-color: #8D2CE2; margin-left: 3%; margin-right: 3%; margin-bottom: 5%; margin-top: 5%;">
                   <div style="width: 100%;height: 100%;"  (click)="verEncuestas()">
-                    <h2 style="width: 100%;height: 100%;margin-top: 47%;font-weight: bold;" align="center">
+                    <h2 style="width: 100%;height: 100%;margin-top: 30%;font-weight: bold;" align="center">
                       VER ENCUESTAS
                     </h2>     
                   </div>                                 
                 </ion-row>
-                <ion-row style="flex-grow: 1; height: 45%;background-color: #8D2CE2; margin-left: 3%; margin-right: 3%;">
+                <ion-row style="flex-grow: 1; height: 30%;background-color: #8D2CE2; margin-left: 3%; margin-right: 3%; margin-bottom: 5%">
                   <div style="width: 100%;height: 100%;" (click)="entrarListaEspera()">
-                    <h2 style="width: 100%;height: 100%;margin-top: 47%;font-weight: bold;color: white;" align="center">
+                    <h2 style="width: 100%;height: 100%;margin-top: 30%;font-weight: bold;color: white;" align="center">
                       ENTRAR A LISTA DE ESPERA
                     </h2>   
                   </div>                                   
-                </ion-row>     
+                </ion-row>   
+                <ion-row style="flex-grow: 1; height: 30%;background-color: #8D2CE2; margin-left: 3%; margin-right: 3%;">
+                  <div style="width: 100%;height: 100%;" (click)="mostrarMenu()">
+                    <h2 style="width: 100%;height: 100%;margin-top: 30%;font-weight: bold;color: white;" align="center">
+                      ESCANEAR QR MESA
+                    </h2>   
+                  </div>                                   
+                </ion-row>   
           </div>
         </div>
   
@@ -83,14 +90,14 @@
   
         <div *ngIf="menuOpcionesConfirma || this.usuarioPedido.pagoConfirmado" style="height: 100%;">
           <div style="height: 100%;" align="center">               
-                <ion-row style="flex-grow: 1; height: 30%; background-color: #8D2CE2; margin-left: 3%; margin-right: 3%; margin-bottom: 8%; margin-top: 5%;" *ngIf='this.usuarioPedido.estado != "pagado" && this.usuarioPedido.estado != "entregado"'>
+                <ion-row style="flex-grow: 1; height: 30%; background-color: #8D2CE2; margin-left: 3%; margin-right: 3%; margin-bottom: 8%; margin-top: 5%;" *ngIf='this.usuarioPedido != "" && this.usuarioPedido.estado != "pagado" && this.usuarioPedido.estado != "entregado"'>
                   <div style="width: 100%;height: 100%;"  (click)="irJuegos()">
                     <h2 style="width: 100%; font-weight: bold; margin-top: 30%;" align="center">
                       ENTRAR A LOS JUEGOS
                     </h2>     
                   </div>                                 
                 </ion-row>
-                <ion-row style="flex-grow: 1; height: 30%; background-color: #8D2CE2; margin-left: 3%; margin-right: 3%; margin-bottom: 8%; margin-top: 5%;" *ngIf='this.usuarioPedido.estado == "pagado" && !this.encuestaCargada'>
+                <ion-row style="flex-grow: 1; height: 30%; background-color: #8D2CE2; margin-left: 3%; margin-right: 3%; margin-bottom: 8%; margin-top: 5%;" *ngIf='this.usuarioPedido != "" && this.usuarioPedido.estado == "pagado" && !this.encuestaCargada'>
                   <div style="width: 100%;height: 100%;" (click)="mostrarEncuesta()">
                     <h2 style="width: 100%;font-weight: bold; margin-top: 30%; color: white;" align="center">
                       COMPLETAR ENCUESTA
@@ -98,9 +105,9 @@
                   </div>                                   
                 </ion-row>  
                 <ion-row style="flex-grow: 1; height: 30%; background-color: #8D2CE2; margin-left: 3%; margin-right: 3%; margin-bottom: 8%; margin-top: 5%;" *ngIf="this.encuestaCargada">
-                  <div style="width: 100%;height: 100%;" (click)="verEncuestas()">
+                  <div style="width: 100%;height: 100%;" (click)="verEncuestasQR()">
                     <h2 style="width: 100%; font-weight: bold; margin-top: 30%; color: white;" align="center">
-                      VER ENCUESTAS
+                      ESCANEAR QR LOCAL
                     </h2>   
                   </div>                                   
                 </ion-row>
@@ -111,20 +118,34 @@
                     </h2>   
                   </div>                                   
                 </ion-row>      
-                <ion-row style="flex-grow: 1; height: 30%; background-color: #8D2CE2; margin-left: 3%; margin-right: 3%; margin-bottom: 8%;" *ngIf='this.usuarioPedido.estado != "entregado" && this.usuarioPedido.estado != "pagado"'>
+                <ion-row style="flex-grow: 1; height: 30%; background-color: #8D2CE2; margin-left: 3%; margin-right: 3%; margin-bottom: 8%;" *ngIf='this.usuarioPedido != "" && this.usuarioPedido.estado != "entregado" && this.usuarioPedido.estado != "pagado"'>
                   <div style="width: 100%;height: 100%;" (click)="mostrarEstadoPedido()">
                     <h2 style="width: 100%; font-weight: bold; margin-top: 30%; color: white;" align="center">
                       VER ESTADO DEL PEDIDO
                     </h2>   
                   </div>                                   
                 </ion-row>  
-                <ion-row style="flex-grow: 1; height: 30%; background-color: #8D2CE2; margin-left: 3%; margin-right: 3%;" *ngIf='this.usuarioPedido.estado != "entregado" && this.usuarioPedido.estado != "pagado"'>
+                <ion-row style="flex-grow: 1; height: 30%; background-color: #8D2CE2; margin-left: 3%; margin-right: 3%;" *ngIf='this.usuarioPedido != "" && this.usuarioPedido.estado != "entregado" && this.usuarioPedido.estado != "pagado"'>
                   <div style="width: 100%;height: 100%;" (click)="consultarMozo()">
                     <h2 style="width: 100%; font-weight: bold; margin-top: 30%; color: white;" align="center">
                       CONSULTAR MOZO
                     </h2>   
                   </div>                                   
                 </ion-row>   
+                <ion-row style="flex-grow: 1; height: 45%; background-color: #8D2CE2; margin-left: 3%; margin-right: 3%; margin-bottom: 8%; margin-top: 5%;" *ngIf="this.usuarioPedido == ''">
+                  <div style="width: 100%;height: 100%;" (click)="consultarMozo()">
+                    <h2 style="width: 100%; font-weight: bold; margin-top: 45%; color: white;" align="center">
+                      CONSULTAR MOZO
+                    </h2>   
+                  </div>                                   
+                </ion-row> 
+                <ion-row style="flex-grow: 1; height: 45%; background-color: #8D2CE2; margin-left: 3%; margin-right: 3%;" *ngIf="this.usuarioPedido == ''">
+                  <div style="width: 100%;height: 100%;" (click)="hacerPedido()">
+                    <h2 style="width: 100%; font-weight: bold; margin-top: 45%; color: white;" align="center">
+                      HACER PEDIDO
+                    </h2>   
+                  </div>                                   
+                </ion-row> 
                 <ion-row style="flex-grow: 1; height: 45%; background-color: #8D2CE2; margin-left: 3%; margin-right: 3%; margin-bottom: 8%; margin-top: 5%;" *ngIf='this.usuarioPedido.estado == "entregado"'>
                   <div style="width: 100%;height: 100%;"  (click)="irJuegos()">
                     <h2 style="width: 100%; font-weight: bold; margin-top: 45%;" align="center">

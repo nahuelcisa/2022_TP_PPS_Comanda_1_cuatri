@@ -129,8 +129,10 @@ export class HomeClientePage implements OnInit {
           toast.present();
         });
       }
-    })
+    }) 
 
+    this.escaneoQR = false;
+    this.menuOpciones = true;
   }
 
   reproducirSonido(dato : string)
@@ -263,13 +265,18 @@ export class HomeClientePage implements OnInit {
           else
           { 
             this.mesa = false;
-            this.menu = true;
-            this.menuOpcionesConfirma = false;
+            this.menu = false;
+            this.menuOpcionesConfirma = true;
           }
         }
 
     });
+  }
 
+  hacerPedido()
+  {
+    this.menuOpcionesConfirma = false;
+    this.menu = true;
   }
   
   atrasCaptura(dato : boolean){
@@ -406,6 +413,31 @@ export class HomeClientePage implements OnInit {
     this.esperarPago = false;
     this.router.navigate(['/login']);
   }
+
+  verEncuestasQR()
+  {
+    let dato;
+    this.sf.test().then((data) => {
+
+      dato = data;
+      this.sf.stopScan();
+      if(dato == "@Local")
+      {
+        this.menuOpcionesConfirma = false;
+        this.todasEncuestas = true;
+      }
+      else
+      {
+        if(this.fs.sonido){
+        this.reproducirSonido("audioError");
+        }
+        this.MostrarToast("Este no es el QR de este local","QR incorrecto","danger").then((toast : any) =>{
+          toast.present();
+        });
+      }
+    })
+  }
+
 
   MostrarToast(message : string, header : string, color : string)
     {
