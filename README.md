@@ -39,8 +39,8 @@
 🍴 Home cliente 
 
 #### **Balderrama Rocha Jhossymar:**  
-🍴 Push notification confirmar pedido(parte del mozo)  
-🍴 Push notification consulta a mozo 
+🍴 Push notification confirmar pedido(parte del mozo)
+🍴 Push notification consulta a mozo
 🍴 Confirmación de pedidos cocinero/ bartender
 🍴 Encuesta Empleado (terminado)
 🍴 Alta mesa (Se agrego funcionalidades de generador de QR de la Mesa y un generador de Imagen(del QR)) ((terminado))
