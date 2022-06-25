@@ -94,7 +94,7 @@
 <pre>
      <img src="./ComandaPPS/src/assets/screenshots/login.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/registroanonimo.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/qrlocal.jpeg" alt="drawing" style="width:200px;"/>
 
-     <img src="./ComandaPPS/src/assets/screenshots/1.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/qrmesa.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/2.jpeg" alt="drawing" style="width:200px;"/>
+     <img src="./ComandaPPS/src/assets/screenshots/1.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/graficosencuesta.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/qrmesa.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/2.jpeg" alt="drawing" style="width:200px;"/>
 
      <img src="./ComandaPPS/src/assets/screenshots/chat.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/hacerpedido.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/3.jpeg" alt="drawing" style="width:200px;"/>
 
