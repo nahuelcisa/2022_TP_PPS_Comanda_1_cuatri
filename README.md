@@ -1,87 +1,113 @@
-# 2022_TP_PPS_Comanda_1_cuatri
-<h1> Grupo: PPSS </h1>
-<h2> Integrantes </h2>
-<h3> Alfa: Cisa, Nahuel </h3>
-<h3> Beta: Bustos Gil, Felipe </h3>
-<h3> Gamma: Balderrama Rocha, Jhossymar </h3>
 
+# Trabajo práctico grupal - PPS - segundo parcial - ComandaPPS
 
-<h1> Semana 21/5/2022 - 28/5/2022</h1>
+<p  align="center">
+     <img src="./src/assets/images/icon_circle_white.png" alt="drawing" style="width:400px;"/> 
+</p>
 
-## Tareas realizadas: 
-    -Creacion de login - Todos ✅
-    -Creacion de icono, splash estatico y animado - Gamma ✅
-    -Alta dueño - Alfa ✅
-    -Alta empleado - Alfa ✅
-    -Alta cliente - Beta ✅
-    -Alta producto - Beta ✅
-    -Alta mesa - Gamma ✅
-    -Encuesta empleado - Gamma ✅
-    -Encuesta Supervisor - Alfa ✅
-    -Encuesta cliente - Beta ✅
-    
-<h1> Semana 28/5/2022 - 04/6/2022</h1>
+<br/>  
 
-## Tareas realizadas: 
-    -Push notification ingreso al local - Alfa ✅
-    -Push notification agregar cliente nuevo - Beta ✅
-    -Push notification consultar al mozo - Gamma ✅
-    -Push notification confirmar realizacion del pedido(por parte del cocinero o bartender) - Alfa ✅
-    -Push notification confirmar pedido(parte del mozo) - Gamma ✅
-    -Push notification generar reservas agendadas/delivery - Gamma ✅
-    -Home Supervisor/dueño ✅
-    -Home Metre ✅
-    -Home cocina ✅
-    -Home mozo ✅
-    -PRE ENTREGA PUNTOS 1 AL 3.
-    
-<h1> Semana 04/6/2022 - 11/6/2022</h1>
+## **Primera semana**
+#### **Cisa Nahuel:**
+🍴 Alta Dueño  
+🍴 Alta Empleado  
+🍴 Encuesta Supervisor   
 
-## Tareas realizadas: 
-    -SE REALIZARON LAS CORRECCIONES DE TODA LA APP (LO REALIZAMOS EN CONJUNTO LOS 3 INTEGRANTES).
-    
-<h1> Semana 11/6/2022 - 18/6/2022</h1>
+#### **Bustos Gil Felipe:**
+🍴 Alta Cliente  
+🍴 Alta Producto  
+🍴 Encuesta Cliente 
 
-## Tareas realizadas: 
-    -SE CORRIGIERON ESTILOS, SE AGREGARON SONIDOS Y SE REALIZO LA PRE ENTREGA CON NOTA TENTATIVA.(LO REALIZAMOS EN CONJUNTO LOS 3 INTEGRANTES).
+#### **Balderrama Rocha Jhossymar:**
+🍴 Creacion y diseño de icono, splash estatico y animado  
+🍴 Alta mesa  
+🍴 Encuesta Empleado 
+
+<br/>
+
+## **Segunda semana**
+#### **Cisa Nahuel:**
+🍴 Push notification ingreso al local  
+🍴 Push notification confirmar realizacion del pedido(por parte del cocinero o bartender)  
+🍴 Home Supervisor/dueño  
+🍴 Realizar pedidos (platos y bebida)  
+
+#### **Bustos Gil Felipe:**
+🍴 Push notification agregar cliente nuevo  
+🍴 Home metre (asignación de mesa)  
+🍴 Home mozo  
+🍴 Home cliente 
+
+#### **Balderrama Rocha Jhossymar:**  
+🍴 Push notification confirmar pedido(parte del mozo)  
+🍴 Push notification consulta a mozo
+🍴 Confirmación de pedidos cocinero/ bartender
+🍴 Encuesta Empleado (terminado)
+🍴 Alta mesa (Se agrego funcionalidades de generador de QR de la Mesa y un generador de Imagen(del QR)) ((terminado))
   
-<h1> Division de tareas:</h1>
-  
-##  alfa:
-    -alta dueño ✅
-    -alta empleado ✅
-    -qr ingreso local
-    -encuesta supervisor ✅
-    -gestion ingresar al local
-    -gestion confirmar pedidos
-    -push ingreso al local ✅
-    -push confirmar realizacion del pedido(por parte del cocinero o bartender) ✅
-    -delivery mapa de ruta hasta el domicilio de entrega
-    -juegos (ta te ti)
+<br/>
+
+## **Tercer semana**
+#### **Cisa Nahuel:**
+🍴 Cliente pide la cuenta  
+🍴 Escaneo de QR de propinas  
+🍴 Mozo confirma el pago y libera la mesa  
+🍴 Juego TA TE TI (funcionalidades terminado)  
+
+#### **Bustos Gil Felipe:**
+🍴 Consultar al mozo (chat)  
+🍴 Push notification consultar al mozo  
+🍴 Home cliente terminado  
+🍴 Sonidos en partes clave (ingreso, errores, success)  
+🍴 Juego Aproxima2 (funcionalidades terminado)  
+
+#### **Balderrama Rocha Jhossyma:**  
+🍴 Mostrar encuestas  
+🍴 Home Mozo, cocina, bartender (funcionalidades de listado y confirmaciones)  
+🍴 Diagrama Funcionalidad de Sitema Comanda  
+🍴 Imagenes de Fondo Login  
+🍴 Se creo y diseño el Input del Chat (Mozo - Cliente)  
+🍴 Juego Piedra Papel Tijera (funcionalidades terminado)  
+🍴 Graficos (charts) Encuestas Clientes (terminado)  
+
+<br/>
+
+## **Cuarta semana**
+#### **Cisa Nahuel:**
+🍴 Correcciones
 
 
-
-##  beta:
-  
-    -alta cliente ✅
-    -alta producto ✅
-    -qr de la mesa
-    -encuesta cliente ✅
-    -gestion agregar nuevo cliente registrado
-    -gestion reservas agendadas
-    -push agregar cliente nuevo ✅
-    -delivery realizar pedido con gps o direccion
-    -juegos (aproximacion de numero)
+#### **Bustos Gil Felipe:**
+🍴 Correcciones
 
 
-##  gamma:
-  
-    -alta mesa ✅
-    -diseño icono ✅
-    -qr de propina
-    -encuesta empleado ✅
-    -gestion realizar pedidos(platos y bebidas)
-    -push consultar al mozo ✅
-    -push confirmar pedido(parte del mozo) ✅
-    -push generar reservas agendadas/delivery ✅
-    -juego (mayor o menor con cartas)
+#### **Balderrama Rocha Jhossyma:**
+🍴 Correcciones tema estilos, fuentes, colores, tamaños,etc.
+
+<br/>
+
+---
+
+<br/>
+
+## **Tour del cliente**
+<pre>
+     <img src="./ComandaPPS/src/assets/screenshots/login.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/qrlocal.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/1.jpeg" alt="drawing" style="width:200px;"/>
+
+     <img src="./ComandaPPS/src/assets/screenshots/graficosencuesta.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots" alt="drawing" style="width:200px;"/>        <img src="./src/assets/screenshots/screen_apirestaurante(6).jpeg" alt="drawing" style="width:200px;"/>
+
+     <img src="./src/assets/screenshots/screen_apirestaurante(7).jpeg" alt="drawing" style="width:200px;"/>        <img src="./src/assets/screenshots/screen_apirestaurante(8).jpeg" alt="drawing" style="width:200px;"/>        <img src="./src/assets/screenshots/screen_apirestaurante(9).jpeg" alt="drawing" style="width:200px;"/>
+
+     <img src="./src/assets/screenshots/screen_apirestaurante(10).jpeg" alt="drawing" style="width:200px;"/>        <img src="./src/assets/screenshots/screen_apirestaurante(11).jpeg" alt="drawing" style="width:200px;"/>        <img src="./src/assets/screenshots/screen_apirestaurante(12).jpeg" alt="drawing" style="width:200px;"/>
+
+     <img src="./src/assets/screenshots/screen_apirestaurante(13).jpeg" alt="drawing" style="width:200px;"/>        <img src="./src/assets/screenshots/screen_apirestaurante(14).jpeg" alt="drawing" style="width:200px;"/>        <img src="./src/assets/screenshots/screen_apirestaurante(15).jpeg" alt="drawing" style="width:200px;"/>
+
+     <img src="./src/assets/screenshots/screen_apirestaurante(16).jpeg" alt="drawing" style="width:200px;"/>        <img src="./src/assets/screenshots/screen_apirestaurante(17).jpeg" alt="drawing" style="width:200px;"/>        <img src="./src/assets/screenshots/screen_apirestaurante(19).jpeg" alt="drawing" style="width:200px;"/>
+</pre>
+ 
+## **Pantallas de empleados**
+<pre>
+     <img src="./src/assets/screenshots/screen_apirestaurante(18).jpeg" alt="drawing" style="width:200px;"/>        <img src="./src/assets/screenshots/screen_apirestaurante(20).jpeg" alt="drawing" style="width:200px;"/>        <img src="./src/assets/screenshots/screen_apirestaurante(21).jpeg" alt="drawing" style="width:200px;"/>
+</pre>
+
+<br/>

@@ -71,15 +71,35 @@ export class HomeCocinaPage implements OnInit {
     
     if(item.estadoBartender == true){
       item.estado = "terminado"
+      this.sendPushConfirmaPedido();    
     }else if(item.estadoBartender == undefined || item.estadoBartender == null){
       item.estado = "terminado"
+      this.sendPushConfirmaPedido();    
     }
 
     this.fs.modificarEstadoPedido(item, item.id);
     if(this.fs.sonido){
     this.reproducirSonido("audioBueno2");
     }
+    
     this.SuccessToastProductoTerminado();
+  }
+
+  sendPushConfirmaPedido() 
+  {
+    this.push
+      .sendPushNotification({
+        registration_ids: [
+          //TOKENS Mozos
+        ],
+        notification: {
+          title: 'Pedido Terminado',
+          body: 'Hay un pedido para entregar.',
+        },
+      })
+      .subscribe((data) => {
+        console.log(data);
+      });
   }
 
   reproducirSonido(dato : string)

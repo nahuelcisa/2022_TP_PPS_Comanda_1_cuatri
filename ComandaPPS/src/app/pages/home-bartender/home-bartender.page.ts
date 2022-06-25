@@ -69,8 +69,10 @@ export class HomeBartenderPage implements OnInit {
     
     if(item.estadoCocina == true){
       item.estado = "terminado"
+      this.sendPushConfirmaPedido();    
     }else if(item.estadoCocina == undefined || item.estadoCocina == null){
       item.estado = "terminado"
+      this.sendPushConfirmaPedido();    
     }
 
     this.fs.modificarEstadoPedido(item, item.id);
@@ -78,6 +80,24 @@ export class HomeBartenderPage implements OnInit {
     this.reproducirSonido("audioBueno2");
     }
     this.SuccessToastProductoTerminado();
+  }
+
+
+  sendPushConfirmaPedido() 
+  {
+    this.push
+      .sendPushNotification({
+        registration_ids: [
+          //TOKENS Mozos
+        ],
+        notification: {
+          title: 'Pedido Terminado',
+          body: 'Hay un pedido para entregar.',
+        },
+      })
+      .subscribe((data) => {
+        console.log(data);
+      });
   }
 
   reproducirSonido(dato : string)
