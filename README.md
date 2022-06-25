@@ -95,15 +95,16 @@
 <pre>
      <img src="./ComandaPPS/src/assets/screenshots/login.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/registroanonimo.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/qrlocal.jpeg" alt="drawing" style="width:200px;"/>
 
-     <img src="./ComandaPPS/src/assets/screenshots/1.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/graficosencuesta.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/qrmesa.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/2.jpeg" alt="drawing" style="width:200px;"/>
+     <img src="./ComandaPPS/src/assets/screenshots/1.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/graficosencuesta.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/qrmesa.jpeg" alt="drawing" style="width:200px;"/>        
+     
+     <img src="./ComandaPPS/src/assets/screenshots/2.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/chat.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/hacerpedido.jpeg" alt="drawing" style="width:200px;"/>
 
-     <img src="./ComandaPPS/src/assets/screenshots/chat.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/hacerpedido.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/3.jpeg" alt="drawing" style="width:200px;"/>
+     <img src="./ComandaPPS/src/assets/screenshots/3.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/estadopedido.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/4.jpeg" alt="drawing" style="width:200px;"/>
 
-     <img src="./ComandaPPS/src/assets/screenshots/estadopedido.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/4.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/5.jpeg" alt="drawing" style="width:200px;"/>
+     <img src="./ComandaPPS/src/assets/screenshots/5.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/6.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/7.jpeg" alt="drawing" style="width:200px;"/>
 
-     <img src="./ComandaPPS/src/assets/screenshots/6.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/7.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/8.jpeg" alt="drawing" style="width:200px;"/>
-
-     <img src="./ComandaPPS/src/assets/screenshots/9.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/10.jpeg" alt="drawing" style="width:200px;"/>       
+     <img src="./ComandaPPS/src/assets/screenshots/8.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/9.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/10.jpeg" alt="drawing" style="width:200px;"/>
+        
 </pre>
  
 ## **Pantallas de empleados**
