@@ -1,5 +1,5 @@
 
-# Trabajo práctico grupal - PPS - segundo parcial - ComandaPPS
+# Trabajo práctico grupal - PPS - segundo parcial - ppss
 
 <p  align="center">
      <img src="./ComandaPPS/src/assets/Spinner.png" alt="drawing" style="width:400px;"/> 
