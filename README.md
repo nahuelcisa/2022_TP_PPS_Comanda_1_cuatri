@@ -92,22 +92,22 @@
 
 ## **Tour del cliente**
 <pre>
-     <img src="./ComandaPPS/src/assets/screenshots/login.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/qrlocal.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/1.jpeg" alt="drawing" style="width:200px;"/>
+     <img src="./ComandaPPS/src/assets/screenshots/login.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/registroanonimo.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/qrlocal.jpeg" alt="drawing" style="width:200px;"/>
 
-     <img src="./ComandaPPS/src/assets/screenshots/graficosencuesta.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots" alt="drawing" style="width:200px;"/>        <img src="./src/assets/screenshots/screen_apirestaurante(6).jpeg" alt="drawing" style="width:200px;"/>
+     <img src="./ComandaPPS/src/assets/screenshots/1.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/qrmesa.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/2.jpeg" alt="drawing" style="width:200px;"/>
 
-     <img src="./src/assets/screenshots/screen_apirestaurante(7).jpeg" alt="drawing" style="width:200px;"/>        <img src="./src/assets/screenshots/screen_apirestaurante(8).jpeg" alt="drawing" style="width:200px;"/>        <img src="./src/assets/screenshots/screen_apirestaurante(9).jpeg" alt="drawing" style="width:200px;"/>
+     <img src="./ComandaPPS/src/assets/screenshots/chat.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/hacerpedido.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/3.jpeg" alt="drawing" style="width:200px;"/>
 
-     <img src="./src/assets/screenshots/screen_apirestaurante(10).jpeg" alt="drawing" style="width:200px;"/>        <img src="./src/assets/screenshots/screen_apirestaurante(11).jpeg" alt="drawing" style="width:200px;"/>        <img src="./src/assets/screenshots/screen_apirestaurante(12).jpeg" alt="drawing" style="width:200px;"/>
+     <img src="./ComandaPPS/src/assets/screenshots/estadopedido.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/4.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/5.jpeg" alt="drawing" style="width:200px;"/>
 
-     <img src="./src/assets/screenshots/screen_apirestaurante(13).jpeg" alt="drawing" style="width:200px;"/>        <img src="./src/assets/screenshots/screen_apirestaurante(14).jpeg" alt="drawing" style="width:200px;"/>        <img src="./src/assets/screenshots/screen_apirestaurante(15).jpeg" alt="drawing" style="width:200px;"/>
+     <img src="./ComandaPPS/src/assets/screenshots/6.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/7.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/8.jpeg" alt="drawing" style="width:200px;"/>
 
-     <img src="./src/assets/screenshots/screen_apirestaurante(16).jpeg" alt="drawing" style="width:200px;"/>        <img src="./src/assets/screenshots/screen_apirestaurante(17).jpeg" alt="drawing" style="width:200px;"/>        <img src="./src/assets/screenshots/screen_apirestaurante(19).jpeg" alt="drawing" style="width:200px;"/>
+     <img src="./ComandaPPS/src/assets/screenshots/9.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/10.jpeg" alt="drawing" style="width:200px;"/>       
 </pre>
  
 ## **Pantallas de empleados**
 <pre>
-     <img src="./src/assets/screenshots/screen_apirestaurante(18).jpeg" alt="drawing" style="width:200px;"/>        <img src="./src/assets/screenshots/screen_apirestaurante(20).jpeg" alt="drawing" style="width:200px;"/>        <img src="./src/assets/screenshots/screen_apirestaurante(21).jpeg" alt="drawing" style="width:200px;"/>
+     <img src="./ComandaPPS/src/assets/screenshots/homemetre.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/confirmarpedido.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/homebartender.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/homeCocina.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/finalizarpedido.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/confirmarpago.jpeg" alt="drawing" style="width:200px;"/>
 </pre>
 
 <br/>
