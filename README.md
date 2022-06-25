@@ -5,9 +5,8 @@
      <img src="./ComandaPPS/src/assets/Spinner.png" alt="drawing" style="width:400px;"/> 
 </p>
 
-<br/>  
 
-## **Primera semana**
+## **📌 Primera semana**
 #### **Cisa Nahuel:**
 🍴 Alta Dueño  
 🍴 Alta Empleado  
@@ -25,7 +24,7 @@
 
 <br/>
 
-## **Segunda semana**
+## **📌 Segunda semana**
 #### **Cisa Nahuel:**
 🍴 Push notification ingreso al local  
 🍴 Push notification confirmar realizacion del pedido(por parte del cocinero o bartender)  
@@ -47,7 +46,7 @@
 
 <br/>
 
-## **Tercer semana**
+## **📌 Tercer semana**
 #### **Cisa Nahuel:**
 🍴 Cliente pide la cuenta  
 🍴 Escaneo de QR de propinas  
@@ -64,7 +63,7 @@
 #### **Balderrama Rocha Jhossyma:**  
 🍴 Mostrar encuestas  
 🍴 Home Mozo, cocina, bartender (funcionalidades de listado y confirmaciones)  
-🍴 Diagrama Funcionalidad de Sitema Comanda  
+🍴 Diagrama Funcionalidad de Sistema Comanda  
 🍴 Imagenes de Fondo Login  
 🍴 Se creo y diseño el Input del Chat (Mozo - Cliente)  
 🍴 Juego Piedra Papel Tijera (funcionalidades terminado)  
@@ -72,7 +71,7 @@
 
 <br/>
 
-## **Cuarta semana**
+## **📌 Cuarta semana**
 #### **Cisa Nahuel:**
 🍴 Correcciones
 
@@ -90,7 +89,7 @@
 
 <br/>
 
-## **Tour del cliente**
+## **📄 Recorrido Cliente**
 <pre>
      <img src="./ComandaPPS/src/assets/screenshots/login.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/registroanonimo.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/qrlocal.jpeg" alt="drawing" style="width:200px;"/>
 
@@ -106,7 +105,7 @@
         
 </pre>
  
-## **Pantallas de empleados**
+## **📄 Empleados**
 <pre>
      <img src="./ComandaPPS/src/assets/screenshots/homemetre.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/confirmarpedido.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/homebartender.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/homeCocina.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/finalizarpedido.jpeg" alt="drawing" style="width:200px;"/>        <img src="./ComandaPPS/src/assets/screenshots/confirmarpago.jpeg" alt="drawing" style="width:200px;"/>
 </pre>
