@@ -2,7 +2,7 @@
 # Trabajo práctico grupal - PPS - segundo parcial - ComandaPPS
 
 <p  align="center">
-     <img src="./src/assets/images/icon_circle_white.png" alt="drawing" style="width:400px;"/> 
+     <img src="./ComandaPPS/src/assets/Spinner.png" alt="drawing" style="width:400px;"/> 
 </p>
 
 <br/>  
